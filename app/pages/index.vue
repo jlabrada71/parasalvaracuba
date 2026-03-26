@@ -2,20 +2,32 @@
   <div class="home-page">
     <nav class="nav">
       <span class="nav-brand">ParaSalvaraCuba</span>
-      <NuxtLink to="/settings" class="nav-link">Settings</NuxtLink>
+      <div class="nav-actions">
+        <NuxtLink to="/ideas/create" class="btn-primary">+ New Idea</NuxtLink>
+        <NuxtLink to="/settings" class="nav-link">Settings</NuxtLink>
+      </div>
     </nav>
 
     <main>
       <h1>Ideas for Cuba</h1>
-      <p>Submit and vote on ideas. Your voice matters.</p>
+      <p class="subtitle">Submit and vote on ideas. The best rise to the top.</p>
 
-      <div class="actions">
-        <button @click="handleCreateIdea">Create Idea</button>
-        <button @click="handleVote">Vote</button>
-        <button @click="handleComment">Comment</button>
+      <div v-if="pending" class="loading">Loading ideas…</div>
+      <div v-else-if="error" class="error">Failed to load ideas. Please refresh.</div>
+      <div v-else-if="ideas.length === 0" class="empty">No ideas yet. Be the first!</div>
+
+      <div v-else class="ideas-list">
+        <IdeaCard
+          v-for="idea in ideas"
+          :key="idea.id"
+          :idea="idea"
+          @voted="onVoted"
+        />
       </div>
 
-      <p v-if="actionFeedback" class="feedback">{{ actionFeedback }}</p>
+      <div v-if="hasMore" class="pagination">
+        <button :disabled="pending" @click="loadMore">Load more</button>
+      </div>
     </main>
 
     <EmailCaptureModal
@@ -28,36 +40,60 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useEmailGate } from '~/composables/useEmailGate'
+import IdeaCard from '~/components/IdeaCard.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
+import { useEmailGate } from '~/composables/useEmailGate'
 
-const { modalVisible, requireEmail, onModalSaved, onModalClose } = useEmailGate()
-const actionFeedback = ref('')
-
-function handleCreateIdea() {
-  requireEmail(() => {
-    actionFeedback.value = 'Create Idea action executed!'
-  })
+interface Idea {
+  id: string
+  title: string
+  email: string
+  created_at: string
+  net_votes: number
 }
 
-function handleVote() {
-  requireEmail(() => {
-    actionFeedback.value = 'Vote action executed!'
-  })
+const { modalVisible, onModalSaved, onModalClose } = useEmailGate()
+
+const page = ref(1)
+const ideas = ref<Idea[]>([])
+const hasMore = ref(false)
+const pending = ref(false)
+const error = ref(false)
+
+async function fetchIdeas(p: number) {
+  pending.value = true
+  error.value = false
+  try {
+    const data = await $fetch<{ ideas: Idea[]; page: number; limit: number }>(`/api/ideas?page=${p}`)
+    if (p === 1) {
+      ideas.value = data.ideas
+    } else {
+      ideas.value.push(...data.ideas)
+    }
+    hasMore.value = data.ideas.length === data.limit
+  } catch {
+    error.value = true
+  } finally {
+    pending.value = false
+  }
 }
 
-function handleComment() {
-  requireEmail(() => {
-    actionFeedback.value = 'Comment action executed!'
-  })
+function loadMore() {
+  page.value += 1
+  fetchIdeas(page.value)
 }
+
+function onVoted(payload: { ideaId: string; netVotes: number }) {
+  const idea = ideas.value.find(i => i.id === payload.ideaId)
+  if (idea) idea.net_votes = payload.netVotes
+}
+
+// Initial load
+fetchIdeas(1)
 </script>
 
 <style scoped>
-.home-page {
-  font-family: system-ui, sans-serif;
-}
-
+.home-page { font-family: system-ui, sans-serif; }
 .nav {
   display: flex;
   justify-content: space-between;
@@ -66,43 +102,28 @@ function handleComment() {
   background: #1e3a5f;
   color: white;
 }
-
-.nav-brand {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.nav-link {
+.nav-brand { font-weight: 700; font-size: 1.1rem; }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.nav-link { color: white; text-decoration: none; font-size: 0.9rem; }
+.btn-primary {
+  padding: 0.45rem 1rem;
+  background: #2563eb;
   color: white;
+  border-radius: 4px;
   text-decoration: none;
   font-size: 0.9rem;
 }
-
-main {
-  max-width: 720px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-button {
-  padding: 0.6rem 1.25rem;
-  background: #2563eb;
-  color: white;
-  border: none;
+main { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+.subtitle { color: #6b7280; margin-bottom: 1.5rem; }
+.ideas-list { margin-top: 1rem; }
+.loading, .empty, .error { padding: 2rem 0; color: #6b7280; }
+.error { color: #dc2626; }
+.pagination { margin: 1.5rem 0; text-align: center; }
+.pagination button {
+  padding: 0.6rem 1.5rem;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
-}
-
-.feedback {
-  margin-top: 1rem;
-  color: #16a34a;
-  font-weight: 600;
 }
 </style>
