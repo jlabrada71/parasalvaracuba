@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Actions
   function init() {
-    if (import.meta.client) {
+    if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) email.value = stored
     }
@@ -20,14 +20,14 @@ export const useAuthStore = defineStore('auth', () => {
 
   function setEmail(newEmail: string) {
     email.value = newEmail.trim().toLowerCase()
-    if (import.meta.client) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, email.value)
     }
   }
 
   function clearEmail() {
     email.value = null
-    if (import.meta.client) {
+    if (typeof window !== 'undefined') {
       localStorage.removeItem(STORAGE_KEY)
     }
   }

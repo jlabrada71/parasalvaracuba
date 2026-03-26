@@ -9,8 +9,13 @@ export default defineConfig({
       '~': resolve(__dirname, './app'),
     },
   },
+  define: {
+    'import.meta.client': 'true',
+    'import.meta.server': 'false',
+  },
   test: {
     environment: 'happy-dom',
     globals: true,
+    setupFiles: ['./tests/setup.ts'],
   },
 })
