@@ -70,11 +70,11 @@ These are intentionally deferred and not in roadmap scope:
 | COMMENT-01 | 3 | planned |
 | COMMENT-02 | 3 | planned |
 | COMMENT-03 | 3 | planned |
-| AUTH-01 | 1 | planned |
-| AUTH-02 | 1 | planned |
-| AUTH-03 | 1 | planned |
+| AUTH-01 | 1 | complete |
+| AUTH-02 | 1 | complete |
+| AUTH-03 | 1 | complete |
 
-*(Updated 2026-03-26 — all 12 requirements mapped across 3 phases)*
+*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH requirements delivered)*
 
 ---
 
