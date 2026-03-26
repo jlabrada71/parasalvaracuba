@@ -60,13 +60,13 @@ These are intentionally deferred and not in roadmap scope:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| IDEAS-01 | 2 | planned |
-| IDEAS-02 | 2 | planned |
-| IDEAS-03 | 2 | planned |
-| IDEAS-04 | 2 | planned |
-| VOTE-01 | 2 | planned |
+| IDEAS-01 | 2 | complete |
+| IDEAS-02 | 2 | complete |
+| IDEAS-03 | 2 | complete |
+| IDEAS-04 | 2 | complete |
+| VOTE-01 | 2 | complete |
 | VOTE-02 | 3 | planned |
-| VOTE-03 | 2 | planned |
+| VOTE-03 | 2 | complete |
 | COMMENT-01 | 3 | planned |
 | COMMENT-02 | 3 | planned |
 | COMMENT-03 | 3 | planned |
@@ -74,7 +74,7 @@ These are intentionally deferred and not in roadmap scope:
 | AUTH-02 | 1 | complete |
 | AUTH-03 | 1 | complete |
 
-*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH requirements delivered)*
+*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH), Phase 2 complete (6/6 IDEAS+VOTE)*
 
 ---
 
