@@ -60,21 +60,21 @@ These are intentionally deferred and not in roadmap scope:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| IDEAS-01 | TBD | pending |
-| IDEAS-02 | TBD | pending |
-| IDEAS-03 | TBD | pending |
-| IDEAS-04 | TBD | pending |
-| VOTE-01 | TBD | pending |
-| VOTE-02 | TBD | pending |
-| VOTE-03 | TBD | pending |
-| COMMENT-01 | TBD | pending |
-| COMMENT-02 | TBD | pending |
-| COMMENT-03 | TBD | pending |
-| AUTH-01 | TBD | pending |
-| AUTH-02 | TBD | pending |
-| AUTH-03 | TBD | pending |
+| IDEAS-01 | 2 | planned |
+| IDEAS-02 | 2 | planned |
+| IDEAS-03 | 2 | planned |
+| IDEAS-04 | 2 | planned |
+| VOTE-01 | 2 | planned |
+| VOTE-02 | 3 | planned |
+| VOTE-03 | 2 | planned |
+| COMMENT-01 | 3 | planned |
+| COMMENT-02 | 3 | planned |
+| COMMENT-03 | 3 | planned |
+| AUTH-01 | 1 | planned |
+| AUTH-02 | 1 | planned |
+| AUTH-03 | 1 | planned |
 
-*(Updated by roadmapper once phases are created)*
+*(Updated 2026-03-26 — all 12 requirements mapped across 3 phases)*
 
 ---
 
