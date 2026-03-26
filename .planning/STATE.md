@@ -2,7 +2,7 @@
 
 ## Milestone: MVP (v1)
 
-**Status:** Phase 1 (Identity Foundation) complete ✓
+**Status:** Phase 2 (Ideas & Voting) complete ✓
 
 **Total Requirements:** 12 (all v1)
 **Phases:** 3
@@ -78,4 +78,4 @@ All three are still v1 requirements and should ship before considering the produ
 
 ---
 
-*Last updated: 2026-03-26 — Phase 1 executed, all 11 tasks complete, 14/14 tests passing*
+*Last updated: 2026-03-26 — Phase 2 executed, all 13 tasks complete, 18/18 tests passing (17 HTTP integration tests skip without INTEGRATION=true)*
