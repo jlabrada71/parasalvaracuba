@@ -40,6 +40,9 @@
           </div>
           <p v-if="editError" class="error">{{ editError }}</p>
         </form>
+
+        <!-- Comments section -->
+        <CommentThread v-if="idea" :idea-id="idea.id" />
       </article>
     </main>
 
@@ -56,6 +59,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import VoteButton from '~/components/VoteButton.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
+import CommentThread from '~/components/CommentThread.vue'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
