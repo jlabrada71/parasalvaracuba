@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "newIdea": "+ New Idea",
+    "settings": "Settings",
+    "backToFeed": "← Back to feed"
+  },
+  "home": {
+    "title": "Ideas for Cuba",
+    "subtitle": "Submit and vote on ideas. The best rise to the top.",
+    "loading": "Loading ideas…",
+    "error": "Failed to load ideas. Please refresh.",
+    "empty": "No ideas yet. Be the first!",
+    "loadMore": "Load more"
+  },
+  "settings": {
+    "title": "Settings",
+    "identity": {
+      "title": "Your Identity",
+      "currentEmail": "Current email:",
+      "changeEmail": "Change Email",
+      "clearEmail": "Clear Email (sign out)",
+      "noEmail": "You have not set an email yet.",
+      "setEmail": "Set Email"
+    }
+  },
+  "create": {
+    "title": "Submit a new idea",
+    "subtitle": "Share what you think would help Cuba.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Short, clear title (max 200 characters)",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Describe the idea in detail…",
+    "submit": "Submit idea",
+    "submitting": "Submitting…",
+    "cancel": "Cancel",
+    "errors": {
+      "titleRequired": "Title is required.",
+      "descriptionRequired": "Description is required.",
+      "failed": "Failed to submit. Please try again."
+    }
+  },
+  "idea": {
+    "loading": "Loading…",
+    "notFound": "Idea not found.",
+    "by": "by",
+    "editIdea": "Edit idea",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "saveChanges": "Save changes",
+    "cancel": "Cancel",
+    "errors": {
+      "saveFailed": "Failed to save."
+    }
+  },
+  "comments": {
+    "title": "Comments ({count})",
+    "placeholder": "Write a comment...",
+    "post": "Post comment",
+    "empty": "No comments yet.",
+    "errors": {
+      "empty": "Comment cannot be empty",
+      "failed": "Failed to post comment"
+    },
+    "reply": "Reply",
+    "replyCancel": "Cancel",
+    "replyPlaceholder": "Write a reply...",
+    "postReply": "Post reply",
+    "errors_reply": {
+      "empty": "Reply cannot be empty",
+      "failed": "Failed to post reply"
+    }
+  },
+  "modal": {
+    "title": "Enter your email to continue",
+    "description": "No account needed. We use your email to attribute your contributions.",
+    "emailLabel": "Email address",    
+    "continue": "Continue",
+    "browse": "Browse without saving",
+    "invalidEmail": "Invalid email."
+  },
+  "vote": {
+    "up": "Vote up",
+    "down": "Vote down"
+  }
+}

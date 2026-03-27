@@ -4,12 +4,13 @@
       <span class="nav-brand">ParaSalvaraCuba</span>
       <div class="nav-actions">
         <NuxtLink to="/ideas/create" class="btn-primary">+ New Idea</NuxtLink>
+        <LanguageSwitcher/>
         <NuxtLink to="/settings" class="nav-link">Settings</NuxtLink>
       </div>
     </nav>
 
     <main>
-      <h1>Ideas for Cuba</h1>
+      <h1>{{ $t('home.title') }}</h1>
       <p class="subtitle">Submit and vote on ideas. The best rise to the top.</p>
 
       <div v-if="pending" class="loading">Loading ideas…</div>
@@ -43,6 +44,8 @@ import { ref } from 'vue'
 import IdeaCard from '~/components/IdeaCard.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import { useEmailGate } from '~/composables/useEmailGate'
+
+
 
 interface Idea {
   id: string
