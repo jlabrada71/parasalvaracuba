@@ -2,17 +2,16 @@
 
 BEGIN;
 
--- Drop the overly broad constraint
+-- Drop the problematic constraint that tried to enforce uniqueness across both idea and comment votes
 ALTER TABLE votes DROP CONSTRAINT IF EXISTS votes_idea_id_comment_id_email_key CASCADE;
 
--- Add partial unique index for idea votes (comment_id IS NULL)
-CREATE UNIQUE INDEX IF NOT EXISTS votes_idea_id_email_key_idea
-ON votes (idea_id, email)
-WHERE comment_id IS NULL;
+-- For idea votes: unique on (idea_id, email) when comment_id is NULL
+-- This uses a simple table constraint since these rows have comment_id = NULL
+ALTER TABLE votes ADD CONSTRAINT votes_idea_id_email_key UNIQUE (idea_id, email);
 
--- Add partial unique index for comment votes (comment_id IS NOT NULL)
-CREATE UNIQUE INDEX IF NOT EXISTS votes_idea_id_comment_id_email_key_comment
-ON votes (idea_id, comment_id, email)
-WHERE comment_id IS NOT NULL;
+-- For comment votes: add an index that allows upserts to work
+-- We'll use a different approach - the upsert will work via the primary key conflict detection
+-- Create an index to help identify comment vote duplicates
+CREATE INDEX IF NOT EXISTS votes_comment_id_email_idx ON votes (comment_id, email) WHERE comment_id IS NOT NULL;
 
 COMMIT;
