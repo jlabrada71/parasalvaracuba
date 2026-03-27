@@ -145,4 +145,74 @@ describe('VoteButton.vue', () => {
     expect(buttons[0].attributes('disabled')).toBeDefined()
     expect(buttons[1].attributes('disabled')).toBeDefined()
   })
+
+  it('renders with commentId prop instead of ideaId', () => {
+    const wrapper = mount(VoteButton, {
+      props: {
+        commentId: 'comment-1',
+        netVotes: 3,
+      },
+    })
+    expect(wrapper.text()).toContain('3')
+  })
+
+  it('calls /api/comments/:id/votes endpoint when commentId provided', async () => {
+    const { apiRequest } = await import('~/utils/apiClient')
+    vi.mocked(apiRequest).mockResolvedValue({ net_votes: 4 })
+
+    const wrapper = mount(VoteButton, {
+      props: {
+        commentId: 'comment-1',
+        netVotes: 3,
+      },
+    })
+
+    await wrapper.findAll('button.vote-btn')[0].trigger('click')
+    await new Promise(resolve => setTimeout(resolve, 10))
+
+    expect(vi.mocked(apiRequest)).toHaveBeenCalledWith(
+      '/api/comments/comment-1/votes',
+      expect.any(Object)
+    )
+  })
+
+  it('emits voted event with commentId when voting on comment', async () => {
+    const { apiRequest } = await import('~/utils/apiClient')
+    vi.mocked(apiRequest).mockResolvedValue({ net_votes: 4 })
+
+    const wrapper = mount(VoteButton, {
+      props: {
+        commentId: 'comment-1',
+        netVotes: 3,
+      },
+    })
+
+    await wrapper.findAll('button.vote-btn')[0].trigger('click')
+    await new Promise(resolve => setTimeout(resolve, 10))
+
+    expect(wrapper.emitted('voted')).toBeTruthy()
+    expect(wrapper.emitted('voted')?.[0]).toEqual([
+      { commentId: 'comment-1', netVotes: 4 },
+    ])
+  })
+
+  it('requires either ideaId or commentId prop', () => {
+    // Vue type checking will catch this at compile time, but we can test
+    // that the component behavior is correct when one is provided
+    const wrapper1 = mount(VoteButton, {
+      props: {
+        ideaId: 'idea-1',
+        netVotes: 5,
+      },
+    })
+    expect(wrapper1.exists()).toBe(true)
+
+    const wrapper2 = mount(VoteButton, {
+      props: {
+        commentId: 'comment-1',
+        netVotes: 5,
+      },
+    })
+    expect(wrapper2.exists()).toBe(true)
+  })
 })

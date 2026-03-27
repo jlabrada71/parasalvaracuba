@@ -19,17 +19,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
 
-const props = defineProps<{ ideaId: string; netVotes: number }>()
-const emit = defineEmits<{ voted: [payload: { ideaId: string; netVotes: number }] }>()
+interface VotePayload {
+  ideaId?: string
+  commentId?: string
+  netVotes: number
+}
+
+const props = defineProps<{
+  ideaId?: string
+  commentId?: string
+  netVotes: number
+}>()
+const emit = defineEmits<{ voted: [payload: VotePayload] }>()
 
 const { requireEmail } = useEmailGate()
 const localNetVotes = ref(props.netVotes)
 const currentVote = ref<1 | -1 | 0>(0)
 const loading = ref(false)
+
+const routeBase = computed(() => {
+  if (props.ideaId) return `/api/ideas/${props.ideaId}/votes`
+  if (props.commentId) return `/api/comments/${props.commentId}/votes`
+  throw new Error('VoteButton requires either ideaId or commentId')
+})
 
 async function castVote(value: 1 | -1) {
   requireEmail(async () => {
@@ -37,13 +53,16 @@ async function castVote(value: 1 | -1) {
     const newValue = currentVote.value === value ? 0 : value
     loading.value = true
     try {
-      const result = await apiRequest<{ net_votes: number }>(`/api/ideas/${props.ideaId}/votes`, {
+      const result = await apiRequest<{ net_votes: number }>(routeBase.value, {
         method: 'POST',
         body: { vote_value: newValue },
       })
       currentVote.value = newValue
       localNetVotes.value = result.net_votes
-      emit('voted', { ideaId: props.ideaId, netVotes: result.net_votes })
+      const payload: VotePayload = { netVotes: result.net_votes }
+      if (props.ideaId) payload.ideaId = props.ideaId
+      if (props.commentId) payload.commentId = props.commentId
+      emit('voted', payload)
     } finally {
       loading.value = false
     }
