@@ -52,8 +52,7 @@ interface Comment {
   net_votes: number
 }
 
-defineProps<{ ideaId: string }>()
-
+const props = defineProps<{ ideaId: string }>()
 const { requireEmail } = useEmailGate()
 const comments = ref<Comment[]>([])
 const newCommentBody = ref('')
@@ -110,8 +109,6 @@ function onCommentVoted() {
   // Re-fetch comments to get updated vote counts
   fetchComments()
 }
-
-const props = defineProps<{ ideaId: string }>()
 
 fetchComments()
 </script>
