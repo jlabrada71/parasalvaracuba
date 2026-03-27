@@ -20,13 +20,31 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 400, message: 'vote_value must be -1, 0, or 1' })
     }
 
-    const [result] = await query(`
-      INSERT INTO votes (idea_id, email, vote_value, comment_id)
-      VALUES ($1, $2, $3, NULL)
-      ON CONFLICT (idea_id, email) WHERE comment_id IS NULL DO UPDATE
-        SET vote_value = EXCLUDED.vote_value, updated_at = NOW()
-      RETURNING (SELECT COALESCE(SUM(vote_value), 0)::int FROM votes WHERE idea_id = $1 AND comment_id IS NULL) AS net_votes
-    `, [ideaId, userEmail, voteValue])
+    // Check if vote exists, then update or insert
+    const [existingVote] = await query(
+      'SELECT id FROM votes WHERE idea_id = $1 AND email = $2 AND comment_id IS NULL',
+      [ideaId, userEmail]
+    )
+
+    if (existingVote) {
+      // Update existing vote
+      await query(
+        'UPDATE votes SET vote_value = $1, updated_at = NOW() WHERE id = $2',
+        [voteValue, existingVote.id]
+      )
+    } else {
+      // Insert new vote
+      await query(
+        'INSERT INTO votes (idea_id, email, vote_value, comment_id) VALUES ($1, $2, $3, NULL)',
+        [ideaId, userEmail, voteValue]
+      )
+    }
+
+    // Get the updated vote count
+    const [result] = await query(
+      'SELECT COALESCE(SUM(vote_value), 0)::int as net_votes FROM votes WHERE idea_id = $1 AND comment_id IS NULL AND vote_value != 0',
+      [ideaId]
+    )
 
     if (!result) {
       throw createError({ statusCode: 500, message: 'Failed to cast vote' })
