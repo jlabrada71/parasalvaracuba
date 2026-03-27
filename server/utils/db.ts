@@ -1,5 +1,4 @@
 import pg from 'pg'
-import { useRuntimeConfig } from '#app'
 
 const { Pool } = pg
 
@@ -7,8 +6,8 @@ let _pool: pg.Pool | null = null
 
 function getPool(): pg.Pool {
   if (!_pool) {
-    const config = useRuntimeConfig()
-    _pool = new Pool({ connectionString: config.databaseUrl })
+    const databaseUrl = process.env.DATABASE_URL || ''
+    _pool = new Pool({ connectionString: databaseUrl })
   }
   return _pool
 }
