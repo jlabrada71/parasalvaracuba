@@ -1,25 +1,25 @@
 <template>
   <section class="comment-thread">
-    <h3>Comments ({{ comments.length }})</h3>
+    <h3>{{ $t('comments.title', { count: comments.length }) }}</h3>
 
     <!-- Comment form for new top-level comments -->
     <form class="comment-form" @submit.prevent="submitTopLevel">
       <textarea
         v-model="newCommentBody"
-        placeholder="Write a comment..."
+        :placeholder="$t('comments.placeholder')"
         maxlength="2000"
         required
         rows="4"
       ></textarea>
       <div class="form-actions">
-        <button type="submit" :disabled="submittingTopLevel">Post comment</button>
+        <button type="submit" :disabled="submittingTopLevel">{{ $t('comments.post') }}</button>
         <span v-if="formError" class="error">{{ formError }}</span>
       </div>
     </form>
 
     <!-- Comments list -->
     <div class="comments-list">
-      <div v-if="comments.length === 0" class="no-comments">No comments yet.</div>
+      <div v-if="comments.length === 0" class="no-comments">{{ $t('comments.empty') }}</div>
       <CommentItem
         v-for="comment in topLevelComments"
         :key="comment.id"
@@ -35,6 +35,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
 import { useEmailGate } from '~/composables/useEmailGate'
 import CommentItem from './CommentItem.vue'
@@ -54,6 +55,7 @@ interface Comment {
 
 const props = defineProps<{ ideaId: string }>()
 const { requireEmail } = useEmailGate()
+const i18n = useI18n()
 const comments = ref<Comment[]>([])
 const newCommentBody = ref('')
 const submittingTopLevel = ref(false)
@@ -76,7 +78,7 @@ async function fetchComments() {
 
 async function submitTopLevel() {
   if (!newCommentBody.value.trim()) {
-    formError.value = 'Comment cannot be empty'
+    formError.value = i18n.t('comments.errors.empty')
     return
   }
 
@@ -94,7 +96,7 @@ async function submitTopLevel() {
       comments.value.push(newComment)
       newCommentBody.value = ''
     } catch (e) {
-      formError.value = (e as { data?: { message?: string } })?.data?.message ?? 'Failed to post comment'
+      formError.value = (e as { data?: { message?: string } })?.data?.message ?? i18n.t('comments.errors.failed')
     } finally {
       submittingTopLevel.value = false
     }

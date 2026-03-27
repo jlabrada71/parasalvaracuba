@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     databaseUrl: process.env.DATABASE_URL || '',
   },
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'es',
+    langDir: 'locales',
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'es', name: 'Spanish', file: 'es.json' },

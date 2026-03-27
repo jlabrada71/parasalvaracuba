@@ -3,19 +3,19 @@
     <nav class="nav">
       <span class="nav-brand">ParaSalvaraCuba</span>
       <div class="nav-actions">
-        <NuxtLink to="/ideas/create" class="btn-primary">+ New Idea</NuxtLink>
+        <NuxtLink :to="localePath('/ideas/create')" class="btn-primary">{{ $t('nav.newIdea') }}</NuxtLink>
         <LanguageSwitcher/>
-        <NuxtLink to="/settings" class="nav-link">Settings</NuxtLink>
+        <NuxtLink :to="localePath('/settings')" class="nav-link">{{ $t('nav.settings') }}</NuxtLink>
       </div>
     </nav>
 
     <main>
       <h1>{{ $t('home.title') }}</h1>
-      <p class="subtitle">Submit and vote on ideas. The best rise to the top.</p>
+      <p class="subtitle">{{ $t('home.subtitle') }}</p>
 
-      <div v-if="pending" class="loading">Loading ideas…</div>
-      <div v-else-if="error" class="error">Failed to load ideas. Please refresh.</div>
-      <div v-else-if="ideas.length === 0" class="empty">No ideas yet. Be the first!</div>
+      <div v-if="pending" class="loading">{{ $t('home.loading') }}</div>
+      <div v-else-if="error" class="error">{{ $t('home.error') }}</div>
+      <div v-else-if="ideas.length === 0" class="empty">{{ $t('home.empty') }}</div>
 
       <div v-else class="ideas-list">
         <IdeaCard
@@ -27,7 +27,7 @@
       </div>
 
       <div v-if="hasMore" class="pagination">
-        <button :disabled="pending" @click="loadMore">Load more</button>
+        <button :disabled="pending" @click="loadMore">{{ $t('home.loadMore') }}</button>
       </div>
     </main>
 
@@ -44,7 +44,7 @@ import { ref } from 'vue'
 import IdeaCard from '~/components/IdeaCard.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import { useEmailGate } from '~/composables/useEmailGate'
-
+const localePath = useLocalePath()
 
 
 interface Idea {

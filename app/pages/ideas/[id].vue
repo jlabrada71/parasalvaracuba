@@ -1,42 +1,42 @@
 <template>
   <div class="detail-page">
     <nav class="nav">
-      <NuxtLink to="/" class="nav-back">← Back to feed</NuxtLink>
+      <NuxtLink :to="localePath('/')" class="nav-back">{{ $t('nav.backToFeed') }}</NuxtLink>
       <span class="nav-brand">ParaSalvaraCuba</span>
     </nav>
 
     <main>
-      <div v-if="pending" class="loading">Loading…</div>
-      <div v-else-if="error" class="error">Idea not found.</div>
+      <div v-if="pending" class="loading">{{ $t('idea.loading') }}</div>
+      <div v-else-if="error" class="error">{{ $t('idea.notFound') }}</div>
 
       <article v-else-if="idea">
         <div class="idea-header">
           <VoteButton :idea-id="idea.id" :net-votes="idea.net_votes" @voted="onVoted" />
           <div class="idea-title-block">
             <h1>{{ idea.title }}</h1>
-            <p class="idea-meta">by {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</p>
+            <p class="idea-meta">{{ $t('idea.by') }} {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</p>
           </div>
         </div>
 
         <div class="idea-description">{{ idea.description }}</div>
 
         <div v-if="isAuthor" class="idea-actions">
-          <button @click="openEdit">Edit idea</button>
+          <button @click="openEdit">{{ $t('idea.editIdea') }}</button>
         </div>
 
         <!-- Inline edit form (shown when editing) -->
         <form v-if="editing" class="edit-form" @submit.prevent="submitEdit">
           <label>
-            Title
+            {{ $t('idea.titleLabel') }}
             <input v-model="editTitle" maxlength="200" required />
           </label>
           <label>
-            Description
+            {{ $t('idea.descriptionLabel') }}
             <textarea v-model="editDescription" rows="6" required />
           </label>
           <div class="edit-actions">
-            <button type="submit" :disabled="saving">Save changes</button>
-            <button type="button" @click="editing = false">Cancel</button>
+            <button type="submit" :disabled="saving">{{ $t('idea.saveChanges') }}</button>
+            <button type="button" @click="editing = false">{{ $t('idea.cancel') }}</button>
           </div>
           <p v-if="editError" class="error">{{ editError }}</p>
         </form>
@@ -57,12 +57,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import VoteButton from '~/components/VoteButton.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import CommentThread from '~/components/CommentThread.vue'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
+
+const localePath = useLocalePath()
 
 interface Idea {
   id: string
@@ -76,6 +79,7 @@ interface Idea {
 
 const route = useRoute()
 const auth = useAuthStore()
+const i18n = useI18n()
 const { modalVisible, onModalSaved, onModalClose } = useEmailGate()
 
 const idea = ref<Idea | null>(null)
@@ -126,7 +130,7 @@ async function submitEdit() {
     idea.value = { ...idea.value, ...updated }
     editing.value = false
   } catch (e: unknown) {
-    editError.value = (e as { data?: { message?: string } })?.data?.message ?? 'Failed to save.'
+    editError.value = (e as { data?: { message?: string } })?.data?.message ?? i18n.t('idea.errors.saveFailed')
   } finally {
     saving.value = false
   }

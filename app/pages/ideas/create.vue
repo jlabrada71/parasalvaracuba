@@ -1,32 +1,32 @@
 <template>
   <div class="create-page">
     <nav class="nav">
-      <NuxtLink to="/" class="nav-back">← Back to feed</NuxtLink>
+      <NuxtLink :to="localePath('/')" class="nav-back">{{ $t('nav.backToFeed') }}</NuxtLink>
       <span class="nav-brand">ParaSalvaraCuba</span>
     </nav>
 
     <main>
-      <h1>Submit a new idea</h1>
-      <p class="subtitle">Share what you think would help Cuba.</p>
+      <h1>{{ $t('create.title') }}</h1>
+      <p class="subtitle">{{ $t('create.subtitle') }}</p>
 
       <form class="create-form" @submit.prevent="handleSubmit">
         <label>
-          Title <span class="required">*</span>
+          {{ $t('create.titleLabel') }} <span class="required">*</span>
           <input
             v-model="title"
             maxlength="200"
-            placeholder="Short, clear title (max 200 characters)"
+            :placeholder="$t('create.titlePlaceholder')"
             required
           />
           <span class="char-count">{{ title.length }}/200</span>
         </label>
 
         <label>
-          Description <span class="required">*</span>
+          {{ $t('create.descriptionLabel') }} <span class="required">*</span>
           <textarea
             v-model="description"
             rows="8"
-            placeholder="Describe the idea in detail…"
+            :placeholder="$t('create.descriptionPlaceholder')"
             required
           />
         </label>
@@ -35,9 +35,9 @@
 
         <div class="form-actions">
           <button type="submit" :disabled="submitting">
-            {{ submitting ? 'Submitting…' : 'Submit idea' }}
+            {{ submitting ? $t('create.submitting') : $t('create.submit') }}
           </button>
-          <NuxtLink to="/" class="cancel-link">Cancel</NuxtLink>
+          <NuxtLink :to="localePath('/')" class="cancel-link">{{ $t('create.cancel') }}</NuxtLink>
         </div>
       </form>
     </main>
@@ -53,11 +53,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
+const localePath = useLocalePath()
 
 const router = useRouter()
+const i18n = useI18n()
 const { modalVisible, requireEmail, onModalSaved, onModalClose } = useEmailGate()
 
 const title = ref('')
@@ -70,8 +73,8 @@ function handleSubmit() {
 }
 
 async function submitIdea() {
-  if (!title.value.trim()) { formError.value = 'Title is required.'; return }
-  if (!description.value.trim()) { formError.value = 'Description is required.'; return }
+  if (!title.value.trim()) { formError.value = i18n.t('create.errors.titleRequired'); return }
+  if (!description.value.trim()) { formError.value = i18n.t('create.errors.descriptionRequired'); return }
 
   submitting.value = true
   formError.value = ''
@@ -81,9 +84,9 @@ async function submitIdea() {
       method: 'POST',
       body: { title: title.value.trim(), description: description.value.trim() },
     })
-    router.push(`/ideas/${idea.id}`)
+    router.push(localePath(`/ideas/${idea.id}`))
   } catch (e: unknown) {
-    formError.value = (e as { data?: { message?: string } })?.data?.message ?? 'Failed to submit. Please try again.'
+    formError.value = (e as { data?: { message?: string } })?.data?.message ?? i18n.t('create.errors.failed')
   } finally {
     submitting.value = false
   }

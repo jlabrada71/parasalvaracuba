@@ -17,7 +17,7 @@
         @voted="(payload) => $emit('voted', payload)"
       />
       <button class="reply-btn" @click="showReplyForm = !showReplyForm">
-        {{ showReplyForm ? 'Cancel' : 'Reply' }}
+        {{ showReplyForm ? $t('comments.replyCancel') : $t('comments.reply') }}
       </button>
     </div>
 
@@ -25,13 +25,13 @@
     <form v-if="showReplyForm" class="reply-form" @submit.prevent="submitReply">
       <textarea
         v-model="replyBody"
-        placeholder="Write a reply..."
+        :placeholder="$t('comments.replyPlaceholder')"
         maxlength="2000"
         required
         rows="3"
       ></textarea>
       <div class="reply-actions">
-        <button type="submit" :disabled="submittingReply">Post reply</button>
+        <button type="submit" :disabled="submittingReply">{{ $t('comments.postReply') }}</button>
         <span v-if="replyError" class="error">{{ replyError }}</span>
       </div>
     </form>
@@ -53,6 +53,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
 import { useEmailGate } from '~/composables/useEmailGate'
 import VoteButton from './VoteButton.vue'
@@ -82,6 +83,7 @@ const emit = defineEmits<{
 }>()
 
 const { requireEmail } = useEmailGate()
+const i18n = useI18n()
 const showReplyForm = ref(false)
 const replyBody = ref('')
 const submittingReply = ref(false)
@@ -93,7 +95,7 @@ const replies = computed(() =>
 
 async function submitReply() {
   if (!replyBody.value.trim()) {
-    replyError.value = 'Reply cannot be empty'
+    replyError.value = i18n.t('comments.errors_reply.empty')
     return
   }
 
@@ -112,7 +114,7 @@ async function submitReply() {
       showReplyForm.value = false
       emit('replied', newReply)
     } catch (e) {
-      replyError.value = (e as { data?: { message?: string } })?.data?.message ?? 'Failed to post reply'
+      replyError.value = (e as { data?: { message?: string } })?.data?.message ?? i18n.t('comments.errors_reply.failed')
     } finally {
       submittingReply.value = false
     }

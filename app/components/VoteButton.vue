@@ -4,7 +4,7 @@
       class="vote-btn"
       :class="{ active: currentVote === 1 }"
       :disabled="loading"
-      aria-label="Vote up"
+      :aria-label="$t('vote.up')"
       @click="castVote(1)"
     >▲</button>
     <span class="vote-count">{{ localNetVotes }}</span>
@@ -12,7 +12,7 @@
       class="vote-btn"
       :class="{ active: currentVote === -1 }"
       :disabled="loading"
-      aria-label="Vote down"
+      :aria-label="$t('vote.down')"
       @click="castVote(-1)"
     >▼</button>
   </div>

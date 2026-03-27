@@ -4,7 +4,7 @@
       <VoteButton :idea-id="idea.id" :net-votes="idea.net_votes" @voted="$emit('voted', $event)" />
     </div>
     <div class="idea-body">
-      <NuxtLink :to="`/ideas/${idea.id}`" class="idea-title">{{ idea.title }}</NuxtLink>
+      <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="idea-title">{{ idea.title }}</NuxtLink>
       <p class="idea-meta">by {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</p>
     </div>
   </div>
@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import VoteButton from './VoteButton.vue'
+const localePath = useLocalePath()
 
 interface Idea {
   id: string

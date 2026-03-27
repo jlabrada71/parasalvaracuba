@@ -2,11 +2,11 @@
   <Teleport to="body">
     <div v-if="visible" class="modal-backdrop" @click.self="onDismiss">
       <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <h2 id="modal-title">Enter your email to continue</h2>
-        <p>No account needed. We use your email to attribute your contributions.</p>
+        <h2 id="modal-title">{{ $t('modal.title') }}</h2>
+        <p>{{ $t('modal.description') }}</p>
 
         <form @submit.prevent="onSubmit" novalidate>
-          <label for="email-input">Email address</label>
+          <label for="email-input">{{ $t('modal.emailLabel') }}</label>
           <input
             id="email-input"
             v-model="inputEmail"
@@ -18,8 +18,8 @@
           <span v-if="errorMsg" class="error" role="alert">{{ errorMsg }}</span>
 
           <div class="actions">
-            <button type="submit">Continue</button>
-            <button type="button" @click="onDismiss">Browse without saving</button>
+            <button type="submit">{{ $t('modal.continue') }}</button>
+            <button type="button" @click="onDismiss">{{ $t('modal.browse') }}</button>
           </div>
         </form>
       </div>
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '~/stores/authStore'
 import { validateEmail } from '~/utils/emailValidation'
 
@@ -43,6 +44,7 @@ const emit = defineEmits<{
 }>()
 
 const auth = useAuthStore()
+const i18n = useI18n()
 const inputEmail = ref(props.prefill ?? '')
 const errorMsg = ref('')
 
@@ -51,7 +53,7 @@ watch(() => props.prefill, (val) => { inputEmail.value = val ?? '' })
 function onSubmit() {
   const result = validateEmail(inputEmail.value)
   if (!result.valid) {
-    errorMsg.value = result.reason ?? 'Invalid email.'
+    errorMsg.value = result.reason ?? i18n.t('modal.invalidEmail')
     return
   }
   errorMsg.value = ''

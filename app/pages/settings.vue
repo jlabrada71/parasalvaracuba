@@ -1,19 +1,19 @@
 <template>
   <div class="settings-page">
-    <h1>Settings</h1>
+    <h1>{{ $t('settings.title') }}</h1>
 
     <section>
-      <h2>Your Identity</h2>
+      <h2>{{ $t('settings.identity.title') }}</h2>
 
       <div v-if="auth.isIdentified">
-        <p>Current email: <strong>{{ auth.email }}</strong></p>
-        <button @click="openChangeModal">Change Email</button>
-        <button @click="clearEmail" class="btn-danger">Clear Email (sign out)</button>
+        <p>{{ $t('settings.identity.currentEmail') }} <strong>{{ auth.email }}</strong></p>
+        <button @click="openChangeModal">{{ $t('settings.identity.changeEmail') }}</button>
+        <button @click="clearEmail" class="btn-danger">{{ $t('settings.identity.clearEmail') }}</button>
       </div>
 
       <div v-else>
-        <p>You have not set an email yet.</p>
-        <button @click="openChangeModal">Set Email</button>
+        <p>{{ $t('settings.identity.noEmail') }}</p>
+        <button @click="openChangeModal">{{ $t('settings.identity.setEmail') }}</button>
       </div>
     </section>
 
