@@ -21,11 +21,11 @@ export default defineEventHandler(async (event) => {
     }
 
     const [result] = await query(`
-      INSERT INTO votes (idea_id, email, vote_value)
-      VALUES ($1, $2, $3)
-      ON CONFLICT (idea_id, email) DO UPDATE
+      INSERT INTO votes (idea_id, email, vote_value, comment_id)
+      VALUES ($1, $2, $3, NULL)
+      ON CONFLICT (idea_id, email) WHERE comment_id IS NULL DO UPDATE
         SET vote_value = EXCLUDED.vote_value, updated_at = NOW()
-      RETURNING (SELECT COALESCE(SUM(vote_value), 0)::int FROM votes WHERE idea_id = $1) AS net_votes
+      RETURNING (SELECT COALESCE(SUM(vote_value), 0)::int FROM votes WHERE idea_id = $1 AND comment_id IS NULL) AS net_votes
     `, [ideaId, userEmail, voteValue])
 
     if (!result) {
