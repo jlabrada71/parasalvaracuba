@@ -1,81 +1,105 @@
-# Requirements: IdeaHub MVP
+# Requirements: IdeaHub v1.1 (Polish & Design)
 
-## v1 Requirements (MVP — Core Interactions Only)
+## v1.1 Requirements (Markdown, Design, Stability)
 
-All v1 requirements are validated hypotheses. Ship and iterate based on user feedback.
+All v1.1 requirements build on the v1.0 MVP and focus on richness (Markdown editing), polish (design consistency), and stability (bug fixes).
 
-### Ideas
-- [ ] **IDEAS-01**: User can browse a feed of recent/trending ideas
-- [ ] **IDEAS-02**: User can create a new idea (title + description)
-- [ ] **IDEAS-03**: User can view an idea in detail with all its comments
-- [ ] **IDEAS-04**: User can edit their own ideas after creation
+### Markdown Editing
 
-### Voting
-- [ ] **VOTE-01**: User can vote (up/down) on ideas
-- [ ] **VOTE-02**: User can vote (up/down) on comments
-- [ ] **VOTE-03**: Ideas are ranked by vote count (trending)
+- [ ] **MARK-01**: User can write Markdown in idea descriptions with live preview
+- [ ] **MARK-02**: User can write Markdown in comment text with live preview
+- [ ] **MARK-03**: Markdown renders safely without XSS risk (DOMPurify sanitization)
+- [ ] **MARK-04**: Existing plaintext ideas remain compatible (backward compatibility)
+- [ ] **MARK-05**: User sees Markdown toolbar with common formatting options (bold, italic, links, lists, code)
 
-### Comments & Discussion
-- [ ] **COMMENT-01**: User can comment on an idea
-- [ ] **COMMENT-02**: User can reply to comments (threaded discussion)
-- [ ] **COMMENT-03**: Comments are threaded and nested clearly
+### Design System & Consistency
 
-### Identity & Session
-- [ ] **AUTH-01**: First action (idea/comment/vote) requires email
-- [ ] **AUTH-02**: Email is persisted to localStorage for session continuity
-- [ ] **AUTH-03**: User can change/clear their email during session
+- [ ] **DESN-01**: Color tokens defined (primary, secondary, error, success, neutral)
+- [ ] **DESN-02**: Typography tokens defined (headline, body, label sizes and weights)
+- [ ] **DESN-03**: Spacing tokens applied to IdeaCard, VoteButton, CommentItem
+- [ ] **DESN-04**: Dark mode theme works with design tokens (automatic via CSS variables)
+- [ ] **DESN-05**: Visual consistency across all components (no hardcoded colors)
 
-**Total v1 Requirements: 12**
+### Bug Fixes & Stability
+
+- [ ] **STAB-01**: Fix vote race condition (prevent concurrent duplicate votes)
+- [ ] **STAB-02**: Mobile forms meet accessibility standards (44px tap targets, WCAG AA)
+- [ ] **STAB-03**: Dark mode text contrast meets WCAG AA (4.5:1 minimum)
+- [ ] **STAB-04**: Comment deletion edge cases handled (nested replies, vote cleanup)
+- [ ] **STAB-05**: Large comment threads render without performance degradation
+
+### Testing & Quality
+
+- [ ] **TEST-01**: XSS security tests for Markdown (payloads from OWASP)
+- [ ] **TEST-02**: Unit tests for MarkdownEditor and MarkdownRenderer components
+- [ ] **TEST-03**: E2E tests for create idea/comment with Markdown
+- [ ] **TEST-04**: Regression tests for all v1.0 features (no breaking changes)
+- [ ] **TEST-05**: Dark mode contrast audit (all components WCAG AA)
+
+**Total v1.1 Requirements: 20**
 
 ---
 
 ## v2 Requirements (Deferred)
 
-These are validated by v1 learning and can be prioritized in the next milestone.
+These features improve the platform but are deferred to v2 (later milestone):
 
-- **COUNTRY-01**: Multi-country support (country selector, data isolation)
-- **MOD-01**: Basic spam/abuse detection
-- **MOD-02**: Manual moderation queue for flagged content
-- **SEARCH-01**: Search ideas by text
-- **CATEGORY-01**: Browse/filter ideas by category/topic
-- **MOBILE-01**: Mobile device optimization
+- **SEARCH-01**: Search ideas by full-text query
+- **CATEGORY-01**: Browse/filter ideas by category or topic
+- **STATUS-01**: Track idea status (Open, Under Review, Approved, Rejected, Implemented)
 - **NOTIF-01**: Email notifications when someone replies to user's idea
-- **TRACK-01**: Implement tracking from idea to decision/implementation
+- **MOBILE-01**: Mobile app (native iOS/Android)
+- **POLARIS-01**: Migrate to Shopify Polaris component library (full design system refactor)
+- **IMPLEMENT-01**: Implementation tracking from idea to decision/deployment
 
 ---
 
-## Out of Scope (Explicitly)
+## Out of Scope (v1.1 & v2)
 
-These are intentionally deferred and not in roadmap scope:
+These are intentionally deferred:
 
-- **Government/stakeholder integration** — Requires partnerships beyond v1 scope
-- **User profiles or reputation systems** — Could gamify/toxify platform
-- **OAuth or social login** — Email-only keeps friction low for v1
-- **Analytics dashboards** — Can observe user behavior directly for v1
-- **Mobile app** — Web-responsive sufficient
-
----
-
-## Traceability
-
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| IDEAS-01 | 2 | complete |
-| IDEAS-02 | 2 | complete |
-| IDEAS-03 | 2 | complete |
-| IDEAS-04 | 2 | complete |
-| VOTE-01 | 2 | complete |
-| VOTE-02 | 3 | complete |
-| VOTE-03 | 2 | complete |
-| COMMENT-01 | 3 | complete |
-| COMMENT-02 | 3 | complete |
-| COMMENT-03 | 3 | complete |
-| AUTH-01 | 1 | complete |
-| AUTH-02 | 1 | complete |
-| AUTH-03 | 1 | complete |
-
-*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH), Phase 2 complete (6/6 IDEAS+VOTE), Phase 3 complete (4/4 COMMENT+VOTE)*
+- Government/stakeholder integration (partnership-dependent)
+- User profiles or reputation systems (could gamify platform)
+- OAuth or social login (email keeps friction low)
+- Analytics dashboards (observe behavior directly)
+- AI-assisted writing or moderation (liability in civic context)
+- File uploads or attachments (moderation overhead)
 
 ---
 
-*Last updated: 2026-03-26 — v1 MVP scope defined*
+## Requirement Traceability
+
+| Requirement | Category | Status | Phase | Priority |
+|-------------|----------|--------|-------|----------|
+| MARK-01 | Markdown | new | 4 | High |
+| MARK-02 | Markdown | new | 4 | High |
+| MARK-03 | Markdown | new | 4 | Critical |
+| MARK-04 | Markdown | new | 4 | High |
+| MARK-05 | Markdown | new | 4 | Medium |
+| DESN-01 | Design | new | 5 | High |
+| DESN-02 | Design | new | 5 | High |
+| DESN-03 | Design | new | 5 | High |
+| DESN-04 | Design | new | 5 | Medium |
+| DESN-05 | Design | new | 5 | High |
+| STAB-01 | Stability | bug-fix | 4 | Critical |
+| STAB-02 | Stability | bug-fix | 5 | High |
+| STAB-03 | Stability | bug-fix | 5 | High |
+| STAB-04 | Stability | bug-fix | 4 | Medium |
+| STAB-05 | Stability | bug-fix | 6 | Medium |
+| TEST-01 | Testing | new | 4 | Critical |
+| TEST-02 | Testing | new | 4 | High |
+| TEST-03 | Testing | new | 6 | High |
+| TEST-04 | Testing | new | 6 | High |
+| TEST-05 | Testing | new | 6 | High |
+
+**Success Criteria for v1.1:**
+1. All Markdown features work end-to-end (create, edit, display, safety)
+2. Design tokens applied to 100% of core components
+3. Dark mode works without contrast failures
+4. All v1.0 features continue to work (no regressions)
+5. XSS security tests passing
+6. Mobile accessibility meets WCAG AA
+
+---
+
+*Last updated: 2026-03-27 — v1.1 scope defined with 20 requirements*

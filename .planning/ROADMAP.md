@@ -1,104 +1,176 @@
-# Roadmap: IdeaHub
+# Roadmap: IdeaHub v1.1 (Polish & Design)
 
 ## Overview
-3 phases | 12 requirements mapped | 12 success criteria | All v1 requirements covered ✓
+
+3 phases | 20 requirements mapped | 20 success criteria | All v1.1 requirements covered ✓
+
+**Phases continue from v1.0:** Phase 4-6 (v1.0 was phases 1-3)
 
 ## Phases
 
-| Phase | Name | Goal | Requirements | Success Criteria | Status |
-|-------|------|------|--------------|------------------|--------|
-| 1 | Identity Foundation | Establish email-based session layer that all interactions depend on | AUTH-01, AUTH-02, AUTH-03 | 3 | ✓ Complete |
-| 2 | Ideas & Voting | Core civic loop: submit ideas, browse the feed, vote, and surface trending | IDEAS-01, IDEAS-02, IDEAS-03, IDEAS-04, VOTE-01, VOTE-03 | 5 | ✓ Complete |
-| 3 | Discussion | Full deliberation: threaded comments, comment replies, comment voting | COMMENT-01, COMMENT-02, COMMENT-03, VOTE-02 | 4 | ✓ Complete |
+| Phase | Name | Goal | Requirements | Success Criteria | Duration |
+|-------|------|------|--------------|------------------|----------|
+| 4 | Markdown & Stability | Add rich text editing with Markdown and fix critical bugs | MARK-01, MARK-02, MARK-03, MARK-04, STAB-01, STAB-04, TEST-01, TEST-02 | 8 | 1-2 weeks |
+| 5 | Design System | Apply design tokens for consistency and accessibility | DESN-01, DESN-02, DESN-03, DESN-04, DESN-05, STAB-02, STAB-03 | 7 | 1 week |
+| 6 | Polish & Testing | Comprehensive testing, performance tuning, and launch readiness | MARK-05, STAB-05, TEST-03, TEST-04, TEST-05 | 5 | 1 week |
 
 ---
 
 ## Phase Details
 
-### Phase 1: Identity Foundation
-**Goal:** Capture and persist a user's email on first action so every subsequent interaction is attributed without requiring a sign-up flow.
+### Phase 4: Markdown & Stability Foundation
+
+**Goal:** Deliver Markdown editing with security-first approach; fix critical bugs (vote race condition, edge cases); establish security baseline.
 
 **Delivers:**
-- AUTH-01: First action (idea/comment/vote) prompts for email entry
-- AUTH-02: Email is persisted to localStorage so future actions within the session are seamless
-- AUTH-03: User can update or clear their stored email at any time
+- MARK-01: User can write Markdown in idea descriptions with live preview
+- MARK-02: User can write Markdown in comment text with live preview
+- MARK-03: Markdown renders safely without XSS risk (DOMPurify sanitization)
+- MARK-04: Existing plaintext ideas remain compatible (backward compatibility)
+- STAB-01: Fix vote race condition (prevent concurrent duplicate votes)
+- STAB-04: Comment deletion edge cases handled (nested replies, vote cleanup)
+- TEST-01: XSS security tests for Markdown (payloads from OWASP)
+- TEST-02: Unit tests for MarkdownEditor and MarkdownRenderer components
 
 **Success Criteria:**
-1. A user who has never visited the site is prompted for their email before submitting any action
-2. A user who previously entered their email is not prompted again on the same device/browser
-3. A user can open session settings and successfully change or clear their stored email
+1. User can create idea with Markdown formatting (bold, italic, links, lists, code)
+2. Live preview shows formatted result in real-time
+3. Rendered Markdown is safe (XSS payloads blocked by DOMPurify)
+4. Existing plaintext ideas display without errors or formatting changes
+5. Concurrent vote requests don't create duplicate votes (race condition fixed)
+6. Deleting a comment with nested replies cleans up votes correctly
+7. XSS test suite passes (20+ OWASP payloads tested)
+8. Unit test coverage >90% for Markdown components
 
-**Why this phase first:** Every other interaction — creating ideas, voting, commenting — must be attributed to an identity. Building auth first means Phases 2 and 3 can call a stable session layer rather than building ad-hoc email collection into each feature.
+**Why this phase first:** Markdown editing is the primary feature for v1.1. Vote race condition is a critical stability bug that must be fixed before more features are added. Security testing foundation ensures all future Markdown work is safe.
 
-**Dependencies:** localStorage session utility, email validation, Express auth middleware stub
+**Dependencies:** @tiptap/vue-3, @tiptap/pm, @tiptap/starter-kit, @tiptap/extension-markdown, dompurify, marked.js
+
+**Tech debt addressed:**
+- PostgreSQL race condition in vote logic (application-level upsert)
+- Missing XSS test coverage for user input
+- Edge case handling for comment deletion
 
 ---
 
-### Phase 2: Ideas & Voting
-**Goal:** Deliver the primary civic value loop: citizens can submit ideas, browse a ranked feed, view idea details, and vote — making the best ideas surface to the top.
+### Phase 5: Design System & Accessibility
+
+**Goal:** Establish design consistency through CSS tokens; ensure accessibility compliance; improve visual coherence.
 
 **Delivers:**
-- IDEAS-01: User can browse a feed of recent and trending ideas
-- IDEAS-02: User can create a new idea (title + description)
-- IDEAS-03: User can view an idea in detail with all its metadata
-- IDEAS-04: User can edit their own ideas after creation
-- VOTE-01: User can vote (up or down) on ideas
-- VOTE-03: Ideas are ranked in the feed by net vote count (trending first)
+- DESN-01: Color tokens defined (primary, secondary, error, success, neutral)
+- DESN-02: Typography tokens defined (headline, body, label sizes and weights)
+- DESN-03: Spacing tokens applied to IdeaCard, VoteButton, CommentItem
+- DESN-04: Dark mode theme works with design tokens (automatic via CSS variables)
+- DESN-05: Visual consistency across all components (no hardcoded colors)
+- STAB-02: Mobile forms meet accessibility standards (44px tap targets, WCAG AA)
+- STAB-03: Dark mode text contrast meets WCAG AA (4.5:1 minimum)
 
 **Success Criteria:**
-1. User lands on the site and sees a feed of existing ideas sorted by vote count (most-voted first)
-2. User can submit a new idea (title + description) and it appears in the feed after creation
-3. User can click an idea to view its full detail page
-4. User can edit an idea they authored; edits are reflected immediately
-5. User can vote up or down on any idea; the vote count and feed ranking update on next load
+1. Color tokens defined in CSS variables (:root with light/dark variants)
+2. Typography tokens applied to all text components (headlines, body, labels)
+3. Spacing tokens used for gaps, padding, margins across IdeaCard, VoteButton, CommentThread
+4. Dark mode theme activates via @media (prefers-color-scheme: dark)
+5. All interactive elements have >44px touch targets (mobile accessibility)
+6. Text contrast meets WCAG AA 4.5:1 in both light and dark modes
+7. No hardcoded color values in component CSS (all use tokens)
+8. Design system documentation updated for developers
 
-**Why this phase second:** Auth exists; now the core product can be built. Ideas and voting are co-dependent — ranking (VOTE-03) has no meaning without votable ideas (VOTE-01), and the feed (IDEAS-01) is hollow without a way to submit content (IDEAS-02).
+**Why this phase after Markdown:** Token system foundation ensures Markdown components (editor, renderer) inherit design consistency. Accessibility fixes prevent user issues discovered during Phase 4 testing.
 
-**Dependencies:** Phase 1 complete; PostgreSQL schema (ideas, votes tables); Express routes for ideas and votes; Nuxt feed and detail pages
+**Dependencies:** CSS variables (native), @nuxt/ui@^4.0.0, tailwindcss@^4.0.0
+
+**Tech debt addressed:**
+- Visual inconsistency (no design tokens before)
+- Mobile accessibility gaps (sub-44px buttons)
+- Dark mode contrast issues (needs systematic token approach)
 
 ---
 
-### Phase 3: Discussion
-**Goal:** Enable deliberation by letting users comment on ideas, reply to each other in threads, and vote on the best contributions — turning isolated ideas into conversations.
+### Phase 6: Polish & Comprehensive Testing
+
+**Goal:** Complete v1.1 with comprehensive testing, performance tuning, and launch readiness.
 
 **Delivers:**
-- COMMENT-01: User can post a top-level comment on an idea
-- COMMENT-02: User can reply to an existing comment (threaded discussion)
-- COMMENT-03: Comments are displayed in a clearly nested, threaded layout
-- VOTE-02: User can vote (up or down) on individual comments
+- MARK-05: User sees Markdown toolbar with common formatting options (bold, italic, links, lists, code)
+- STAB-05: Large comment threads render without performance degradation
+- TEST-03: E2E tests for create idea/comment with Markdown
+- TEST-04: Regression tests for all v1.0 features (no breaking changes)
+- TEST-05: Dark mode contrast audit (all components WCAG AA)
 
 **Success Criteria:**
-1. User can post a comment on any idea and see it appear on the idea's detail page
-2. User can reply to an existing comment; the reply is indented beneath its parent
-3. A thread with 3+ levels of nesting renders clearly without layout breakage
-4. User can vote on a comment; comment vote count updates on next load
+1. Markdown editor toolbar visible and functional (bold, italic, links, lists, code blocks)
+2. Comment threads with 100+ nested comments render in <2 seconds
+3. E2E tests verify: create idea with Markdown → vote → comment with Markdown → vote on comment
+4. All v1.0 features still work (voting, commenting, editing, browsing)
+5. Dark mode passes automated contrast audit (0 violations)
+6. Performance metrics: page load <3s, editor response <100ms
+7. All 20 requirements have passing tests
+8. Documentation complete (API changes, design token guide, Markdown editor usage)
 
-**Why this phase third:** Comments require ideas to exist (Phase 2) and a session to attribute authorship (Phase 1). Comment voting (VOTE-02) is grouped here rather than Phase 2 because it only makes sense once comments exist and adds no user value before that.
+**Why this phase last:** Comprehensive testing ensures no regressions from earlier phases. Performance tuning validates large-scale usage. Launch readiness checklist confirms platform is production-ready.
 
-**Dependencies:** Phase 2 complete; comments table with parent_comment_id; votes table extended for comment entity type; Nuxt threaded comment component
+**Dependencies:** Vitest, Supertest, axe (accessibility testing), Lighthouse (performance)
+
+**Tech debt addressed:**
+- Missing E2E test coverage
+- No regression test suite
+- Performance baselines not established
+- Accessibility compliance not audited
 
 ---
 
 ## Requirement Map (Complete)
 
-| Requirement | Phase | Description |
-|-------------|-------|-------------|
-| AUTH-01 | 1 | First-action email prompt |
-| AUTH-02 | 1 | Email persisted to localStorage |
-| AUTH-03 | 1 | Email changeable/clearable |
-| IDEAS-01 | 2 | Browse trending/recent feed |
-| IDEAS-02 | 2 | Create idea |
-| IDEAS-03 | 2 | View idea detail |
-| IDEAS-04 | 2 | Edit own idea |
-| VOTE-01 | 2 | Vote on ideas |
-| VOTE-03 | 2 | Ideas ranked by votes |
-| COMMENT-01 | 3 | Comment on idea |
-| COMMENT-02 | 3 | Reply to comment |
-| COMMENT-03 | 3 | Threaded comment display |
-| VOTE-02 | 3 | Vote on comments |
+| Requirement | Phase | Category | Description |
+|-------------|-------|----------|-------------|
+| MARK-01 | 4 | Markdown | User can write Markdown in idea descriptions with live preview |
+| MARK-02 | 4 | Markdown | User can write Markdown in comment text with live preview |
+| MARK-03 | 4 | Markdown | Markdown renders safely without XSS risk |
+| MARK-04 | 4 | Markdown | Existing plaintext ideas remain compatible |
+| MARK-05 | 6 | Markdown | User sees Markdown toolbar with formatting options |
+| DESN-01 | 5 | Design | Color tokens defined (primary, secondary, error, success, neutral) |
+| DESN-02 | 5 | Design | Typography tokens defined (headline, body, label) |
+| DESN-03 | 5 | Design | Spacing tokens applied to core components |
+| DESN-04 | 5 | Design | Dark mode theme works with design tokens |
+| DESN-05 | 5 | Design | Visual consistency across all components |
+| STAB-01 | 4 | Stability | Fix vote race condition (prevent concurrent duplicates) |
+| STAB-02 | 5 | Stability | Mobile forms meet accessibility standards (44px targets) |
+| STAB-03 | 5 | Stability | Dark mode contrast meets WCAG AA (4.5:1 minimum) |
+| STAB-04 | 4 | Stability | Comment deletion edge cases handled |
+| STAB-05 | 6 | Stability | Large comment threads render without degradation |
+| TEST-01 | 4 | Testing | XSS security tests for Markdown |
+| TEST-02 | 4 | Testing | Unit tests for MarkdownEditor and MarkdownRenderer |
+| TEST-03 | 6 | Testing | E2E tests for create idea/comment with Markdown |
+| TEST-04 | 6 | Testing | Regression tests for all v1.0 features |
+| TEST-05 | 6 | Testing | Dark mode contrast audit |
 
-All 12 v1 requirements mapped. No requirement unmapped. No requirement in multiple phases.
+**All 20 v1.1 requirements mapped to phases 4-6. No requirement unmapped. Complete coverage ✓**
 
 ---
 
-*Last updated: 2026-03-26 — roadmap created*
+## Timeline & Milestones
+
+| Phase | Start | Duration | Key Milestone |
+|-------|-------|----------|---------------|
+| 4 | Week 1 | 1-2 weeks | Markdown editor working, vote race condition fixed |
+| 5 | Week 2-3 | 1 week | Design tokens applied, dark mode working, accessibility passes |
+| 6 | Week 4 | 1 week | Comprehensive tests passing, performance validated |
+
+**Total v1.1 timeline: 2-4 weeks**
+
+---
+
+## Risk & Mitigation
+
+| Risk | Impact | Mitigation | Phase |
+|------|--------|-----------|-------|
+| Markdown XSS vulnerabilities | CRITICAL | DOMPurify sanitization + XSS test suite | 4 |
+| Plaintext breaking changes | HIGH | Two-phase migration with `is_plaintext` flag | 4 |
+| Design token drift | HIGH | Scoped rollout, clear ownership, metrics tracking | 5 |
+| Dark mode regression | MEDIUM | Explicit token definitions for light/dark | 5 |
+| Performance degradation | MEDIUM | Load testing with 100+ comments | 6 |
+
+---
+
+*Last updated: 2026-03-27 — roadmap created for v1.1 (3 phases, 20 requirements)*
