@@ -209,3 +209,308 @@ All endpoints can safely query both idea votes and comment votes using the comme
 - Comments support recursive threading via self-referencing parent_comment_id foreign key
 - All indexes are optimized for common query patterns (lookup, filtering, sorting)
 
+---
+
+# SUMMARY: Phase 3 Plan 02 — API Routes
+
+**Status:** COMPLETE ✓
+
+**Execution Date:** 2026-03-26
+
+---
+
+## Overview
+
+Successfully created four API routes for the Discussion feature (Phase 3). The routes implement comment CRUD operations and voting functionality following the established Nitro/H3 conventions from Phase 2. All routes properly handle authentication via X-User-Email header, input validation, and error responses.
+
+---
+
+## Tasks Executed
+
+### Task 1: GET /api/ideas/:id/comments
+**Status:** ✓ COMPLETE
+
+**Outcome:**
+- Created route file: `server/api/ideas/[id]/comments/index.get.ts`
+- Returns flat array of all comments (top-level and replies) for an idea
+- Aggregates vote counts (upvotes, downvotes, net_votes) using LEFT JOIN with SUM/CASE
+- Sorts comments chronologically by created_at ASC
+- Includes parent_comment_id field for client-side tree reconstruction
+- Validates idea_id parameter (400 if missing)
+
+### Task 2: POST /api/ideas/:id/comments
+**Status:** ✓ COMPLETE
+
+**Outcome:**
+- Created route file: `server/api/ideas/[id]/comments/index.post.ts`
+- Creates top-level comments on ideas
+- Validates X-User-Email header (401 if missing)
+- Validates comment body (required, max 2000 characters)
+- Verifies idea exists before creating comment (404 if not found)
+- Returns 201 with created comment object
+- Sets parent_comment_id to NULL for top-level comments
+
+### Task 3: POST /api/ideas/:id/comments/:commentId/reply
+**Status:** ✓ COMPLETE
+
+**Outcome:**
+- Created route file: `server/api/ideas/[id]/comments/[commentId]/reply.post.ts`
+- Creates replies to existing comments with threading support
+- Validates parent comment exists and belongs to the specified idea
+- Implements recursive depth check to prevent excessive nesting (max 10 levels)
+- Validates X-User-Email header (401 if missing)
+- Validates reply body (required, max 2000 characters)
+- Returns 201 with created reply object
+- Sets parent_comment_id to the parent comment's ID
+
+### Task 4: POST /api/comments/:commentId/votes
+**Status:** ✓ COMPLETE
+
+**Outcome:**
+- Created route file: `server/api/comments/[commentId]/votes.post.ts`
+- Implements upsert voting on comments (insert or update)
+- Validates X-User-Email header (401 if missing)
+- Validates vote_value parameter (-1, 0, or 1)
+- Verifies comment exists before voting (404 if not found)
+- Uses ON CONFLICT for duplicate prevention (no duplicate votes per user)
+- Returns net_votes count after vote processed
+- Supports vote clearing (vote_value = 0)
+
+---
+
+## Files Created/Modified
+
+| File | Status | Lines | Details |
+|------|--------|-------|---------|
+| `server/api/ideas/[id]/comments/index.get.ts` | Created | 44 | GET comments with vote aggregation |
+| `server/api/ideas/[id]/comments/index.post.ts` | Created | 51 | POST top-level comment |
+| `server/api/ideas/[id]/comments/[commentId]/reply.post.ts` | Created | 79 | POST reply with depth checking |
+| `server/api/comments/[commentId]/votes.post.ts` | Created | 54 | POST comment vote with upsert |
+
+---
+
+## Commits
+
+| Hash | Message |
+|------|---------|
+| `4c574a2` | feat(03-02): create comment GET endpoint |
+| `d304d1f` | feat(03-02): create comment POST endpoint |
+| `ab4e86c` | feat(03-02): create comment reply endpoint |
+| `b8737bd` | feat(03-02): create comment voting endpoint |
+
+---
+
+## Route Specifications
+
+### GET /api/ideas/:id/comments
+```
+Request:
+  GET http://localhost:3000/api/ideas/{idea_id}/comments
+  Header: X-User-Email: user@example.com (not required for GET)
+
+Response (200):
+[
+  {
+    id: "uuid",
+    idea_id: "uuid",
+    parent_comment_id: null | "uuid",
+    email: "author@example.com",
+    body: "Comment text",
+    created_at: "2026-03-26T22:00:00Z",
+    updated_at: "2026-03-26T22:00:00Z",
+    upvotes: 5,
+    downvotes: 2,
+    net_votes: 3
+  }
+]
+```
+
+### POST /api/ideas/:id/comments
+```
+Request:
+  POST http://localhost:3000/api/ideas/{idea_id}/comments
+  Header: X-User-Email: user@example.com (required)
+  Body: { "body": "Great idea!" }
+
+Response (201):
+{
+  id: "uuid",
+  idea_id: "uuid",
+  parent_comment_id: null,
+  email: "user@example.com",
+  body: "Great idea!",
+  created_at: "2026-03-26T22:00:00Z",
+  updated_at: "2026-03-26T22:00:00Z"
+}
+
+Error (401):
+  Missing X-User-Email header
+
+Error (400):
+  Empty body or exceeds 2000 characters
+
+Error (404):
+  Idea not found
+```
+
+### POST /api/ideas/:id/comments/:commentId/reply
+```
+Request:
+  POST http://localhost:3000/api/ideas/{idea_id}/comments/{comment_id}/reply
+  Header: X-User-Email: user@example.com (required)
+  Body: { "body": "Great point!" }
+
+Response (201):
+{
+  id: "uuid",
+  idea_id: "uuid",
+  parent_comment_id: "uuid",  # Set to parent comment ID
+  email: "user@example.com",
+  body: "Great point!",
+  created_at: "2026-03-26T22:00:00Z",
+  updated_at: "2026-03-26T22:00:00Z"
+}
+
+Error (400):
+  - Empty body or exceeds 2000 characters
+  - Nesting depth exceeds maximum (10 levels)
+
+Error (401):
+  Missing X-User-Email header
+
+Error (404):
+  Parent comment not found or belongs to different idea
+```
+
+### POST /api/comments/:commentId/votes
+```
+Request:
+  POST http://localhost:3000/api/comments/{comment_id}/votes
+  Header: X-User-Email: user@example.com (required)
+  Body: { "vote_value": 1 }  # 1, 0, or -1
+
+Response (200):
+{
+  net_votes: 5  # Updated vote count after vote processed
+}
+
+Error (400):
+  vote_value must be -1, 0, or 1
+
+Error (401):
+  Missing X-User-Email header
+
+Error (404):
+  Comment not found
+```
+
+---
+
+## Technical Implementation Details
+
+### GET Comments Query Pattern
+- Uses LEFT JOIN with votes table for efficient aggregation
+- Groups by comment.id to get vote counts
+- Filters out zero-valued votes (vote_value != 0) during aggregation
+- Sorts by created_at ASC for chronological order
+- No authentication required (public read)
+
+### POST Comment Validation
+- Email from X-User-Email header (required)
+- Comment body must be non-empty and trim whitespace
+- Maximum 2000 characters per comment
+- Verifies idea exists before creating comment
+- Returns 201 with full comment object
+
+### POST Reply Validation & Depth Checking
+- Same validation as POST comment (email, body, character limit)
+- Recursive depth query to check nesting level
+- Maximum 10 levels of nesting enforced
+- Verifies parent comment exists and belongs to specified idea
+- Sets parent_comment_id on created reply
+
+### POST Voting (Upsert Pattern)
+- Email from X-User-Email header (required)
+- Vote value must be in [-1, 0, 1]
+- Verifies comment exists before voting
+- Uses PostgreSQL ON CONFLICT for upsert:
+  - INSERT on first vote
+  - UPDATE on subsequent votes
+  - Prevents duplicate votes per user per comment
+- Returns net_votes (SUM of all votes for comment)
+
+---
+
+## Error Handling
+
+All routes implement comprehensive error handling:
+
+| Status | Condition | Example |
+|--------|-----------|---------|
+| 201 | Resource created successfully | Comment posted |
+| 400 | Invalid request (missing/invalid data) | Empty body, bad vote_value |
+| 401 | Authentication missing | No X-User-Email header |
+| 404 | Resource not found | Idea/comment doesn't exist |
+| 500 | Database error | Connection failure, constraint violation |
+
+All error responses include descriptive messages for debugging.
+
+---
+
+## Verification Checklist
+
+- [x] All four route files created in correct Nitro directory structure
+- [x] GET route uses LEFT JOIN for vote aggregation
+- [x] GET route returns flat array with parent_comment_id for threading
+- [x] POST routes validate X-User-Email header (401 if missing)
+- [x] POST routes validate input body (400 for empty/long content)
+- [x] POST routes set correct HTTP status codes (201 for creation)
+- [x] Reply route includes recursive depth check (max 10 levels)
+- [x] Reply route validates parent comment exists in same idea
+- [x] Comment voting route uses ON CONFLICT for upsert (no duplicates)
+- [x] Comment voting route returns net_votes after vote insertion
+- [x] All routes include proper error handling (4xx/5xx with messages)
+- [x] All routes follow H3/Nitro conventions from Phase 2
+- [x] All four routes committed to git with descriptive messages
+
+---
+
+## Integration Points
+
+### With Phase 2 (Ideas & Voting)
+- Uses same voting pattern (ON CONFLICT for upsert)
+- Uses same email header validation (X-User-Email)
+- Uses same database utilities (query/queryOne)
+- Extends existing ideas/:id/[method].ts pattern
+
+### With Phase 3 Plan 01 (Database)
+- Relies on comments table schema
+- Relies on extended votes table (comment_id column)
+- Uses UNIQUE constraint (idea_id, comment_id, email) for upsert
+- Uses CASCADE DELETE rules for data consistency
+
+### With Phase 3 Plan 03 (Frontend)
+- Returns data in format expected by Vue components
+- Provides parent_comment_id for client-side tree building
+- Returns timestamps in ISO 8601 format
+- Returns vote counts for display
+
+---
+
+## Blockers
+
+**None** — All routes created and committed successfully.
+
+---
+
+## Notes
+
+- All routes properly handle database errors with 500 responses
+- Email validation is performed via middleware (event.context.userEmail)
+- Upsert constraint matches Phase 3 database schema (votes.votes_entity_unique)
+- Recursive depth query for replies prevents malicious nesting attacks
+- All routes include comprehensive error messages for debugging
+- Code follows established Nitro conventions from Phase 2 (similar to ideas/votes routes)
+- No external API calls required (self-contained database operations)
+- Ready for integration with frontend components in Plan 03
+
