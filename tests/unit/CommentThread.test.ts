@@ -320,21 +320,38 @@ describe('CommentThread.vue', () => {
     expect(wrapper.vm.comments).toContainEqual(newComment)
   })
 
-  it('updates vote count on voted event', async () => {
-    vi.mocked($fetch).mockResolvedValue([
-      {
-        id: 'c1',
-        idea_id: 'idea-1',
-        parent_comment_id: null,
-        email: 'user@example.com',
-        content: 'Comment',
-        created_at: '2026-03-26T10:00:00Z',
-        updated_at: '2026-03-26T10:00:00Z',
-        upvotes: 0,
-        downvotes: 0,
-        net_votes: 0,
-      },
-    ])
+  it('refetches comments after vote', async () => {
+    // First fetch: initial load with no votes
+    vi.mocked($fetch)
+      .mockResolvedValueOnce([
+        {
+          id: 'c1',
+          idea_id: 'idea-1',
+          parent_comment_id: null,
+          email: 'user@example.com',
+          content: 'Comment',
+          created_at: '2026-03-26T10:00:00Z',
+          updated_at: '2026-03-26T10:00:00Z',
+          upvotes: 0,
+          downvotes: 0,
+          net_votes: 0,
+        },
+      ])
+      // Second fetch: after vote is cast
+      .mockResolvedValueOnce([
+        {
+          id: 'c1',
+          idea_id: 'idea-1',
+          parent_comment_id: null,
+          email: 'user@example.com',
+          content: 'Comment',
+          created_at: '2026-03-26T10:00:00Z',
+          updated_at: '2026-03-26T10:00:00Z',
+          upvotes: 1,
+          downvotes: 0,
+          net_votes: 1,
+        },
+      ])
 
     const wrapper = mount(CommentThread, {
       props: {
@@ -345,11 +362,13 @@ describe('CommentThread.vue', () => {
     await flushPromises()
     expect(wrapper.vm.comments[0].net_votes).toBe(0)
 
-    // Trigger voted event with payload - should update the comment's vote count immediately
+    // Trigger voted event - should refetch comments and update with new vote count
     await wrapper.vm.onCommentVoted({ commentId: 'c1', netVotes: 1 })
-    await wrapper.vm.$nextTick()
+    await flushPromises()
 
+    // After refetch, the comment should have the updated vote count
     expect(wrapper.vm.comments[0].net_votes).toBe(1)
+    expect($fetch).toHaveBeenCalledTimes(2)
   })
 
   it('passes correct props to CommentItem children', async () => {
