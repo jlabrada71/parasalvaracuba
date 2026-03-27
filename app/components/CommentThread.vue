@@ -105,14 +105,16 @@ function onCommentReplied(newReply: Comment) {
   comments.value.push(newReply)
 }
 
-function onCommentVoted(payload: { commentId?: string; netVotes: number }) {
-  // Update the specific comment's vote count immediately for responsive UI
+async function onCommentVoted(payload: { commentId?: string; netVotes: number }) {
+  // Update the specific comment's vote count immediately
   if (payload.commentId) {
     const comment = comments.value.find((c) => c.id === payload.commentId)
     if (comment) {
       comment.net_votes = payload.netVotes
     }
   }
+  // Refetch comments to ensure consistency with server state
+  await fetchComments()
 }
 
 fetchComments()

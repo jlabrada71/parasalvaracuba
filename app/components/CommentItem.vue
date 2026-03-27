@@ -45,7 +45,7 @@
         :idea-id="ideaId"
         :all-comments="allComments"
         @replied="$emit('replied', $event)"
-        @voted="$emit('voted')"
+        @voted="$emit('voted', $event)"
       />
     </div>
   </div>
