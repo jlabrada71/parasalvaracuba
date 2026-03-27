@@ -9,7 +9,7 @@
 |-------|------|------|--------------|------------------|--------|
 | 1 | Identity Foundation | Establish email-based session layer that all interactions depend on | AUTH-01, AUTH-02, AUTH-03 | 3 | ✓ Complete |
 | 2 | Ideas & Voting | Core civic loop: submit ideas, browse the feed, vote, and surface trending | IDEAS-01, IDEAS-02, IDEAS-03, IDEAS-04, VOTE-01, VOTE-03 | 5 | ✓ Complete |
-| 3 | Discussion | Full deliberation: threaded comments, comment replies, comment voting | COMMENT-01, COMMENT-02, COMMENT-03, VOTE-02 | 4 |
+| 3 | Discussion | Full deliberation: threaded comments, comment replies, comment voting | COMMENT-01, COMMENT-02, COMMENT-03, VOTE-02 | 4 | ✓ Complete |
 
 ---
 

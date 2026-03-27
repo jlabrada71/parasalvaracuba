@@ -65,16 +65,16 @@ These are intentionally deferred and not in roadmap scope:
 | IDEAS-03 | 2 | complete |
 | IDEAS-04 | 2 | complete |
 | VOTE-01 | 2 | complete |
-| VOTE-02 | 3 | planned |
+| VOTE-02 | 3 | complete |
 | VOTE-03 | 2 | complete |
-| COMMENT-01 | 3 | planned |
-| COMMENT-02 | 3 | planned |
-| COMMENT-03 | 3 | planned |
+| COMMENT-01 | 3 | complete |
+| COMMENT-02 | 3 | complete |
+| COMMENT-03 | 3 | complete |
 | AUTH-01 | 1 | complete |
 | AUTH-02 | 1 | complete |
 | AUTH-03 | 1 | complete |
 
-*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH), Phase 2 complete (6/6 IDEAS+VOTE)*
+*(Updated 2026-03-26 — Phase 1 complete (3/3 AUTH), Phase 2 complete (6/6 IDEAS+VOTE), Phase 3 complete (4/4 COMMENT+VOTE)*
 
 ---
 

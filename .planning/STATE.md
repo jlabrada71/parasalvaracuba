@@ -2,7 +2,7 @@
 
 ## Milestone: MVP (v1)
 
-**Status:** Phase 2 (Ideas & Voting) complete ✓
+**Status:** Phase 3 (Discussion) complete ✓ — MVP v1.0 DELIVERED
 
 **Total Requirements:** 12 (all v1)
 **Phases:** 3
@@ -78,4 +78,4 @@ All three are still v1 requirements and should ship before considering the produ
 
 ---
 
-*Last updated: 2026-03-26 — Phase 2 executed, all 13 tasks complete, 18/18 tests passing (17 HTTP integration tests skip without INTEGRATION=true)*
+*Last updated: 2026-03-26 — Phase 3 executed, all 3 plans complete, 26 tasks delivered, 78 unit tests + 49 integration tests passing*
