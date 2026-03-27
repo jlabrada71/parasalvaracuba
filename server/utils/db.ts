@@ -1,4 +1,5 @@
 import pg from 'pg'
+import { useRuntimeConfig } from '#app'
 
 const { Pool } = pg
 
