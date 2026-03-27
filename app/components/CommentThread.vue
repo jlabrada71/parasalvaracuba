@@ -105,9 +105,14 @@ function onCommentReplied(newReply: Comment) {
   comments.value.push(newReply)
 }
 
-function onCommentVoted() {
-  // Re-fetch comments to get updated vote counts
-  fetchComments()
+function onCommentVoted(payload: { commentId?: string; netVotes: number }) {
+  // Update the specific comment's vote count immediately for responsive UI
+  if (payload.commentId) {
+    const comment = comments.value.find((c) => c.id === payload.commentId)
+    if (comment) {
+      comment.net_votes = payload.netVotes
+    }
+  }
 }
 
 fetchComments()

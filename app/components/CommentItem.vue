@@ -14,7 +14,7 @@
       <VoteButton
         :comment-id="comment.id"
         :net-votes="comment.net_votes"
-        @voted="() => $emit('voted')"
+        @voted="(payload) => $emit('voted', payload)"
       />
       <button class="reply-btn" @click="showReplyForm = !showReplyForm">
         {{ showReplyForm ? 'Cancel' : 'Reply' }}
@@ -78,7 +78,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   replied: [comment: Comment]
-  voted: []
+  voted: [payload: { commentId?: string; netVotes: number }]
 }>()
 
 const { requireEmail } = useEmailGate()

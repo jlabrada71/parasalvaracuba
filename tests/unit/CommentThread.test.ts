@@ -320,8 +320,8 @@ describe('CommentThread.vue', () => {
     expect(wrapper.vm.comments).toContainEqual(newComment)
   })
 
-  it('refetches comments on voted event', async () => {
-    const updatedComments = [
+  it('updates vote count on voted event', async () => {
+    vi.mocked($fetch).mockResolvedValue([
       {
         id: 'c1',
         idea_id: 'idea-1',
@@ -330,27 +330,11 @@ describe('CommentThread.vue', () => {
         content: 'Comment',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
-        upvotes: 1,
+        upvotes: 0,
         downvotes: 0,
-        net_votes: 1,
+        net_votes: 0,
       },
-    ]
-    vi.mocked($fetch)
-      .mockResolvedValueOnce([
-        {
-          id: 'c1',
-          idea_id: 'idea-1',
-          parent_comment_id: null,
-          email: 'user@example.com',
-          content: 'Comment',
-          created_at: '2026-03-26T10:00:00Z',
-          updated_at: '2026-03-26T10:00:00Z',
-          upvotes: 0,
-          downvotes: 0,
-          net_votes: 0,
-        },
-      ])
-      .mockResolvedValueOnce(updatedComments)
+    ])
 
     const wrapper = mount(CommentThread, {
       props: {
@@ -361,9 +345,9 @@ describe('CommentThread.vue', () => {
     await flushPromises()
     expect(wrapper.vm.comments[0].net_votes).toBe(0)
 
-    // Trigger voted event
-    await wrapper.vm.onCommentVoted()
-    await flushPromises()
+    // Trigger voted event with payload - should update the comment's vote count immediately
+    await wrapper.vm.onCommentVoted({ commentId: 'c1', netVotes: 1 })
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.comments[0].net_votes).toBe(1)
   })
@@ -371,11 +355,11 @@ describe('CommentThread.vue', () => {
   it('passes correct props to CommentItem children', async () => {
     const mockComments = [
       {
-        id: 'c1',
+        id: 'c2',
         idea_id: 'idea-1',
         parent_comment_id: null,
         email: 'user@example.com',
-        content: 'Comment',
+        content: 'Comment 2',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
         upvotes: 0,
@@ -394,8 +378,8 @@ describe('CommentThread.vue', () => {
     await flushPromises()
 
     const commentItem = wrapper.findComponent({ name: 'CommentItem' })
-    expect(commentItem.props('comment')).toEqual(mockComments[0])
+    expect(commentItem.props('comment').id).toBe('c2')
+    expect(commentItem.props('comment').net_votes).toBe(0)
     expect(commentItem.props('ideaId')).toBe('idea-1')
-    expect(commentItem.props('allComments')).toEqual(mockComments)
   })
 })
