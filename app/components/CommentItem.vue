@@ -7,7 +7,7 @@
     </div>
 
     <!-- Comment body -->
-    <div class="comment-body">{{ comment.body }}</div>
+    <div class="comment-body">{{ comment.content }}</div>
 
     <!-- Comment footer with voting and reply button -->
     <div class="comment-footer">
@@ -62,7 +62,7 @@ interface Comment {
   idea_id: string
   parent_comment_id: string | null
   email: string
-  body: string
+  content: string
   created_at: string
   updated_at: string
   upvotes: number

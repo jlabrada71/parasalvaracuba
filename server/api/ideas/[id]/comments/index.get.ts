@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
         c.idea_id,
         c.parent_comment_id,
         c.email,
-        c.body,
+        c.content,
         c.created_at,
         c.updated_at,
         COALESCE(SUM(CASE WHEN v.vote_value = 1 THEN 1 ELSE 0 END), 0)::int as upvotes,

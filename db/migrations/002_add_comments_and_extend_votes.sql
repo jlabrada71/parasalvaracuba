@@ -23,7 +23,7 @@ CREATE INDEX IF NOT EXISTS comments_created_at_idx ON comments (created_at DESC)
 ALTER TABLE votes ADD COLUMN IF NOT EXISTS comment_id UUID REFERENCES comments (id) ON DELETE CASCADE;
 
 -- Update unique constraint to include comment_id
-DROP CONSTRAINT IF EXISTS votes_idea_id_email_key CASCADE;
+ALTER TABLE votes DROP CONSTRAINT IF EXISTS votes_idea_id_email_key CASCADE;
 ALTER TABLE votes ADD CONSTRAINT votes_idea_id_comment_id_email_key UNIQUE (idea_id, comment_id, email);
 
 -- Create indexes for the extended votes table

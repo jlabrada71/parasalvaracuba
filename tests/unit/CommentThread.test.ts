@@ -28,7 +28,7 @@ describe('CommentThread.vue', () => {
         idea_id: 'idea-1',
         parent_comment_id: null,
         email: 'user@example.com',
-        body: 'First comment',
+        content: 'First comment',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
         upvotes: 2,
@@ -112,7 +112,7 @@ describe('CommentThread.vue', () => {
       idea_id: 'idea-1',
       parent_comment_id: null,
       email: 'user@example.com',
-      body: 'New comment',
+      content: 'New comment',
       created_at: '2026-03-26T11:00:00Z',
       updated_at: '2026-03-26T11:00:00Z',
       upvotes: 0,
@@ -153,7 +153,7 @@ describe('CommentThread.vue', () => {
       idea_id: 'idea-1',
       parent_comment_id: null,
       email: 'user@example.com',
-      body: 'New comment',
+      content: 'New comment',
       created_at: '2026-03-26T11:00:00Z',
       updated_at: '2026-03-26T11:00:00Z',
       upvotes: 0,
@@ -213,7 +213,7 @@ describe('CommentThread.vue', () => {
       idea_id: 'idea-1',
       parent_comment_id: null,
       email: 'user@example.com',
-      body: 'New comment',
+      content: 'New comment',
       created_at: '2026-03-26T11:00:00Z',
       updated_at: '2026-03-26T11:00:00Z',
       upvotes: 0,
@@ -249,7 +249,7 @@ describe('CommentThread.vue', () => {
         idea_id: 'idea-1',
         parent_comment_id: null,
         email: 'user@example.com',
-        body: 'Top-level',
+        content: 'Top-level',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
         upvotes: 0,
@@ -261,7 +261,7 @@ describe('CommentThread.vue', () => {
         idea_id: 'idea-1',
         parent_comment_id: 'c1',
         email: 'user@example.com',
-        body: 'Reply',
+        content: 'Reply',
         created_at: '2026-03-26T10:10:00Z',
         updated_at: '2026-03-26T10:10:00Z',
         upvotes: 0,
@@ -282,7 +282,7 @@ describe('CommentThread.vue', () => {
     // Verify topLevelComments computed property filters correctly
     expect(wrapper.vm.topLevelComments).toHaveLength(1)
     expect(wrapper.vm.topLevelComments[0].id).toBe('c1')
-    expect(wrapper.vm.topLevelComments[0].body).toBe('Top-level')
+    expect(wrapper.vm.topLevelComments[0].content).toBe('Top-level')
   })
 
   it('adds new comment to list after submission', async () => {
@@ -292,7 +292,7 @@ describe('CommentThread.vue', () => {
       idea_id: 'idea-1',
       parent_comment_id: null,
       email: 'user@example.com',
-      body: 'New comment',
+      content: 'New comment',
       created_at: '2026-03-26T11:00:00Z',
       updated_at: '2026-03-26T11:00:00Z',
       upvotes: 0,
@@ -327,7 +327,7 @@ describe('CommentThread.vue', () => {
         idea_id: 'idea-1',
         parent_comment_id: null,
         email: 'user@example.com',
-        body: 'Comment',
+        content: 'Comment',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
         upvotes: 1,
@@ -342,7 +342,7 @@ describe('CommentThread.vue', () => {
           idea_id: 'idea-1',
           parent_comment_id: null,
           email: 'user@example.com',
-          body: 'Comment',
+          content: 'Comment',
           created_at: '2026-03-26T10:00:00Z',
           updated_at: '2026-03-26T10:00:00Z',
           upvotes: 0,
@@ -375,7 +375,7 @@ describe('CommentThread.vue', () => {
         idea_id: 'idea-1',
         parent_comment_id: null,
         email: 'user@example.com',
-        body: 'Comment',
+        content: 'Comment',
         created_at: '2026-03-26T10:00:00Z',
         updated_at: '2026-03-26T10:00:00Z',
         upvotes: 0,

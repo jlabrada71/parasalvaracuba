@@ -59,9 +59,9 @@ export default defineEventHandler(async (event) => {
 
     // Create reply comment with parent_comment_id set
     const [reply] = await query(`
-      INSERT INTO comments (idea_id, parent_comment_id, email, body)
+      INSERT INTO comments (idea_id, parent_comment_id, email, content)
       VALUES ($1, $2, $3, $4)
-      RETURNING id, idea_id, parent_comment_id, email, body, created_at, updated_at
+      RETURNING id, idea_id, parent_comment_id, email, content, created_at, updated_at
     `, [ideaId, parentCommentId, userEmail, replyBody])
 
     setResponseStatus(event, 201)

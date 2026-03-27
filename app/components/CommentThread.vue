@@ -44,7 +44,7 @@ interface Comment {
   idea_id: string
   parent_comment_id: string | null
   email: string
-  body: string
+  content: string
   created_at: string
   updated_at: string
   upvotes: number
@@ -88,7 +88,7 @@ async function submitTopLevel() {
         `/api/ideas/${props.ideaId}/comments`,
         {
           method: 'POST',
-          body: { body: newCommentBody.value },
+          body: { body: newCommentBody.value }, // API expects 'body' in request, but stores as 'content'
         }
       )
       comments.value.push(newComment)
