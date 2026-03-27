@@ -1,4 +1,4 @@
-import { defineEventHandler, readBody, createError } from 'h3'
+import { defineEventHandler, readBody, createError, getQuery, setResponseStatus } from 'h3'
 import { query } from '../../utils/db'
 
 export default defineEventHandler(async (event) => {
