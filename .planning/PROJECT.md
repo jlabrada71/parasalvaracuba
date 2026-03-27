@@ -40,6 +40,18 @@ The platform succeeds when:
 - **Identity:** No signup flow—email collection on first action, lightweight sessions
 - **Scope:** v1 focuses on idea sharing, voting, and discussion; implementation tracking deferred
 
+## Current Milestone: v1.1 — Polish & Design
+
+**Goal:** Stabilize MVP, add rich text editing with Markdown, and improve visual design using Stitch design system.
+
+**Target features:**
+- Markdown support for idea descriptions and comments
+- Improved visual design and branding via Stitch
+- Bug fixes and stability improvements from v1.0 launch
+- Enhanced error handling and edge cases
+
+---
+
 ## Scope: v1 Requirements (Hypotheses)
 
 All requirements below are hypotheses to be validated by shipping and user behavior.
@@ -116,4 +128,4 @@ All requirements below are hypotheses to be validated by shipping and user behav
 
 ---
 
-*Last updated: 2026-03-26 after initialization*
+*Last updated: 2026-03-27 — Milestone v1.1 started (Polish & Design)*
