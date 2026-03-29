@@ -124,79 +124,107 @@ fetchComments()
 
 <style scoped>
 .comment-thread {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
+  margin-top: var(--spacing-8);
+  padding: var(--spacing-6) 0;
 }
 
 .comment-thread h3 {
-  margin: 0 0 1rem;
-  font-size: 1.1rem;
-  color: #1e3a5f;
+  margin: 0 0 var(--spacing-5);
+  font-family: var(--font-headline);
+  font-size: var(--font-size-headline-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
 }
 
 .comment-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-6);
+  padding: var(--spacing-4);
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevation-1);
 }
 
 .comment-form textarea {
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  font-family: inherit;
+  background-color: var(--color-surface-container-highest);
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  border-radius: 0;
+  padding: var(--spacing-3) var(--spacing-2);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface);
   resize: vertical;
+  transition: border-color var(--transition-fast);
+  width: 100%;
 }
 
 .comment-form textarea:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-bottom-color: var(--color-secondary-container);
+  border-bottom-width: 3px;
+}
+
+.comment-form textarea::placeholder {
+  color: var(--color-on-surface-variant);
 }
 
 .form-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-3);
 }
 
 .form-actions button {
-  padding: 0.5rem 1rem;
-  background: #2563eb;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--spacing-3) var(--spacing-6);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: var(--color-on-primary);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  transition: all var(--transition-normal);
+  box-shadow: 0 8px 20px rgba(0, 101, 101, 0.15);
 }
 
-.form-actions button:hover {
-  background: #1d4ed8;
+.form-actions button:hover:not(:disabled) {
+  box-shadow: 0 12px 28px rgba(0, 101, 101, 0.25);
+  transform: translateY(-1px);
 }
 
 .form-actions button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
+.form-actions button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .error {
-  color: #dc2626;
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-error);
 }
 
 .comments-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-4);
 }
 
 .no-comments {
-  padding: 1rem;
-  color: #9ca3af;
-  font-size: 0.9rem;
+  padding: var(--spacing-4);
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-md);
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="vote-controls">
     <button
       class="vote-btn"
-      :class="{ active: currentVote === 1 }"
+      :class="{ 'active-up': currentVote === 1 }"
       :disabled="loading"
       :aria-label="$t('vote.up')"
       @click="castVote(1)"
@@ -10,7 +10,7 @@
     <span class="vote-count">{{ localNetVotes }}</span>
     <button
       class="vote-btn"
-      :class="{ active: currentVote === -1 }"
+      :class="{ 'active-down': currentVote === -1 }"
       :disabled="loading"
       :aria-label="$t('vote.down')"
       @click="castVote(-1)"
@@ -75,24 +75,64 @@ async function castVote(value: 1 | -1) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
-  min-width: 2.5rem;
+  gap: var(--spacing-1);
+  min-width: var(--spacing-11);
 }
+
 .vote-btn {
-  background: none;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.75rem;
-  color: #6b7280;
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface-variant);
+  transition: all var(--transition-fast);
+  padding: 0;
+  line-height: 1;
 }
-.vote-btn:hover { border-color: #2563eb; color: #2563eb; }
-.vote-btn.active { background: #2563eb; border-color: #2563eb; color: white; }
-.vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.vote-btn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-surface-container-low);
+}
+
+.vote-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Up-vote active: teal (primary) */
+.vote-btn.active-up {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  border-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Down-vote active: coral (secondary) */
+.vote-btn.active-down {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+
+.vote-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .vote-count {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #1e3a5f;
+  font-family: var(--font-label);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-label-lg);
+  color: var(--color-on-surface);
+  min-width: var(--spacing-6);
+  text-align: center;
+  line-height: 1;
 }
 </style>
