@@ -3,7 +3,7 @@
     <nav class="nav">
       <span class="nav-brand">ParaSalvaraCuba</span>
       <div class="nav-actions">
-        <NuxtLink :to="localePath('/ideas/create')" class="btn-primary">{{ $t('nav.newIdea') }}</NuxtLink>
+        <NuxtLink :to="localePath('/ideas/create')" class="btn-nav-cta">{{ $t('nav.newIdea') }}</NuxtLink>
         <LanguageSwitcher/>
         <NuxtLink :to="localePath('/settings')" class="nav-link">{{ $t('nav.settings') }}</NuxtLink>
       </div>
@@ -96,37 +96,93 @@ fetchIdeas(1)
 </script>
 
 <style scoped>
-.home-page { font-family: system-ui, sans-serif; }
+.home-page {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+}
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: #1e3a5f;
-  color: white;
+  padding: var(--spacing-4) var(--spacing-8);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-elevation-2);
 }
-.nav-brand { font-weight: 700; font-size: 1.1rem; }
-.nav-actions { display: flex; align-items: center; gap: 1rem; }
-.nav-link { color: white; text-decoration: none; font-size: 0.9rem; }
-.btn-primary {
-  padding: 0.45rem 1rem;
-  background: #2563eb;
-  color: white;
-  border-radius: 4px;
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-title-md);
+  letter-spacing: var(--letter-spacing-xs);
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+.nav-link {
+  color: var(--color-on-primary);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: var(--font-size-body-md);
+  opacity: 0.85;
+  transition: opacity var(--transition-fast);
 }
-main { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
-.subtitle { color: #6b7280; margin-bottom: 1.5rem; }
-.ideas-list { margin-top: 1rem; }
-.loading, .empty, .error { padding: 2rem 0; color: #6b7280; }
-.error { color: #dc2626; }
-.pagination { margin: 1.5rem 0; text-align: center; }
+.nav-link:hover { opacity: 1; }
+/* Primary CTA button in nav - uses secondary coral for contrast on teal bg */
+.btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--spacing-3) var(--spacing-6);
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  transition: all var(--transition-normal);
+  border: none;
+}
+.btn-nav-cta:hover {
+  background-color: #925d39;
+  transform: translateY(-1px);
+}
+.btn-nav-cta:focus-visible {
+  outline: 2px solid var(--color-on-primary);
+  outline-offset: 2px;
+}
+main { max-width: 720px; margin: var(--spacing-8) auto; padding: 0 var(--spacing-4); }
+.subtitle { color: var(--color-on-surface-variant); margin-bottom: var(--spacing-6); }
+.ideas-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+.loading, .empty, .error { padding: var(--spacing-8) 0; color: var(--color-on-surface-variant); }
+.error { color: var(--color-error); }
+.pagination { margin: var(--spacing-6) 0; text-align: center; }
 .pagination button {
-  padding: 0.6rem 1.5rem;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  min-height: 44px;
+  padding: var(--spacing-3) var(--spacing-6);
+  background: var(--color-surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
   cursor: pointer;
+  font-family: var(--font-label);
+  font-size: var(--font-size-label-lg);
+  color: var(--color-on-surface);
+  transition: background-color var(--transition-fast);
+}
+.pagination button:hover { background: var(--color-surface-container); }
+.pagination button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div class="detail-page">
     <nav class="nav">
-      <NuxtLink :to="localePath('/')" class="nav-back">{{ $t('nav.backToFeed') }}</NuxtLink>
-      <span class="nav-brand">ParaSalvaraCuba</span>
+      <NuxtLink :to="localePath('/')" class="nav-back">{{ $t('nav.backToFeed') }}</NuxtLink>     
     </nav>
 
     <main>
@@ -18,27 +17,27 @@
           </div>
         </div>
 
-        <div class="idea-description">{{ idea.description }}</div>
+        <MarkdownRenderer :markdown="idea.description" />
 
         <div v-if="isAuthor" class="idea-actions">
-          <button @click="openEdit">{{ $t('idea.editIdea') }}</button>
+          <button class="ds-btn ds-btn-tertiary ds-btn-sm" @click="openEdit">{{ $t('idea.editIdea') }}</button>
         </div>
 
         <!-- Inline edit form (shown when editing) -->
         <form v-if="editing" class="edit-form" @submit.prevent="submitEdit">
-          <label>
-            {{ $t('idea.titleLabel') }}
-            <input v-model="editTitle" maxlength="200" required />
-          </label>
-          <label>
-            {{ $t('idea.descriptionLabel') }}
-            <textarea v-model="editDescription" rows="6" required />
-          </label>
-          <div class="edit-actions">
-            <button type="submit" :disabled="saving">{{ $t('idea.saveChanges') }}</button>
-            <button type="button" @click="editing = false">{{ $t('idea.cancel') }}</button>
+          <div class="form-field">
+            <label class="form-label" for="edit-title">{{ $t('idea.titleLabel') }}</label>
+            <input id="edit-title" v-model="editTitle" class="form-input" maxlength="200" required />
           </div>
-          <p v-if="editError" class="error">{{ editError }}</p>
+          <div class="form-field">
+            <label class="form-label" for="edit-description">{{ $t('idea.descriptionLabel') }}</label>
+            <textarea id="edit-description" v-model="editDescription" class="form-textarea" rows="6" required />
+          </div>
+          <div class="edit-actions">
+            <button type="submit" class="ds-btn ds-btn-primary ds-btn-sm" :disabled="saving">{{ $t('idea.saveChanges') }}</button>
+            <button type="button" class="ds-btn ds-btn-tertiary ds-btn-sm" @click="editing = false">{{ $t('idea.cancel') }}</button>
+          </div>
+          <p v-if="editError" class="form-error">{{ editError }}</p>
         </form>
 
         <!-- Comments section -->
@@ -61,6 +60,7 @@ import { useI18n } from 'vue-i18n'
 import VoteButton from '~/components/VoteButton.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import CommentThread from '~/components/CommentThread.vue'
+import MarkdownRenderer from '~/components/MarkdownRenderer.vue'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
@@ -145,47 +145,99 @@ fetchIdea()
 </script>
 
 <style scoped>
-.detail-page { font-family: system-ui, sans-serif; }
+.detail-page {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+}
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: #1e3a5f;
-  color: white;
+  padding: var(--spacing-4) var(--spacing-8);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-elevation-2);
 }
-.nav-back { color: white; text-decoration: none; font-size: 0.9rem; }
-.nav-brand { font-weight: 700; font-size: 1.1rem; }
-main { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
-.idea-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
-.idea-title-block h1 { margin: 0 0 0.25rem; font-size: 1.5rem; color: #1e3a5f; }
-.idea-meta { font-size: 0.8rem; color: #6b7280; margin: 0; }
-.idea-description { line-height: 1.7; color: #374151; white-space: pre-wrap; margin-bottom: 1.5rem; }
-.idea-actions { margin-bottom: 1rem; }
-.idea-actions button {
-  padding: 0.5rem 1rem;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  cursor: pointer;
+.nav-back {
+  color: var(--color-on-primary);
+  text-decoration: none;
+  font-size: var(--font-size-body-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  opacity: 0.85;
+  transition: opacity var(--transition-fast);
 }
-.edit-form { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
-.edit-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 600; }
-.edit-form input, .edit-form textarea {
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
+.nav-back:hover { opacity: 1; }
+main { max-width: 720px; margin: var(--spacing-8) auto; padding: 0 var(--spacing-4); }
+.idea-header {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-4);
 }
-.edit-actions { display: flex; gap: 0.75rem; }
-.edit-actions button {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid #d1d5db;
+.idea-title-block h1 {
+  margin: 0 0 var(--spacing-1);
+  font-family: var(--font-headline);
+  font-size: var(--font-size-headline-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
 }
-.edit-actions button[type="submit"] { background: #2563eb; color: white; border-color: #2563eb; }
-.loading, .error { padding: 2rem 0; color: #6b7280; }
-.error { color: #dc2626; }
+.idea-meta {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+.idea-actions { margin-bottom: var(--spacing-4); }
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+  margin-top: var(--spacing-4);
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+.form-label {
+  font-family: var(--font-label);
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--color-on-surface);
+}
+.form-input,
+.form-textarea {
+  background-color: var(--color-surface-container-highest);
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  border-radius: 0;
+  padding: var(--spacing-3) var(--spacing-2);
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  transition: border-color var(--transition-fast);
+  width: 100%;
+}
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-secondary-container);
+  border-bottom-width: 3px;
+}
+.edit-actions { display: flex; gap: var(--spacing-3); }
+.form-error {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-error);
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--color-error-container);
+  border-radius: var(--radius-sm);
+}
+.loading, .error { padding: var(--spacing-8) 0; color: var(--color-on-surface-variant); }
+.error { color: var(--color-error); }
 </style>
