@@ -1,0 +1,24 @@
+/* Para Salvar A Cuba Design System Tokens */
+@import '../../../design-system/design-tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base typography defaults */
+html {
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  background-color: var(--color-background);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

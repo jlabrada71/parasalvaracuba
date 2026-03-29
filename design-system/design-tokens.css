@@ -1,0 +1,294 @@
+/* Para Salvar A Cuba - Design System Tokens */
+/* Generated from Stitch Design System */
+
+:root {
+  /* PRIMARY COLOR - Teal (Trust, Unity, Democracy) */
+  --color-primary: #006565;
+  --color-primary-container: #008080;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #e3fffe;
+  --color-primary-fixed: #93f2f2;
+  --color-primary-fixed-dim: #76d6d5;
+
+  /* SECONDARY COLOR - Coral (Energy, Action, Urgency) */
+  --color-secondary: #a43c12;
+  --color-secondary-container: #fe7e4f;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #6b1f00;
+  --color-secondary-fixed: #ffdbcf;
+  --color-secondary-fixed-dim: #ffb59c;
+
+  /* TERTIARY COLOR - Navy (Wisdom, Sophistication) */
+  --color-tertiary: #495b70;
+  --color-tertiary-container: #627489;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #f7f9ff;
+  --color-tertiary-fixed: #d1e4fc;
+  --color-tertiary-fixed-dim: #b5c8e0;
+
+  /* ERROR COLORS */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  /* SURFACE & BACKGROUND COLORS */
+  --color-surface: #f6faf9;
+  --color-surface-dim: #d7dbda;
+  --color-surface-bright: #f6faf9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f4f3;
+  --color-surface-container: #ebefee;
+  --color-surface-container-high: #e5e9e8;
+  --color-surface-container-highest: #dfe3e2;
+  --color-on-surface: #181c1c;
+  --color-on-surface-variant: #3e4949;
+  --color-surface-variant: #dfe3e2;
+  --color-surface-tint: #006a6a;
+
+  /* BACKGROUND */
+  --color-background: #f6faf9;
+  --color-on-background: #181c1c;
+
+  /* OUTLINE COLORS */
+  --color-outline: #6e7979;
+  --color-outline-variant: #bdc9c8;
+
+  /* INVERSE COLORS */
+  --color-inverse-surface: #2c3131;
+  --color-inverse-on-surface: #edf2f1;
+  --color-inverse-primary: #76d6d5;
+
+  /* TYPOGRAPHY - Font Families */
+  --font-display: 'Manrope', sans-serif;
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+
+  /* TYPOGRAPHY - Font Sizes & Weights */
+  --font-size-display-lg: 3.5rem;
+  --font-size-display-md: 2.75rem;
+  --font-size-display-sm: 2.25rem;
+
+  --font-size-headline-lg: 2rem;
+  --font-size-headline-md: 1.75rem;
+  --font-size-headline-sm: 1.5rem;
+
+  --font-size-title-lg: 1.375rem;
+  --font-size-title-md: 1.25rem;
+  --font-size-title-sm: 1.125rem;
+
+  --font-size-body-lg: 1rem;
+  --font-size-body-md: 0.875rem;
+  --font-size-body-sm: 0.8125rem;
+
+  --font-size-label-lg: 0.875rem;
+  --font-size-label-md: 0.75rem;
+  --font-size-label-sm: 0.6875rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+
+  /* LINE HEIGHT */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* LETTER SPACING */
+  --letter-spacing-none: 0;
+  --letter-spacing-xs: 0.02em;
+  --letter-spacing-sm: 0.05em;
+  --letter-spacing-md: 0.1em;
+
+  /* SPACING SCALE (8px base) */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem;  /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem;    /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem;  /* 24px */
+  --spacing-7: 1.75rem; /* 28px */
+  --spacing-8: 2rem;    /* 32px */
+  --spacing-9: 2.25rem; /* 36px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-11: 2.75rem; /* 44px */
+  --spacing-12: 3rem;    /* 48px */
+  --spacing-16: 4rem;    /* 64px */
+  --spacing-20: 5rem;    /* 80px */
+  --spacing-24: 6rem;    /* 96px */
+
+  /* BORDER RADIUS */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+
+  /* SHADOW - Ambient Light Model */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+  /* ELEVATION - For floating elements */
+  --shadow-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-elevation-2: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-elevation-3: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-4: 0 15px 25px rgba(0, 0, 0, 0.12);
+  --shadow-elevation-5: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+  /* TRANSITIONS */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* BACKDROP BLUR */
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur-md: blur(12px);
+  --backdrop-blur-lg: blur(20px);
+}
+
+/* SEMANTIC COLOR TOKENS */
+:root {
+  --color-text-primary: var(--color-on-surface);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-text-disabled: rgba(24, 28, 28, 0.38);
+
+  --color-background-primary: var(--color-surface);
+  --color-background-secondary: var(--color-surface-container-low);
+  --color-background-tertiary: var(--color-surface-container);
+
+  --color-action-primary: var(--color-primary);
+  --color-action-secondary: var(--color-secondary);
+  --color-action-tertiary: var(--color-tertiary);
+
+  --color-border-primary: var(--color-outline);
+  --color-border-secondary: var(--color-outline-variant);
+
+  --color-feedback-success: #4caf50;
+  --color-feedback-warning: #ff9800;
+  --color-feedback-error: var(--color-error);
+  --color-feedback-info: var(--color-primary);
+}
+
+/* UTILITY CLASSES */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-tertiary);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.bg-surface-low {
+  background-color: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+}
+
+.bg-surface-high {
+  background-color: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+}
+
+/* BUTTON STYLES */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 15px 30px rgba(0, 101, 101, 0.15);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 20px 40px rgba(0, 101, 101, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background-color: #925d39;
+}
+
+.btn-tertiary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--font-size-label-lg);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn-tertiary:hover {
+  background-color: var(--color-surface-container-low);
+}
+
+/* CARD STYLES */
+.card {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-elevation-1);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-elevation-3);
+  transform: translateY(-2px);
+}
+
+/* INPUT STYLES */
+.input-field {
+  background-color: var(--color-surface-container-highest);
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  border-radius: 0;
+  padding: var(--spacing-3) 0;
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  transition: all var(--transition-normal);
+}
+
+.input-field:focus {
+  outline: none;
+  border-bottom-color: var(--color-secondary);
+  border-bottom-width: 3px;
+}
+
+.input-field::placeholder {
+  color: var(--color-on-surface-variant);
+}

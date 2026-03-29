@@ -1,0 +1,246 @@
+{
+  "metadata": {
+    "name": "Para Salvar A Cuba Design System",
+    "description": "Civic engagement platform design tokens",
+    "version": "1.0.0",
+    "lastUpdated": "2026-03-29",
+    "createdBy": "Stitch Design System"
+  },
+  "colors": {
+    "primary": {
+      "base": "#006565",
+      "container": "#008080",
+      "onColor": "#ffffff",
+      "onContainer": "#e3fffe",
+      "fixed": "#93f2f2",
+      "fixedDim": "#76d6d5",
+      "description": "Teal - Trust, unity, democratic participation"
+    },
+    "secondary": {
+      "base": "#a43c12",
+      "container": "#fe7e4f",
+      "onColor": "#ffffff",
+      "onContainer": "#6b1f00",
+      "fixed": "#ffdbcf",
+      "fixedDim": "#ffb59c",
+      "description": "Coral - Energy, action, urgency to contribute"
+    },
+    "tertiary": {
+      "base": "#495b70",
+      "container": "#627489",
+      "onColor": "#ffffff",
+      "onContainer": "#f7f9ff",
+      "fixed": "#d1e4fc",
+      "fixedDim": "#b5c8e0",
+      "description": "Navy - Wisdom, sophistication"
+    },
+    "error": {
+      "base": "#ba1a1a",
+      "container": "#ffdad6",
+      "onColor": "#ffffff",
+      "onContainer": "#93000a"
+    },
+    "surface": {
+      "base": "#f6faf9",
+      "dim": "#d7dbda",
+      "bright": "#f6faf9",
+      "container": {
+        "lowest": "#ffffff",
+        "low": "#f0f4f3",
+        "default": "#ebefee",
+        "high": "#e5e9e8",
+        "highest": "#dfe3e2"
+      },
+      "onColor": "#181c1c",
+      "onColorVariant": "#3e4949",
+      "tint": "#006a6a"
+    },
+    "background": {
+      "base": "#f6faf9",
+      "onColor": "#181c1c"
+    },
+    "outline": {
+      "base": "#6e7979",
+      "variant": "#bdc9c8"
+    },
+    "inverse": {
+      "surface": "#2c3131",
+      "onSurface": "#edf2f1",
+      "primary": "#76d6d5"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "display": {
+        "family": "Manrope",
+        "fallback": "sans-serif",
+        "usage": "Hero headings, display text"
+      },
+      "headline": {
+        "family": "Manrope",
+        "fallback": "sans-serif",
+        "usage": "Section headings, titles"
+      },
+      "body": {
+        "family": "Inter",
+        "fallback": "sans-serif",
+        "usage": "Body text, descriptions, labels"
+      }
+    },
+    "sizes": {
+      "display": {
+        "lg": "3.5rem",
+        "md": "2.75rem",
+        "sm": "2.25rem"
+      },
+      "headline": {
+        "lg": "2rem",
+        "md": "1.75rem",
+        "sm": "1.5rem"
+      },
+      "title": {
+        "lg": "1.375rem",
+        "md": "1.25rem",
+        "sm": "1.125rem"
+      },
+      "body": {
+        "lg": "1rem",
+        "md": "0.875rem",
+        "sm": "0.8125rem"
+      },
+      "label": {
+        "lg": "0.875rem",
+        "md": "0.75rem",
+        "sm": "0.6875rem"
+      }
+    },
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "semiBold": 600,
+      "bold": 700
+    },
+    "lineHeight": {
+      "tight": 1.2,
+      "normal": 1.5,
+      "relaxed": 1.75
+    },
+    "letterSpacing": {
+      "none": 0,
+      "xs": "0.02em",
+      "sm": "0.05em",
+      "md": "0.1em"
+    }
+  },
+  "spacing": {
+    "0": "0",
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "7": "1.75rem",
+    "8": "2rem",
+    "9": "2.25rem",
+    "10": "2.5rem",
+    "11": "2.75rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "description": "8px base unit spacing scale"
+  },
+  "borderRadius": {
+    "none": "0",
+    "xs": "2px",
+    "sm": "4px",
+    "md": "0.75rem",
+    "lg": "1rem",
+    "xl": "1.5rem",
+    "full": "9999px",
+    "default": "0.5rem",
+    "description": "Friendly, approachable roundedness. Use lg/xl for large containers."
+  },
+  "shadows": {
+    "sm": "0 1px 2px rgba(0, 0, 0, 0.05)",
+    "md": "0 4px 6px rgba(0, 0, 0, 0.07)",
+    "lg": "0 10px 15px rgba(0, 0, 0, 0.1)",
+    "xl": "0 20px 25px rgba(0, 0, 0, 0.12)",
+    "2xl": "0 25px 50px rgba(0, 0, 0, 0.15)",
+    "elevation": {
+      "1": "0 1px 3px rgba(0, 0, 0, 0.06)",
+      "2": "0 4px 6px rgba(0, 0, 0, 0.07)",
+      "3": "0 10px 15px rgba(0, 0, 0, 0.1)",
+      "4": "0 15px 25px rgba(0, 0, 0, 0.12)",
+      "5": "0 25px 50px rgba(0, 0, 0, 0.15)"
+    },
+    "description": "Ambient light model - use elevation shadows for floating elements"
+  },
+  "transitions": {
+    "fast": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+    "normal": "250ms cubic-bezier(0.4, 0, 0.2, 1)",
+    "slow": "350ms cubic-bezier(0.4, 0, 0.2, 1)"
+  },
+  "backdrops": {
+    "sm": "blur(4px)",
+    "md": "blur(12px)",
+    "lg": "blur(20px)",
+    "description": "Glass morphism effects for floating navigation and overlays"
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "background": "linear-gradient(135deg, #006565, #008080)",
+        "color": "#ffffff",
+        "padding": "1rem 2rem",
+        "borderRadius": "1rem",
+        "fontWeight": 600,
+        "shadow": "0 15px 30px rgba(0, 101, 101, 0.15)"
+      },
+      "secondary": {
+        "background": "#a43c12",
+        "color": "#ffffff",
+        "padding": "1rem 2rem",
+        "borderRadius": "1rem",
+        "fontWeight": 600
+      },
+      "tertiary": {
+        "background": "transparent",
+        "color": "#006565",
+        "border": "1px solid #bdc9c8",
+        "padding": "0.75rem 1.5rem",
+        "borderRadius": "1rem",
+        "fontWeight": 600
+      }
+    },
+    "card": {
+      "background": "#ffffff",
+      "borderRadius": "1.5rem",
+      "padding": "1.5rem",
+      "shadow": "0 1px 3px rgba(0, 0, 0, 0.06)",
+      "hoverShadow": "0 10px 15px rgba(0, 0, 0, 0.1)",
+      "transition": "all 250ms cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "input": {
+      "background": "#dfe3e2",
+      "border": "none",
+      "borderBottom": "2px solid #bdc9c8",
+      "padding": "0.75rem 0",
+      "focusBorderColor": "#ff7f50",
+      "focusBorderWidth": "3px"
+    }
+  },
+  "guidelines": {
+    "noHarshBorders": "Never use 1px solid borders. Define boundaries through color shifts or whitespace.",
+    "glassMorphism": "Use backdrop-blur-md (12px) for floating navigation and overlays with semi-transparent surfaces.",
+    "surfaceHierarchy": "Layer UI like stacked sheets: surface → surface-container-low → surface-container-lowest.",
+    "asymmetricMargins": "Use asymmetric margins in hero sections (e.g., 8.5rem left, 5.5rem right) for editorial rhythm.",
+    "colorTransitions": "Use coral (#FF7F50) for success states, voting interactions, and urgent actions.",
+    "touchTargets": "Ensure all interactive elements are 44px+ for mobile accessibility.",
+    "textColor": "Use on-surface (#181c1c) instead of pure black for a premium, soft feel.",
+    "roundness": "Use lg/xl (1rem+) for large containers; sm/md for small components.",
+    "whitespace": "Generous spacing creates 'breathing room' for ideas.",
+    "photography": "Use high-key imagery with 40% primary color overlay for text legibility."
+  }
+}
