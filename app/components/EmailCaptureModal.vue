@@ -182,13 +182,25 @@ input[type="email"]::placeholder {
 
 .actions {
   display: flex;
-  gap: var(--spacing-3);
-  margin-top: var(--spacing-2);
-  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+  flex-direction: row;
 }
 
 .action-button {
   flex: 1;
-  min-width: 120px;
+  min-width: 100px;
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .action-button {
+    min-width: auto;
+    width: 100%;
+  }
 }
 </style>
