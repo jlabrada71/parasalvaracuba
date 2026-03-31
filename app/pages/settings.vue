@@ -7,13 +7,13 @@
 
       <div v-if="auth.isIdentified">
         <p>{{ $t('settings.identity.currentEmail') }} <strong>{{ auth.email }}</strong></p>
-        <button @click="openChangeModal">{{ $t('settings.identity.changeEmail') }}</button>
-        <button @click="clearEmail" class="btn-danger">{{ $t('settings.identity.clearEmail') }}</button>
+        <Button variant="primary" @click="openChangeModal">{{ $t('settings.identity.changeEmail') }}</Button>
+        <Button variant="secondary" @click="clearEmail">{{ $t('settings.identity.clearEmail') }}</Button>
       </div>
 
       <div v-else>
         <p>{{ $t('settings.identity.noEmail') }}</p>
-        <button @click="openChangeModal">{{ $t('settings.identity.setEmail') }}</button>
+        <Button variant="primary" @click="openChangeModal">{{ $t('settings.identity.setEmail') }}</Button>
       </div>
     </section>
 
@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 
@@ -56,31 +57,34 @@ function clearEmail() {
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 1rem;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-headline-lg);
+  color: var(--color-on-surface);
 }
 
 section {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-top: 1rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  margin-top: var(--spacing-4);
 }
 
 h2 {
   margin-top: 0;
+  font-family: var(--font-headline);
+  font-size: var(--font-size-headline-md);
+  color: var(--color-on-surface);
 }
 
-button {
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.95rem;
-}
-
-.btn-danger {
-  background: #dc2626;
+p {
+  font-size: var(--font-size-body-lg);
+  color: var(--color-on-surface-variant);
 }
 </style>

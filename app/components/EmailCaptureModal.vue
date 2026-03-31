@@ -18,8 +18,8 @@
           <span v-if="errorMsg" class="error" role="alert">{{ errorMsg }}</span>
 
           <div class="actions">
-            <button type="submit">{{ $t('modal.continue') }}</button>
-            <button type="button" @click="onDismiss">{{ $t('modal.browse') }}</button>
+            <Button type="submit" variant="primary" class="action-button">{{ $t('modal.continue') }}</Button>
+            <Button type="button" variant="tertiary" @click="onDismiss" class="action-button">{{ $t('modal.browse') }}</Button>
           </div>
         </form>
       </div>
@@ -30,6 +30,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import { validateEmail } from '~/utils/emailValidation'
 
@@ -186,58 +187,8 @@ input[type="email"]::placeholder {
   flex-wrap: wrap;
 }
 
-button[type="submit"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
+.action-button {
   flex: 1;
-  padding: var(--spacing-3) var(--spacing-6);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
-  color: var(--color-on-primary);
-  border: none;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  font-family: var(--font-label);
-  font-size: var(--font-size-label-lg);
-  font-weight: var(--font-weight-semi-bold);
-  transition: all var(--transition-normal);
-  box-shadow: 0 8px 20px rgba(0, 101, 101, 0.15);
-}
-
-button[type="submit"]:hover {
-  box-shadow: 0 12px 28px rgba(0, 101, 101, 0.25);
-  transform: translateY(-1px);
-}
-
-button[type="submit"]:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-button[type="button"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: var(--spacing-3) var(--spacing-5);
-  background: transparent;
-  border: 1px solid var(--color-outline-variant);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  font-family: var(--font-label);
-  font-size: var(--font-size-label-md);
-  color: var(--color-on-surface-variant);
-  transition: all var(--transition-fast);
-}
-
-button[type="button"]:hover {
-  background-color: var(--color-surface-container-low);
-  color: var(--color-on-surface);
-}
-
-button[type="button"]:focus-visible {
-  outline: 2px solid var(--color-outline);
-  outline-offset: 2px;
+  min-width: 120px;
 }
 </style>
