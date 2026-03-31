@@ -11,14 +11,11 @@
     v-bind="$attrs"
   >
     <span v-if="loading" class="ds-btn-spinner" />
-    <Icon v-if="icon && !loading" :name="icon" class="ds-btn-icon" />
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
-import Icon from '@/components/Icon.vue'
-
 withDefaults(
   defineProps<{
     variant?: 'primary' | 'secondary' | 'tertiary'
@@ -26,7 +23,6 @@ withDefaults(
     type?: 'button' | 'submit' | 'reset'
     disabled?: boolean
     loading?: boolean
-    icon?: string
   }>(),
   {
     variant: 'primary',
