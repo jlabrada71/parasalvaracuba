@@ -20,7 +20,7 @@
         <MarkdownRenderer :markdown="idea.description" />
 
         <div v-if="isAuthor" class="idea-actions">
-          <button class="ds-btn ds-btn-tertiary ds-btn-sm" @click="openEdit">{{ $t('idea.editIdea') }}</button>
+          <Button variant="tertiary" size="sm" @click="openEdit">{{ $t('idea.editIdea') }}</Button>
         </div>
 
         <!-- Inline edit form (shown when editing) -->
@@ -34,8 +34,8 @@
             <textarea id="edit-description" v-model="editDescription" class="form-textarea" rows="6" required />
           </div>
           <div class="edit-actions">
-            <button type="submit" class="ds-btn ds-btn-primary ds-btn-sm" :disabled="saving">{{ $t('idea.saveChanges') }}</button>
-            <button type="button" class="ds-btn ds-btn-tertiary ds-btn-sm" @click="editing = false">{{ $t('idea.cancel') }}</button>
+            <Button type="submit" variant="primary" size="sm" :disabled="saving">{{ $t('idea.saveChanges') }}</Button>
+            <Button type="button" variant="tertiary" size="sm" @click="editing = false">{{ $t('idea.cancel') }}</Button>
           </div>
           <p v-if="editError" class="form-error">{{ editError }}</p>
         </form>
@@ -61,6 +61,7 @@ import VoteButton from '~/components/VoteButton.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import CommentThread from '~/components/CommentThread.vue'
 import MarkdownRenderer from '~/components/MarkdownRenderer.vue'
+import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'

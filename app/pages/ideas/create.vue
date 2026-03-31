@@ -42,9 +42,9 @@
         <p v-if="formError" class="form-error">{{ formError }}</p>
 
         <div class="form-actions">
-          <button type="submit" class="ds-btn ds-btn-primary" :disabled="submitting">
+          <Button type="submit" variant="primary" :disabled="submitting">
             {{ submitting ? $t('create.submitting') : $t('create.submit') }}
-          </button>
+          </Button>
           <NuxtLink :to="localePath('/')" class="cancel-link">{{ $t('create.cancel') }}</NuxtLink>
         </div>
       </form>
@@ -63,6 +63,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
+import { Button } from '@/components/design-system'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
 const localePath = useLocalePath()

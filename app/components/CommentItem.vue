@@ -16,9 +16,9 @@
         :net-votes="comment.net_votes"
         @voted="(payload) => $emit('voted', payload)"
       />
-      <button class="reply-btn" @click="showReplyForm = !showReplyForm">
+      <Button variant="tertiary" size="sm" @click="showReplyForm = !showReplyForm">
         {{ showReplyForm ? $t('comments.replyCancel') : $t('comments.reply') }}
-      </button>
+      </Button>
     </div>
 
     <!-- Reply form (nested, indented) -->
@@ -31,7 +31,7 @@
         rows="3"
       ></textarea>
       <div class="reply-actions">
-        <button type="submit" :disabled="submittingReply">{{ $t('comments.postReply') }}</button>
+        <Button type="submit" variant="primary" size="sm" :disabled="submittingReply">{{ $t('comments.postReply') }}</Button>
         <span v-if="replyError" class="error">{{ replyError }}</span>
       </div>
     </form>
@@ -56,6 +56,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
 import { useEmailGate } from '~/composables/useEmailGate'
+import { Button } from '@/components/design-system'
 import VoteButton from './VoteButton.vue'
 
 interface Comment {

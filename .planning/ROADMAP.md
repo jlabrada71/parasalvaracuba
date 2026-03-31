@@ -2,9 +2,9 @@
 
 ## Overview
 
-3 phases | 20 requirements mapped | 20 success criteria | All v1.1 requirements covered ✓
+4 phases | 20+ requirements mapped | Comprehensive design & polish | All v1.1+ requirements covered ✓
 
-**Phases continue from v1.0:** Phase 4-6 (v1.0 was phases 1-3)
+**Phases continue from v1.0:** Phase 4-7 (v1.0 was phases 1-3)
 
 ## Phases
 
@@ -13,6 +13,7 @@
 | 4 | Markdown & Stability | Add rich text editing with Markdown and fix critical bugs | MARK-01, MARK-02, MARK-03, MARK-04, STAB-01, STAB-04, TEST-01, TEST-02 | 8 | 1-2 weeks |
 | 5 | Design System | Apply design tokens for consistency and accessibility | DESN-01, DESN-02, DESN-03, DESN-04, DESN-05, STAB-02, STAB-03 | 7 | 1 week |
 | 6 | Polish & Testing | Comprehensive testing, performance tuning, and launch readiness | MARK-05, STAB-05, TEST-03, TEST-04, TEST-05 | 5 | 1 week |
+| 7 | Improve the Site Design | Enhance visual design with Stitch-generated components and refined UX | DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04 | TBD | 1-2 weeks |
 
 ---
 
@@ -120,6 +121,36 @@
 
 ---
 
+### Phase 7: Improve the Site Design
+
+**Goal:** Enhance visual design with Stitch-generated components and refined UX to inspire user contribution and increase platform appeal.
+
+**Delivers:**
+- DESIGN-01: Stitch-designed homepage with hero section inspiring civic participation
+- DESIGN-02: Refined color palette applied to all pages (teal, coral, navy)
+- DESIGN-03: Logo and brand identity assets integrated
+- DESIGN-04: UX improvements to idea browsing and contribution flow
+
+**Success Criteria:**
+1. Homepage hero section implemented with inspiring messaging
+2. Color tokens from Stitch design system applied to all components
+3. Logo and brand assets visible on all pages
+4. User engagement metrics improve (CTR on "Share Your Idea" button)
+5. Design consistency across all pages (no mismatched colors/spacing)
+6. Mobile design responsive and visually appealing
+7. All design assets from Stitch project integrated
+
+**Why this phase after Testing:** Phase 6 ensures core functionality is solid before design enhancements. Phase 7 builds on stable foundation to create a visually compelling platform that inspires contribution.
+
+**Dependencies:** Stitch design system tokens, Vue 3 components, design asset library
+
+**Tech debt addressed:**
+- Visual design not optimized for engagement
+- Missing cohesive branding
+- No professional logo/identity assets
+
+---
+
 ## Requirement Map (Complete)
 
 | Requirement | Phase | Category | Description |
@@ -156,8 +187,9 @@
 | 4 | Week 1 | 1-2 weeks | Markdown editor working, vote race condition fixed |
 | 5 | Week 2-3 | 1 week | Design tokens applied, dark mode working, accessibility passes |
 | 6 | Week 4 | 1 week | Comprehensive tests passing, performance validated |
+| 7 | Week 5 | 1-2 weeks | Visual design complete, branding integrated, engagement optimized |
 
-**Total v1.1 timeline: 2-4 weeks**
+**Total v1.1 timeline: 3-5 weeks**
 
 ---
 
@@ -173,4 +205,4 @@
 
 ---
 
-*Last updated: 2026-03-27 — roadmap created for v1.1 (3 phases, 20 requirements)*
+*Last updated: 2026-03-29 — Phase 7 added for design enhancement (4 phases, design focus)*

@@ -1,33 +1,39 @@
 <template>
   <div class="home-page">
     <nav class="nav">
-      <span class="nav-brand">ParaSalvaraCuba</span>
+      <span class="nav-brand">ParaSalvarACuba</span>
       <div class="nav-actions">
-        <NuxtLink :to="localePath('/ideas/create')" class="btn-nav-cta">{{ $t('nav.newIdea') }}</NuxtLink>
+        <NuxtLink :to="localePath('/ideas/create')" class="nav-cta-wrapper">
+          <Button variant="secondary" size="md">{{ $t('nav.newIdea') }}</Button>
+        </NuxtLink>
         <LanguageSwitcher/>
         <NuxtLink :to="localePath('/settings')" class="nav-link">{{ $t('nav.settings') }}</NuxtLink>
       </div>
     </nav>
 
     <main>
-      <h1>{{ $t('home.title') }}</h1>
-      <p class="subtitle">{{ $t('home.subtitle') }}</p>
+      <Hero
+        :title="$t('home.title')"
+        :subtitle="$t('home.subtitle')"
+      />
 
-      <div v-if="pending" class="loading">{{ $t('home.loading') }}</div>
-      <div v-else-if="error" class="error">{{ $t('home.error') }}</div>
-      <div v-else-if="ideas.length === 0" class="empty">{{ $t('home.empty') }}</div>
+      <div class="content-wrapper">
+        <div v-if="pending" class="loading">{{ $t('home.loading') }}</div>
+        <div v-else-if="error" class="error">{{ $t('home.error') }}</div>
+        <div v-else-if="ideas.length === 0" class="empty">{{ $t('home.empty') }}</div>
 
-      <div v-else class="ideas-list">
-        <IdeaCard
-          v-for="idea in ideas"
-          :key="idea.id"
-          :idea="idea"
-          @voted="onVoted"
-        />
-      </div>
+        <div v-else class="ideas-list">
+          <IdeaCard
+            v-for="idea in ideas"
+            :key="idea.id"
+            :idea="idea"
+            @voted="onVoted"
+          />
+        </div>
 
-      <div v-if="hasMore" class="pagination">
-        <button :disabled="pending" @click="loadMore">{{ $t('home.loadMore') }}</button>
+        <div v-if="hasMore" class="pagination">
+          <Button :disabled="pending" @click="loadMore" variant="tertiary">{{ $t('home.loadMore') }}</Button>
+        </div>
       </div>
     </main>
 
@@ -43,6 +49,7 @@
 import { ref } from 'vue'
 import IdeaCard from '~/components/IdeaCard.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
+import { Button, Hero } from '@/components/design-system'
 import { useEmailGate } from '~/composables/useEmailGate'
 const localePath = useLocalePath()
 
@@ -133,56 +140,24 @@ fetchIdeas(1)
   transition: opacity var(--transition-fast);
 }
 .nav-link:hover { opacity: 1; }
-/* Primary CTA button in nav - uses secondary coral for contrast on teal bg */
-.btn-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: var(--spacing-3) var(--spacing-6);
-  background-color: var(--color-secondary);
-  color: var(--color-on-secondary);
-  border-radius: var(--radius-lg);
+/* Wrapper for Button component to handle link styling */
+.nav-cta-wrapper {
   text-decoration: none;
-  font-size: var(--font-size-label-lg);
-  font-weight: var(--font-weight-semi-bold);
-  transition: all var(--transition-normal);
-  border: none;
+  display: inline-block;
 }
-.btn-nav-cta:hover {
-  background-color: #925d39;
-  transform: translateY(-1px);
+main { width: 100%; }
+.content-wrapper {
+  max-width: 720px;
+  margin: var(--spacing-8) auto;
+  padding: 0 var(--spacing-4);
 }
-.btn-nav-cta:focus-visible {
-  outline: 2px solid var(--color-on-primary);
-  outline-offset: 2px;
-}
-main { max-width: 720px; margin: var(--spacing-8) auto; padding: 0 var(--spacing-4); }
-.subtitle { color: var(--color-on-surface-variant); margin-bottom: var(--spacing-6); }
 .ideas-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
   margin-top: var(--spacing-6);
 }
-.loading, .empty, .error { padding: var(--spacing-8) 0; color: var(--color-on-surface-variant); }
+.loading, .empty, .error { padding: var(--spacing-8) 0; color: var(--color-on-surface-variant); text-align: center; }
 .error { color: var(--color-error); }
 .pagination { margin: var(--spacing-6) 0; text-align: center; }
-.pagination button {
-  min-height: 44px;
-  padding: var(--spacing-3) var(--spacing-6);
-  background: var(--color-surface-container-low);
-  border: 1px solid var(--color-outline-variant);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  font-family: var(--font-label);
-  font-size: var(--font-size-label-lg);
-  color: var(--color-on-surface);
-  transition: background-color var(--transition-fast);
-}
-.pagination button:hover { background: var(--color-surface-container); }
-.pagination button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
 </style>

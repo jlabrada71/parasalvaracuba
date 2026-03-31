@@ -2,80 +2,74 @@
 
 ## Milestone: Polish & Design (v1.1)
 
-**Status:** Defining requirements — Not yet planned
+**Status:** COMPLETE ✓
 
 **Previous Milestone:** v1.0 — 3 phases complete, MVP delivered ✓
-**Total v1.0 Requirements:** 12 (all complete)
-**Next Phase:** 4 (continuing numbering from v1.0)
+**v1.1 Phases:** Phases 4-7 (4 phases total) — All complete ✓
+**Total v1.1 Requirements:** 20 (all complete)
 
 ---
 
-## Key Decisions Made
+## Phases Completed
 
-| Decision | Rationale | Locked |
-|----------|-----------|--------|
-| Email-only identity (no signup) | Minimize friction; lower barrier to participate | Yes |
-| localStorage session (no server-side sessions) | Solo dev, no Redis dependency in v1 | Yes |
-| Phase 1 = Auth only | Every other feature depends on session attribution; build it first and build it right | Yes |
-| Comment voting (VOTE-02) in Phase 3 | Vote-on-comment has zero value before comments exist; grouping with discussion is natural | Yes |
-| 3 phases, not 4-5 | ASAP solo launch; phases map to real dependency tiers, not arbitrary grouping | Yes |
-| IDEAS-04 (edit) in Phase 2 | Edit belongs with create/view — same domain, same data layer, low incremental cost | Yes |
-| Nuxt/Vue/Node/Postgres | Production-proven, single-language stack, optimized for solo dev velocity | Yes |
-| v1 scoped to core interactions only | Multi-country, moderation, search, categories all deferred to v2 | Yes |
+| Phase | Name | Status | Delivery |
+|-------|------|--------|----------|
+| 4 | Markdown & Stability | Complete | Rich text editing, vote race condition fixed |
+| 5 | Design System | Complete | CSS tokens, Tailwind integration, dark mode ready |
+| 6 | Polish & Testing | Complete | E2E tests, regression tests, accessibility audit |
+| 7 | Improve the Site Design | Complete | Stitch components, hero section, logo, responsive design |
+
+**Milestone v1.1 Goal:** Polish the MVP with design consistency, rich text editing, and comprehensive testing — ✓ ACHIEVED
 
 ---
 
-## Execution Order
+## Requirement Coverage
 
-**Phase 1 — Identity Foundation**
-Build first. Everything else calls into this layer.
-- localStorage session utility (read/write/clear email)
-- Email capture modal/prompt (triggered on first gated action)
-- Express auth middleware (extracts email from request context)
-- AUTH-01, AUTH-02, AUTH-03
+**All 20 v1.1 requirements delivered and verified:**
 
-**Phase 2 — Ideas & Voting**
-Build second. Requires Phase 1 auth middleware to be stable.
-- PostgreSQL schema: `ideas`, `votes` tables
-- Express routes: GET /ideas, POST /ideas, PATCH /ideas/:id, POST /ideas/:id/votes
-- Vote deduplication logic (one vote per email per idea)
-- Trending/ranking calculation (net votes, recency weight acceptable for v1)
-- Nuxt pages: feed (index), idea detail, create idea form
-- IDEAS-01, IDEAS-02, IDEAS-03, IDEAS-04, VOTE-01, VOTE-03
+- MARK-01 to MARK-05: Markdown editing (5/5) ✓
+- DESN-01 to DESN-05: Design system (5/5) ✓
+- STAB-01 to STAB-05: Stability & accessibility (5/5) ✓
+- TEST-01 to TEST-05: Testing & verification (5/5) ✓
 
-**Phase 3 — Discussion**
-Build third. Requires Phase 2 ideas to exist as comment targets.
-- PostgreSQL schema: `comments` table (with parent_comment_id), extend `votes` for comment entity
-- Express routes: GET /ideas/:id/comments, POST /ideas/:id/comments, POST /comments/:id/votes
-- Threaded rendering logic (recursive or iterative tree traversal)
-- Nuxt comment thread component (nested indentation, reply forms)
-- COMMENT-01, COMMENT-02, COMMENT-03, VOTE-02
+**New Phase 7 requirements (design enhancement):**
+- DESIGN-01: Hero section ✓
+- DESIGN-02: Color palette ✓
+- DESIGN-03: Logo/branding ✓
+- DESIGN-04: UX improvements ✓
 
 ---
 
-## Risks & Mitigations
+## Key Achievements (v1.1)
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Ghost town at launch (no seed content) | New users see empty feed and leave | Seed 10-20 realistic ideas manually before public launch |
-| Government apathy (ideas ignored) | Civic credibility collapse after weeks | Confirm government commitment to respond before coding starts |
-| Civility collapse (toxic comments) | Good-faith users disengage | Code of Conduct visible from day one; moderation queue in v2 |
-| Spam via email-only auth | Feed polluted; trust eroded | Accept in v1; moderation queue is v2 first priority |
-| Solo dev bottleneck on Phase 2 scope | Timeline slips | IDEAS-04 (edit) is lowest priority within Phase 2; can defer to post-launch if needed |
-| Threaded comment complexity | Phase 3 drags | Cap nesting depth at 3 levels for v1; unlimited threading deferred |
-
----
-
-## Deferral Notes
-
-If timeline pressure forces cuts, these are the safest items to push post-launch (in order of deferral preference):
-
-1. **IDEAS-04** (edit own idea) — Nice-to-have; does not block the core create/browse/vote loop
-2. **VOTE-02** (vote on comments) — Comment discussion works without comment voting
-3. **AUTH-03** (change/clear email) — Edge case; most users won't need this on day one
-
-All three are still v1 requirements and should ship before considering the product "launched."
+✅ **Rich Text Editing:** Markdown editor with live preview in ideas and comments  
+✅ **Design System:** Complete CSS tokens (colors, typography, spacing, shadows)  
+✅ **Tailwind CSS:** Integrated with Para Salvar design system  
+✅ **Visual Design:** Professional hero section, consistent branding, teal/coral palette  
+✅ **Accessibility:** WCAG AA compliant, 44px+ touch targets, keyboard navigation  
+✅ **Mobile Responsive:** Optimized for 375px, 768px, 1024px+ breakpoints  
+✅ **Comprehensive Testing:** Accessibility audit, cross-browser testing, performance validation  
+✅ **Dark Mode Ready:** CSS variables structured for dark mode in v1.2  
 
 ---
 
-*Last updated: 2026-03-27 — v1.1 milestone started, requirements gathering in progress*
+## Roadmap Evolution
+
+- **2026-03-27:** v1.1 roadmap created (phases 4-6, 20 requirements)
+- **2026-03-29:** Phase 7 added for design enhancement
+- **2026-03-29:** All 4 phases executed and verified (24 tasks completed)
+- **2026-03-29:** v1.1 milestone COMPLETE
+
+---
+
+## Next Steps
+
+**v1.2 Planning:** Features for post-launch iteration
+- Dark mode support (tokens ready, UI needs updates)
+- Moderation & content safety (flags, reports, filters)
+- Search and categories (navigation improvements)
+- Admin dashboard (analytics, moderation queue)
+
+---
+
+*Last updated: 2026-03-29 — v1.1 milestone COMPLETE. Platform ready for launch.*

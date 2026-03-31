@@ -113,25 +113,27 @@ const variantClass = computed(() => `btn-${props.variant}`)
 
 ### Secondary Button
 
-**Usage:** Secondary CTAs - "Learn More", "Comment", "Vote Down"
+**Usage:** Secondary CTAs - "Share Your Idea", "Vote", "Comment"
 
 ```vue
 <style scoped>
 .btn-secondary {
-  background-color: #a43c12;
-  color: white;
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #925d39;
+  background-color: var(--color-secondary-container);
+  transform: translateY(-2px);
 }
 </style>
 ```
 
 **Specs:**
-- **Background:** #a43c12
-- **Hover Background:** #925d39
-- **No shadow** (flat appearance)
+- **Background:** var(--color-secondary) = #fe7e4f (vibrant coral)
+- **Hover Background:** var(--color-secondary-container) = #a43c12 (darker coral)
+- **Text Color:** #ffffff
+- **Hover Effect:** Lift animation + darker coral background
 
 ### Tertiary Button (Ghost)
 

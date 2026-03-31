@@ -12,7 +12,7 @@
         rows="4"
       ></textarea>
       <div class="form-actions">
-        <button type="submit" :disabled="submittingTopLevel">{{ $t('comments.post') }}</button>
+        <Button type="submit" variant="primary" size="md" :disabled="submittingTopLevel">{{ $t('comments.post') }}</Button>
         <span v-if="formError" class="error">{{ formError }}</span>
       </div>
     </form>
@@ -38,6 +38,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
 import { useEmailGate } from '~/composables/useEmailGate'
+import { Button } from '@/components/design-system'
 import CommentItem from './CommentItem.vue'
 
 interface Comment {

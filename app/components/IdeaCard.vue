@@ -1,17 +1,22 @@
 <template>
-  <div class="idea-card">
-    <div class="idea-votes">
-      <VoteButton :idea-id="idea.id" :net-votes="idea.net_votes" @voted="$emit('voted', $event)" />
-    </div>
-    <div class="idea-body">
-      <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="idea-title">{{ idea.title }}</NuxtLink>
-      <p class="idea-meta">by {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</p>
-    </div>
-  </div>
+  <Card interactive>
+    <template #default>
+      <div class="idea-content">
+        <div class="idea-votes">
+          <VoteButton :idea-id="idea.id" :net-votes="idea.net_votes" @voted="$emit('voted', $event)" />
+        </div>
+        <div class="idea-body">
+          <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="idea-title">{{ idea.title }}</NuxtLink>
+          <Text size="body-sm" secondary>{{ $t('idea.by') }} {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</Text>
+        </div>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <script setup lang="ts">
 import VoteButton from './VoteButton.vue'
+import { Card, Text } from '@/components/design-system'
 const localePath = useLocalePath()
 
 interface Idea {
@@ -31,19 +36,10 @@ function formatDate(iso: string): string {
 </script>
 
 <style scoped>
-.idea-card {
+.idea-content {
   display: flex;
   gap: var(--spacing-4);
-  padding: var(--spacing-5) var(--spacing-6);
-  background-color: var(--color-surface-container-lowest);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-elevation-1);
-  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
   align-items: flex-start;
-}
-.idea-card:hover {
-  box-shadow: var(--shadow-elevation-3);
-  transform: translateY(-2px);
 }
 .idea-votes {
   flex-shrink: 0;
@@ -61,6 +57,7 @@ function formatDate(iso: string): string {
   line-height: var(--line-height-tight);
   display: block;
   transition: color var(--transition-fast);
+  margin-bottom: var(--spacing-2);
 }
 .idea-title:hover {
   color: var(--color-primary-container);
@@ -70,11 +67,5 @@ function formatDate(iso: string): string {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-xs);
-}
-.idea-meta {
-  font-size: var(--font-size-body-sm);
-  color: var(--color-on-surface-variant);
-  margin: var(--spacing-2) 0 0;
-  font-family: var(--font-body);
 }
 </style>

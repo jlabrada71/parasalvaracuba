@@ -11,10 +11,10 @@
   --color-primary-fixed-dim: #76d6d5;
 
   /* SECONDARY COLOR - Coral (Energy, Action, Urgency) */
-  --color-secondary: #a43c12;
-  --color-secondary-container: #fe7e4f;
+  --color-secondary: #fe7e4f;
+  --color-secondary-container: #a43c12;
   --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #6b1f00;
+  --color-on-secondary-container: #ffffff;
   --color-secondary-fixed: #ffdbcf;
   --color-secondary-fixed-dim: #ffb59c;
 
@@ -237,7 +237,8 @@
 }
 
 .btn-secondary:hover {
-  background-color: #925d39;
+  background-color: var(--color-secondary-container);
+  transform: translateY(-2px);
 }
 
 .btn-tertiary {

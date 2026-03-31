@@ -17,13 +17,13 @@
       "description": "Teal - Trust, unity, democratic participation"
     },
     "secondary": {
-      "base": "#a43c12",
-      "container": "#fe7e4f",
+      "base": "#fe7e4f",
+      "container": "#a43c12",
       "onColor": "#ffffff",
-      "onContainer": "#6b1f00",
+      "onContainer": "#ffffff",
       "fixed": "#ffdbcf",
       "fixedDim": "#ffb59c",
-      "description": "Coral - Energy, action, urgency to contribute"
+      "description": "Coral - Energy, action, urgency to contribute (vibrant #fe7e4f for CTAs, #a43c12 for hover/container)"
     },
     "tertiary": {
       "base": "#495b70",

@@ -39,20 +39,20 @@ module.exports = {
 
       // Secondary Coral - Energy, Action, Urgency
       secondary: {
-        DEFAULT: '#a43c12',
+        DEFAULT: '#fe7e4f',
         50: '#ffe8d9',
         100: '#ffd6c2',
         200: '#ffb59c',
         300: '#ff9570',
         400: '#ff7f50', // Lighter coral
         500: '#ff6b35', // Medium coral
-        600: '#c94b1f',
-        700: '#a43c12', // Main coral
-        800: '#7a2d0d',
+        600: '#ff7e4f', // Vibrant coral (main button)
+        700: '#c94b1f',
+        800: '#a43c12', // Darker coral (hover/container)
         900: '#4a1a07',
-        container: '#fe7e4f',
+        container: '#a43c12',
         onColor: '#ffffff',
-        onContainer: '#6b1f00',
+        onContainer: '#ffffff',
         fixed: '#ffdbcf',
         fixedDim: '#ffb59c',
       },
