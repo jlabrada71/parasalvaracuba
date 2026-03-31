@@ -1,0 +1,419 @@
+================================================================================
+                    ALL IDEAS PAGE - VISUAL LAYOUT DIAGRAMS
+================================================================================
+
+DESKTOP LAYOUT (1200px+)
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ Logo        Navigation: Home | Ideas | About | Contact        EN | ES | PT │
+│ Teal background #008080 - Sticky                                           │
+└────────────────────────────────────────────────────────────────────────────┘
+
+                  ← spacing-8 (8.5rem)                 spacing-7 (5.5rem) →
+
+        Explore All Community Ideas
+        Browse and support innovative ideas shaping Cuba's future
+
+        [🔍 Search ideas by title...           ]
+
+        [Recent] [Most Voted] [Most Discussed] [All Categories]
+
+
+┌────────────┬────────────────┬────────────────┐
+│   CARD 1   │    CARD 2      │    CARD 3      │
+├────────────┼────────────────┼────────────────┤
+│ CATEGORY   │   CATEGORY     │   CATEGORY     │
+│            │                │                │
+│ Title      │   Title        │   Title        │
+│            │                │                │
+│ 👤 Author  │ 👤 Author      │ 👤 Author      │
+│ Excerpt    │ Excerpt        │ Excerpt        │
+│            │                │                │
+│ 👍 12 👎3  │ 👍 24 👎 2     │ 👍 8  👎 1     │
+│ 💬 4       │ 💬 12          │ 💬 3           │
+└────────────┴────────────────┴────────────────┘
+     gap: 1.4rem
+
+┌────────────┬────────────────┬────────────────┐
+│   CARD 4   │    CARD 5      │    CARD 6      │
+└────────────┴────────────────┴────────────────┘
+
+    ... (cards 7-12)
+
+
+        ← Previous [1] [2] [3] ... [12] Next →
+
+
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ Logo    About | FAQ | Privacy Policy | Contact            © 2026 - PSC    │
+│ Light background #f0f4f3                                                   │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
+CARD COMPONENT DETAIL (Desktop)
+================================================================================
+
+┌─────────────────────────────────────┐
+│ INNOVATION                          │  ← Category badge
+│                                     │     Background: #008080
+│ This Is A Great Idea for Change     │     Text: white, all-caps
+│                                     │
+│ 👤 Maria Garcia                 2d  │  ← Author + date
+│ This is the preview excerpt of      │
+│ the idea showing two to three       │
+│ lines of supporting text            │
+│                                     │
+│ 👍 124    👎 8      💬 12          │  ← Engagement footer
+│                                     │     Vote counts & comments
+└─────────────────────────────────────┘
+
+Width: ~30% of container (3-column grid)
+Height: auto, typically 280-320px
+Background: white #ffffff
+Padding: 1.4rem
+Corner radius: 0.75rem
+Hover: Ambient shadow appears
+
+
+TABLET LAYOUT (768px - 1199px)
+================================================================================
+
+┌────────────────────────────────────────────────┐
+│ Logo       Navigation       EN | ES | PT       │
+│ Teal background - Sticky                       │
+└────────────────────────────────────────────────┘
+
+    Explore All Community Ideas
+
+    [🔍 Search ideas by title...]
+
+    [Recent] [Most Voted] [Most Discussed]
+    [All Categories]  ← May wrap to 2 lines
+
+┌──────────────────┬──────────────────┐
+│   CARD 1         │    CARD 2        │
+├──────────────────┼──────────────────┤
+│ CATEGORY         │   CATEGORY       │
+│ Title            │   Title          │
+│ 👤 Author    2d  │ 👤 Author    2d  │
+│ Excerpt          │ Excerpt          │
+│ 👍 12 👎 3 💬 4  │ 👍 24 👎 2 💬 12 │
+└──────────────────┴──────────────────┘
+     gap: 1.4rem
+
+┌──────────────────┬──────────────────┐
+│   CARD 3         │    CARD 4        │
+└──────────────────┴──────────────────┘
+
+    ... (cards 5-12, in 2-column rows)
+
+        ← Previous [1] [2] [3] ... Next →
+
+
+┌────────────────────────────────────────────────┐
+│ Logo    About | FAQ | Privacy | Contact © PSC  │
+│ Light background #f0f4f3                       │
+└────────────────────────────────────────────────┘
+
+
+MOBILE LAYOUT (< 768px)
+================================================================================
+
+┌──────────────────────────────────┐
+│ ≡  Logo            EN | ES | PT  │
+│ Teal background - Sticky         │
+└──────────────────────────────────┘
+
+Explore All Community Ideas
+
+[🔍 Search...]
+
+[Recent] [Most Voted] [Most...]
+← Horizontal scroll →
+
+┌──────────────────────────────────┐
+│ CATEGORY                         │
+│                                  │
+│ This Is A Great Idea Title       │
+│                                  │
+│ 👤 Maria Garcia              2d  │
+│ Preview excerpt of the idea      │
+│ showing text on mobile screen    │
+│                                  │
+│ 👍 12  👎 3  💬 4               │
+└──────────────────────────────────┘
+
+Full width with padding
+
+┌──────────────────────────────────┐
+│ CATEGORY                         │
+│ Another Idea Title               │
+│ 👤 User Name                 3d  │
+│ Excerpt text here                │
+│ 👍 8  👎 1  💬 3                │
+└──────────────────────────────────┘
+
+    ... (more cards)
+
+        1 of 8  ← · Previous · Next · →
+        or
+        [Load More Ideas]
+
+
+┌──────────────────────────────────┐
+│ Logo                             │
+│                                  │
+│ About                            │
+│ FAQ                              │
+│ Privacy Policy                   │
+│ Contact                          │
+│                                  │
+│ © 2026 Para Salvar A Cuba        │
+└──────────────────────────────────┘
+
+
+COMPONENT SPACING DETAIL
+================================================================================
+
+IDEA CARD INTERNAL SPACING:
+
+┌─────────────────────────────────┐
+│ ← padding 1.4rem →              │
+│ INNOVATION    ← spacing-1 height │
+│                                 │
+│ ← spacing-3 → Title Text (2 max) │
+│                                 │
+│ ← spacing-2 → 👤 Author | 2d     │
+│ ← spacing-3 → Excerpt text       │
+│              (2-3 lines max)     │
+│                                 │
+│ ← spacing-3 → 👍 12  👎 3  💬 4  │
+│                                 │
+└─────────────────────────────────┘
+
+GRID LAYOUT:
+
+Desktop:
+┌─────┐  ← gap: 1.4rem (spacing-4)
+│Card │  ↕ spacing-4
+├─────┤
+│Card │
+├─────┤
+│Card │
+└─────┘
+
+HERO SECTION SPACING:
+
+Left margin: 8.5rem (spacing-8)
+Right margin: 5.5rem (spacing-7)
+
+Title
+↓ spacing-2
+Subtitle
+↓ spacing-3
+Search bar
+↓ spacing-3
+Filter chips
+
+
+HEADER STRUCTURE
+================================================================================
+
+┌────────────────────────────────────────────────┐
+│ Padding: spacing-3 vertical, spacing-4 horiz  │
+│                                                │
+│ ┌──────┐                      ┌───────────┐   │
+│ │ Logo │   Nav Links           │ 🌐 EN ▼  │   │
+│ └──────┘  Home | Ideas | ...    └───────────┘   │
+│                                                │
+│ Background: Teal gradient                      │
+│ (#006565 to #008080)                           │
+│                                                │
+│ Height: ~64px                                  │
+│ Position: Sticky (stays at top on scroll)      │
+└────────────────────────────────────────────────┘
+
+
+PAGINATION STRUCTURE
+================================================================================
+
+                    ← Previous [1] [2] [3] [4] Next →
+
+STATES:
+
+Inactive button: ← Previous
+- Background: transparent
+- Border: 1px outline-variant (#bdc9c8)
+- Text: primary (#006565)
+
+Active page: [2]
+- Background: Gradient (primary → primary-container)
+- Border: none
+- Text: white
+
+Disabled button: [Last Page] Next →
+- Background: transparent
+- Border: 1px outline-variant
+- Text: primary (50% opacity)
+- Cursor: not-allowed
+
+Mobile/Dots alternative:
+
+        1 of 12
+        ← [Previous] · [Next] →
+
+
+FOOTER STRUCTURE
+================================================================================
+
+┌────────────────────────────────────────────────┐
+│ Padding: 2rem vertical, 1.4rem horizontal      │
+│                                                │
+│ Logo                  About | FAQ | Privacy    │
+│                       Contact                  │
+│                                © 2026 - PSC    │
+│                                                │
+│ Background: surface-container-low (#f0f4f3)   │
+│ Text: on-surface (#181c1c)                     │
+│ Links: primary (#006565) on hover              │
+└────────────────────────────────────────────────┘
+
+
+SEARCH BAR STRUCTURE
+================================================================================
+
+DEFAULT:
+┌─────────────────────────────────┐
+│ 🔍 Search ideas by title...     │
+└─────────────────────────────────┘
+Background: surface-container-highest (#dfe3e2)
+Border-bottom: 1px outline-variant (#bdc9c8) at 15% opacity
+Corner-radius: 0.75rem
+Padding: 0.75rem on sides, 0.75rem vertical
+
+FOCUSED:
+┌─────────────────────────────────┐
+│ 🔍 User typing here...          │
+╞═════════════════════════════════╡
+Background: white (#ffffff)
+Border-bottom: 2px coral (#FF7F50)
+Cursor: text input
+
+FILTER CHIPS:
+[Recent] [Most Voted] [Most Discussed] [All]
+  ↑ Active (highlighted)
+
+Active chip:
+- Background: primary-fixed (#93f2f2)
+- Text: primary (#006565), bold
+- Border: none or same as background
+
+Inactive chip:
+- Background: transparent
+- Text: primary (#006565)
+- Border: 1px outline-variant
+
+Gap between chips: 0.5rem
+
+
+COLOR LEGEND
+================================================================================
+
+Teal Primary (#008080, #006565)
+████ = Headers, primary buttons, active pagination, badges
+
+Coral Accent (#FF7F50)
+████ = Vote buttons (active), form focus, hover states
+
+Light Gray (#3e4949)
+████ = Secondary text, metadata, inactive elements
+
+Light Background (#f6faf9)
+████ = Page background, safe space
+
+White (#ffffff)
+████ = Card backgrounds, text on teal
+
+Dark Text (#181c1c)
+████ = Primary text content
+
+
+RESPONSIVE BREAKPOINT CHANGES
+================================================================================
+
+AT 1199px → 1200px (Desktop → Tablet):
+- Grid: 3 columns → 2 columns
+- Hero margins: 8.5rem/5.5rem → 4rem/3rem
+- Font sizes: maintain (or 95%)
+
+AT 767px → 768px (Tablet → Mobile):
+- Grid: 2 columns → 1 column
+- Hero margins: 4rem/3rem → 1rem padding
+- Filter chips: Single line → Horizontal scroll
+- Pagination: Numbers → Dots or "Load More"
+- Header: Nav visible → Hamburger menu (optional)
+- Font sizes: 90-95% of desktop
+
+
+ANIMATION STATE FLOW
+================================================================================
+
+User hovers card:
+┌─────────────┐
+│   CARD      │  ← Default (no shadow)
+└─────────────┘
+      ↓ 150ms ease-out
+
+   ┌─────────────┐
+   │   CARD      │  ← Hover (ambient shadow)
+   └─────────────┘
+
+
+User clicks vote button:
+👍 124  → [click] → 👍 125  (immediately)
+gray         transition     coral filled
+             200ms ease-out
+
+
+User selects filter:
+[Recent]  → [click] → ◆Recent◆
+outline                   filled
+
+
+================================================================================
+                              SUMMARY REFERENCE
+================================================================================
+
+KEY MEASUREMENTS:
+
+Grid gap: 22px (1.4rem)
+Card padding: 22px (1.4rem)
+Button height: 44px (minimum)
+Avatar size: 32px
+Icon size: 18px
+Header height: ~64px
+
+KEY COLORS:
+
+Teal: #008080
+Coral: #FF7F50
+Text: #181c1c
+Background: #f6faf9
+Card: #ffffff
+Metadata: #3e4949
+
+KEY FONTS:
+
+Headlines: Manrope (bold)
+Body: Inter (regular)
+Small text: Inter (regular)
+
+KEY TRANSITIONS:
+
+Hover: 150ms ease-out
+Click: 200ms ease-out
+Page load: 300ms ease-out
+
+================================================================================

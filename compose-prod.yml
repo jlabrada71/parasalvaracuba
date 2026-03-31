@@ -1,7 +1,7 @@
 # Use postgres/example user/password credentials
 services:
   web:
-    image: jlabrada/brainstorm:0.0.0
+    image: jlabrada/brainstorm:0.1.0
     ports:
       - "3000:3000"
     environment:
@@ -12,7 +12,7 @@ services:
       - .env
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3

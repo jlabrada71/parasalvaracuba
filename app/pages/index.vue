@@ -60,7 +60,7 @@
       <div class="section-container">
         <div class="featured-header">
           <h2 class="section-title">{{ $t('home.featuredIdeas') }}</h2>
-          <NuxtLink :to="localePath('/')" class="view-all">
+          <NuxtLink :to="localePath('/ideas')" class="view-all">
             {{ $t('home.viewAll') }} <span>→</span>
           </NuxtLink>
         </div>

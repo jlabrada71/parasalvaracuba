@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "newIdea": "+ Nueva idea",
+    "settings": "Configuración",
+    "backToFeed": "← Volver al inicio"
+  },
+  "home": {
+    "title": "Ideas para Cuba",
+    "subtitle": "Envía y vota ideas. Las mejores suben al tope.",
+    "loading": "Cargando ideas…",
+    "error": "Error al cargar las ideas. Por favor recarga la página.",
+    "empty": "Aún no hay ideas. ¡Sé el primero!",
+    "loadMore": "Cargar más"
+  },
+  "settings": {
+    "title": "Configuración",
+    "identity": {
+      "title": "Tu identidad",
+      "currentEmail": "Correo actual:",
+      "changeEmail": "Cambiar correo",
+      "clearEmail": "Borrar correo (cerrar sesión)",
+      "noEmail": "Todavía no has ingresado un correo.",
+      "setEmail": "Ingresar correo"
+    }
+  },
+  "create": {
+    "title": "Enviar una nueva idea",
+    "subtitle": "Comparte lo que crees que ayudaría a Cuba.",
+    "titleLabel": "Título",
+    "titlePlaceholder": "Título corto y claro (máx. 200 caracteres)",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Describe la idea en detalle…",
+    "submit": "Enviar idea",
+    "submitting": "Enviando…",
+    "cancel": "Cancelar",
+    "errors": {
+      "titleRequired": "El título es obligatorio.",
+      "descriptionRequired": "La descripción es obligatoria.",
+      "failed": "Error al enviar. Por favor intenta de nuevo."
+    }
+  },
+  "idea": {
+    "loading": "Cargando…",
+    "notFound": "Idea no encontrada.",
+    "by": "por",
+    "editIdea": "Editar idea",
+    "titleLabel": "Título",
+    "descriptionLabel": "Descripción",
+    "saveChanges": "Guardar cambios",
+    "cancel": "Cancelar",
+    "errors": {
+      "saveFailed": "Error al guardar."
+    }
+  },
+  "comments": {
+    "title": "Comentarios ({count})",
+    "placeholder": "Escribe un comentario...",
+    "post": "Publicar comentario",
+    "empty": "Aún no hay comentarios.",
+    "errors": {
+      "empty": "El comentario no puede estar vacío",
+      "failed": "Error al publicar el comentario"
+    },
+    "reply": "Responder",
+    "replyCancel": "Cancelar",
+    "replyPlaceholder": "Escribe una respuesta...",
+    "postReply": "Publicar respuesta",
+    "errors_reply": {
+      "empty": "La respuesta no puede estar vacía",
+      "failed": "Error al publicar la respuesta"
+    }
+  },
+  "modal": {
+    "title": "Ingresa tu correo para continuar",
+    "description": "No necesitas una cuenta. Usamos tu correo para atribuir tus contribuciones.",
+    "emailLabel": "Correo electrónico",
+    "continue": "Continuar",
+    "browse": "Navegar sin guardar",
+    "invalidEmail": "Correo no válido."
+  },
+  "vote": {
+    "up": "Votar a favor",
+    "down": "Votar en contra"
+  }
+}

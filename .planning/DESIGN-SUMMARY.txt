@@ -1,0 +1,313 @@
+================================================================================
+                    ALL IDEAS LISTING PAGE - DESIGN SUMMARY
+                    Para Salvar A Cuba Civic Platform
+================================================================================
+
+DESIGN GENERATED: March 31, 2026
+DESIGN TOOL: Stitch AI Design
+PROJECT: Para Salvar A Cuba - Civic Ideas Platform (ID: 5452549322734083535)
+DESIGN SYSTEM: "The Civic Pulse" (Creative North Star: "The Empowered Editorial")
+
+================================================================================
+PAGE STRUCTURE
+================================================================================
+
+1. HEADER (Sticky Navigation)
+   - Teal gradient background (#006565 to #008080)
+   - Logo left, navigation center, language selector right
+   - White text on teal
+   - Persistent/sticky positioning
+
+2. HERO SECTION
+   - Title: "Explore All Community Ideas" (Manrope, Display-md/lg)
+   - Subtitle with description (Inter, Body-lg)
+   - Search bar with ghost border design
+   - Filter chips: Recent, Most Voted, Most Discussed, All Categories
+   - Asymmetric margins: 8.5rem left, 5.5rem right
+
+3. MAIN CONTENT
+   - Responsive grid: 3 columns (desktop) / 2 columns (tablet) / 1 column (mobile)
+   - 12-16 idea cards per page
+   - Card spacing: 1.4rem gap
+
+4. PAGINATION
+   - Previous/Next buttons (tertiary ghost style)
+   - Numbered page buttons
+   - Active page: teal gradient fill
+   - Centered layout below grid
+
+5. FOOTER
+   - Light background (surface-container-low)
+   - Links: About, FAQ, Privacy Policy, Contact
+   - Logo and copyright text
+
+================================================================================
+IDEA CARD DESIGN
+================================================================================
+
+CARD STRUCTURE (top to bottom):
+  1. Category badge (teal background #008080, white text, all-caps)
+  2. Title (Manrope, bold, 2-line clamp)
+  3. Author info with avatar (32px circle) + date
+  4. Excerpt text (2-3 line clamp)
+  5. Engagement footer (upvote, downvote, comment icons with counts)
+
+CARD STYLING:
+  - Background: White (#ffffff - surface-container-lowest)
+  - NO borders (use surface layering for definition)
+  - Corner radius: md (0.75rem)
+  - Padding: 1.4rem inside
+  - Default: Subtle lift via surface-low background
+  - Hover: Ambient shadow (24px blur, 6% opacity)
+
+CARD COLORS:
+  - Title text: #181c1c (on-surface)
+  - Metadata text: #3e4949 (on-surface-variant)
+  - Vote count (active): #FF7F50 (coral)
+  - Category badge: #008080 (primary-container) with white text
+  - Vote count (inactive): #3e4949
+
+================================================================================
+COLOR PALETTE
+================================================================================
+
+PRIMARY TEAL:
+  - Primary: #006565
+  - Primary Container: #008080
+  - Primary Fixed: #93f2f2
+
+SECONDARY CORAL (Accent):
+  - Coral: #FF7F50
+  - Secondary Container: #fe7e4f
+
+SURFACES & BACKGROUNDS:
+  - Base surface: #f6faf9 (light background)
+  - Surface container low: #f0f4f3 (sections)
+  - Surface container lowest: #ffffff (cards)
+  - Surface container high: #e5e9e8
+  - Surface container highest: #dfe3e2
+
+TEXT:
+  - Primary text: #181c1c
+  - Secondary text: #3e4949
+  - White text: #ffffff
+
+INTERACTIVE:
+  - Outline variant: #bdc9c8 (for borders/ghost styles)
+  - Tertiary: #495b70
+
+================================================================================
+TYPOGRAPHY
+================================================================================
+
+HEADLINE FONT: Manrope (geometric, modern authority)
+  - Display lg: 3.5rem (hero titles)
+  - Display md: 2.8rem
+  - Headline sm: 1.5rem
+  - Title md: 1.1rem (card titles)
+  - Bold weights for impact
+
+BODY FONT: Inter (highly readable)
+  - Body lg: 1rem
+  - Body md: 0.9rem
+  - Body sm: 0.8rem (card metadata, excerpts)
+  - Label md: 0.75rem
+  - Label sm: 0.7rem (with letter-spacing +0.05em for all-caps)
+
+================================================================================
+SPACING SCALE
+================================================================================
+
+All spacing follows 8px base unit:
+  - spacing-1: 4px (0.25rem)
+  - spacing-2: 8px (0.5rem)
+  - spacing-3: 12px (0.75rem)
+  - spacing-4: 16px (1rem) / 22px (1.4rem)
+  - spacing-5: 22px (1.4rem)
+  - spacing-6: 32px (2rem)
+  - spacing-8: 8.5rem (hero left margin)
+  - spacing-7: 5.5rem (hero right margin)
+
+NO 1px dividers - use spacing scale for separation instead.
+
+================================================================================
+DESIGN SYSTEM PRINCIPLES APPLIED
+================================================================================
+
+1. NO-LINE RULE
+   - No 1px solid borders for sectioning
+   - Use background color shifts and surface tones instead
+
+2. SURFACE HIERARCHY & NESTING
+   - Treat UI like stacked sheets of paper
+   - Cards (surface-container-lowest) sit on light backgrounds
+   - Natural lift through layering, not drop shadows
+
+3. GLASS & GRADIENT RULE
+   - Use tonal approaches for glassmorphism effects
+   - Primary CTAs: gradient from primary to primary-container at 135°
+
+4. AMBIENT SHADOWS ONLY
+   - 24px blur, 6% opacity, on-surface tint
+   - Used sparingly for hover states
+
+5. EDITORIAL AESTHETIC
+   - Asymmetric layouts (8.5rem left, 5.5rem right margins)
+   - Generous whitespace
+   - High-contrast typography
+   - Professional, curated feel
+
+================================================================================
+RESPONSIVE BEHAVIOR
+================================================================================
+
+DESKTOP (1200px+):
+  - 3-column grid
+  - Full asymmetric margins (8.5rem left, 5.5rem right)
+  - All pagination page numbers visible
+  - Standard spacing scales
+
+TABLET (768px - 1199px):
+  - 2-column grid
+  - Adjusted margins (4rem left, 3rem right)
+  - Simplified pagination (fewer page numbers)
+
+MOBILE (< 768px):
+  - 1-column grid
+  - Padding margins (spacing-4 on sides)
+  - Compact spacing (spacing-2 or spacing-3)
+  - Filter chips: horizontal scrollable
+  - Pagination: dots indicator or "Load More" button
+
+================================================================================
+COMPONENT SPECIFICATIONS
+================================================================================
+
+SEARCH BAR:
+  - Background: surface-container-highest
+  - Bottom border: outline-variant at 15% opacity
+  - Focus: 2px coral bottom border, background lightens
+  - Ghost border design (no full box)
+
+FILTER CHIPS:
+  - Inactive: transparent, primary text, outline border
+  - Active: primary-fixed background, primary text
+  - Rounded corners: md (0.75rem)
+  - Horizontal scroll on mobile
+
+VOTE BUTTONS:
+  - Icon + count display
+  - Inactive: outline style, gray text
+  - Active: coral color (#FF7F50), filled
+  - Hover: color shift to coral
+
+PAGINATION BUTTONS:
+  - Previous/Next: tertiary ghost style, labeled
+  - Active page: gradient fill (primary to primary-container)
+  - Inactive: tertiary ghost style
+  - Disabled state: 50% opacity
+
+================================================================================
+ACCESSIBILITY & BEST PRACTICES
+================================================================================
+
+- Color contrast: WCAG AA standards maintained
+- Keyboard navigation: Tab through all interactive elements
+- Screen readers: Proper heading hierarchy, aria-labels
+- Form labels: Associated labels (may be visually hidden)
+- Focus states: Clear visual indicators
+- No color-only information: Icons and text combined
+
+================================================================================
+IMPLEMENTATION FILES CREATED
+================================================================================
+
+1. /app/.planning/ALL-IDEAS-DESIGN.md
+   - Complete design specifications
+   - Component details with measurements
+   - Color palette reference
+   - Typography scale
+   - Design principles & guidelines
+
+2. /app/.planning/IMPLEMENTATION-GUIDE.md
+   - Vue 3 component code (ready to use)
+   - CSS design tokens
+   - Responsive grid setup
+   - API integration examples
+   - i18n configuration
+   - File structure recommendations
+
+3. /app/.planning/DESIGN-SUMMARY.txt
+   - This file - quick reference guide
+
+================================================================================
+KEY DESIGN FILES IN STITCH
+================================================================================
+
+Project: Para Salvar A Cuba - Civic Ideas Platform
+Project ID: 5452549322734083535
+URL: https://www.stitchdesignstudio.com/projects/5452549322734083535
+
+Design System: "The Civic Pulse"
+- Primary color: Teal (#006565, #008080)
+- Secondary accent: Coral (#FF7F50)
+- Typography: Manrope (headlines) + Inter (body)
+- Roundness: ROUND_EIGHT (0.75rem default)
+- Spacing scale: 3 (8px base unit)
+
+================================================================================
+NEXT STEPS FOR IMPLEMENTATION
+================================================================================
+
+1. Review ALL-IDEAS-DESIGN.md for detailed specifications
+2. Use IMPLEMENTATION-GUIDE.md component code as starting point
+3. Set up CSS design tokens from design-tokens.css
+4. Create page components in app/pages/ideas/index.vue
+5. Build individual components (IdeaCard, SearchBar, FilterChips, etc.)
+6. Integrate with API endpoints
+7. Add i18n translations
+8. Test responsive behavior on all breakpoints
+9. Validate accessibility (WCAG AA)
+10. Performance testing with grid layouts
+
+================================================================================
+DESIGN VALIDATION CHECKLIST
+================================================================================
+
+[x] Design created in Stitch with design system applied
+[x] Matches "Empowered Editorial" creative north star
+[x] Uses teal primary (#008080) and coral secondary (#FF7F50)
+[x] No 1px solid borders (surface layering used instead)
+[x] Responsive grid: 3/2/1 columns
+[x] Surface hierarchy for card elevation
+[x] Ghost borders for inputs
+[x] Asymmetric margins on hero section
+[x] Typography hierarchy (Manrope + Inter)
+[x] Spacing scale consistency
+[x] Ambient shadows for hover states
+[x] Pagination with proper states
+[x] Footer section included
+[x] Header navigation included
+[x] Search and filter functionality
+[x] Voting/engagement metrics display
+[x] Category badges
+[x] Author information with avatars
+[x] Accessible color contrast
+[x] Mobile/tablet/desktop layouts
+
+================================================================================
+ESTIMATED IMPLEMENTATION TIME
+================================================================================
+
+- Page structure & layout: 2-3 hours
+- Card component: 1-2 hours
+- Header & footer: 1-2 hours
+- Search & filters: 1-2 hours
+- Pagination: 1 hour
+- Responsive CSS: 1-2 hours
+- API integration: 1-2 hours
+- Testing & refinement: 2-3 hours
+
+Total: ~11-17 hours for complete implementation
+
+================================================================================

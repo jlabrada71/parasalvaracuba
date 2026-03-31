@@ -2,15 +2,32 @@
   "nav": {
     "newIdea": "+ Nova ideia",
     "settings": "Configurações",
-    "backToFeed": "← Voltar ao início"
+    "backToFeed": "← Voltar ao início",
+    "community": "Comunidade",
+    "about": "Sobre"
   },
   "home": {
-    "title": "Ideias para Cuba",
-    "subtitle": "Envie e vote em ideias. As melhores sobem ao topo.",
+    "title": "Suas Ideias. Seu País. Sua Voz.",
+    "tagline": "O Pulso Cívico",
+    "subtitle": "Uma plataforma moderna para ação coletiva. Projete o futuro de nossa nação através de visão compartilhada e participação democrática colaborativa.",
+    "exploreIdeas": "Explorar ideias atuais",
+    "howItWorks": "Como funciona",
+    "featuredIdeas": "Ideias em destaque",
+    "viewAll": "Ver todas as ideias",
+    "propose": "Propor ideias",
+    "proposeDesc": "Traga sua visão para a mesa. Todo grande movimento começa com uma centelha de inovação de um cidadão preocupado.",
+    "buildConsensus": "Construir consenso",
+    "buildDesc": "Colabore e encontre terreno comum. Engaje-se com perspectivas diversas para refinar conceitos em soluções comunitárias robustas.",
+    "createChange": "Criar mudança",
+    "createDesc": "Transforme ideias em movimento acionável. Mobilize a comunidade para transformar propostas populares em realidade tangível.",
+    "ctaHeadline": "Tem uma ideia que poderia mudar tudo?",
+    "ctaSubtitle": "Junte-se a milhares de cidadãos que já estão moldando o futuro. Sua perspectiva é a peça que falta do quebra-cabeça.",
+    "shareIdea": "Compartilhe sua ideia",
     "loading": "Carregando ideias…",
     "error": "Falha ao carregar ideias. Por favor, atualize a página.",
     "empty": "Ainda não há ideias. Seja o primeiro!",
-    "loadMore": "Carregar mais"
+    "loadMore": "Carregar mais",
+    "reviewProposal": "Revisar proposta"
   },
   "settings": {
     "title": "Configurações",
@@ -52,6 +69,21 @@
       "saveFailed": "Falha ao salvar."
     }
   },
+  "ideas": {
+    "title": "Todas as ideias",
+    "subtitle": "Explore todas as ideias da nossa comunidade. Ordene por popularidade ou mais recentes.",
+    "searchPlaceholder": "Pesquisar ideias...",
+    "filterTop": "Mais votadas",
+    "filterRecent": "Recentes",
+    "viewIdea": "Ver ideia",
+    "noResults": "Nenhuma ideia encontrada. Tente ajustar sua pesquisa.",
+    "loading": "Carregando ideias…",
+    "error": "Falha ao carregar ideias.",
+    "prev": "← Anterior",
+    "next": "Próximo →",
+    "page": "Página",
+    "of": "de"
+  },
   "comments": {
     "title": "Comentários ({count})",
     "placeholder": "Escreva um comentário...",
@@ -81,5 +113,10 @@
   "vote": {
     "up": "Votar a favor",
     "down": "Votar contra"
+  },
+  "footer": {
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "copyright": "© 2024 Para Salvar A Cuba. Todos os direitos reservados."
   }
 }

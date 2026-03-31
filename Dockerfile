@@ -29,7 +29,7 @@ RUN pnpm install --shamefully-hoist
 # Copy the rest of the application files to the working directory
 COPY . ./
 
-FROM base as development
+FROM base AS development
 CMD ["pnpm", "run", "dev"]
 
 
@@ -37,7 +37,7 @@ CMD ["pnpm", "run", "dev"]
 FROM base AS build
 
 
-# Build the application
+# Build the the production image
 RUN pnpm run build
 
 # Create a new stage for the production image
@@ -54,12 +54,9 @@ WORKDIR /app
 # Copy the output from the build stage to the working directory
 COPY --from=build /app/.output ./
 
-# Create data directory for SQLite
-RUN mkdir -p /app/data
-
 # Define environment variables
 ENV HOST=0.0.0.0
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 
 # Expose the port the application will run on
 EXPOSE 3000

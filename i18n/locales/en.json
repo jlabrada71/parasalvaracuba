@@ -2,15 +2,32 @@
   "nav": {
     "newIdea": "+ New Idea",
     "settings": "Settings",
-    "backToFeed": "← Back to feed"
+    "backToFeed": "← Back to feed",
+    "community": "Community",
+    "about": "About"
   },
   "home": {
-    "title": "Ideas for Cuba",
-    "subtitle": "Submit and vote on ideas. The best rise to the top.",
+    "title": "Your Ideas. Your Country. Your Voice.",
+    "tagline": "The Civic Pulse",
+    "subtitle": "A modern platform for collective action. Design the future of our nation through shared vision and collaborative democratic participation.",
+    "exploreIdeas": "Explore Current Ideas",
+    "howItWorks": "How It Works",
+    "featuredIdeas": "Featured Ideas",
+    "viewAll": "View all ideas",
+    "propose": "Propose Ideas",
+    "proposeDesc": "Bring your vision to the table. Every great movement begins with a single spark of innovation from a concerned citizen.",
+    "buildConsensus": "Build Consensus",
+    "buildDesc": "Collaborate and find common ground. Engage with diverse perspectives to refine concepts into robust community solutions.",
+    "createChange": "Create Change",
+    "createDesc": "Turn ideas into actionable movement. Mobilize the community to transform popular proposals into tangible reality.",
+    "ctaHeadline": "Have an idea that could change everything?",
+    "ctaSubtitle": "Join thousands of citizens who are already shaping the future. Your perspective is the missing piece of the puzzle.",
+    "shareIdea": "Share Your Idea",
     "loading": "Loading ideas…",
     "error": "Failed to load ideas. Please refresh.",
     "empty": "No ideas yet. Be the first!",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "reviewProposal": "Review Proposal"
   },
   "settings": {
     "title": "Settings",
@@ -52,6 +69,21 @@
       "saveFailed": "Failed to save."
     }
   },
+  "ideas": {
+    "title": "All Ideas",
+    "subtitle": "Explore all ideas from our community. Sort by popularity or newest.",
+    "searchPlaceholder": "Search ideas...",
+    "filterTop": "Most Voted",
+    "filterRecent": "Recent",
+    "viewIdea": "View Idea",
+    "noResults": "No ideas found. Try adjusting your search.",
+    "loading": "Loading ideas…",
+    "error": "Failed to load ideas.",
+    "prev": "← Previous",
+    "next": "Next →",
+    "page": "Page",
+    "of": "of"
+  },
   "comments": {
     "title": "Comments ({count})",
     "placeholder": "Write a comment...",
@@ -81,5 +113,10 @@
   "vote": {
     "up": "Vote up",
     "down": "Vote down"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "copyright": "© 2024 Para Salvar A Cuba. All rights reserved."
   }
 }
