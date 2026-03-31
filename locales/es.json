@@ -2,7 +2,9 @@
   "nav": {
     "newIdea": "+ Nueva idea",
     "settings": "Configuración",
-    "backToFeed": "← Volver al inicio"
+    "backToFeed": "← Volver al inicio",
+    "community": "Comunidad",
+    "about": "Acerca de"
   },
   "home": {
     "title": "Tus Ideas. Tu País. Tu Voz.",
@@ -96,5 +98,10 @@
   "vote": {
     "up": "Votar a favor",
     "down": "Votar en contra"
+  },
+  "footer": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "copyright": "© 2024 Para Salvar A Cuba. Todos los derechos reservados."
   }
 }

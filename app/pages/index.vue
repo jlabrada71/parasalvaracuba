@@ -8,8 +8,8 @@
         </div>
         <nav class="header-nav">
           <a href="#" class="nav-link">{{ $t('home.exploreIdeas') }}</a>
-          <a href="#" class="nav-link">Community</a>
-          <a href="#" class="nav-link">About</a>
+          <a href="#" class="nav-link">{{ $t('nav.community') }}</a>
+          <a href="#" class="nav-link">{{ $t('nav.about') }}</a>
         </nav>
         <NuxtLink :to="localePath('/ideas/create')" class="nav-cta-wrapper">
           <Button variant="primary" size="md">{{ $t('nav.newIdea') }}</Button>
@@ -113,13 +113,13 @@
           <h3>Para Salvar A Cuba</h3>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">Privacy</a>
-          <a href="#" class="footer-link">Terms</a>
+          <a href="#" class="footer-link">{{ $t('footer.privacy') }}</a>
+          <a href="#" class="footer-link">{{ $t('footer.terms') }}</a>
           <LanguageSwitcher />
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2024 Para Salvar A Cuba. All rights reserved.</p>
+        <p>{{ $t('footer.copyright') }}</p>
       </div>
     </footer>
 
