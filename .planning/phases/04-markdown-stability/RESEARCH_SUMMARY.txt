@@ -1,0 +1,109 @@
+PHASE 4 RESEARCH COMPLETE
+========================
+
+Project: ParaSalvaraCuba Platform - Phase 4: Markdown & Stability Foundation
+Research Date: March 27, 2026
+Document: .planning/phases/04-markdown-stability/04-RESEARCH.md
+Lines: 1350
+Confidence: HIGH
+
+KEY FINDINGS
+============
+
+1. MARKDOWN EDITOR INTEGRATION
+   - Use Tiptap 3 (@tiptap/vue-3 @3.20.5) with Vue 3 Composition API
+   - Component: MarkdownEditor.vue with toolbar and optional preview
+   - SSR requirement: CRITICAL - must use immediatelyRender: false
+   - Database: Store raw Markdown, no schema changes needed
+   - Integration: Create.vue, [id].vue, CommentThread.vue, CommentItem.vue
+
+2. SECURITY-FIRST XSS PREVENTION
+   - Pattern: marked.js (parse Markdown) → DOMPurify (sanitize HTML) → render
+   - Component: MarkdownRenderer.vue with safe allowlist of tags/attributes
+   - DOMPurify 3.0 configuration restricts to: p, strong, em, a, img, h1-h6, lists, code, blockquote
+   - Backward compatible: plain text renders fine (no migration needed)
+   - Testing: 20+ OWASP payloads covering script tags, event handlers, data URIs, encoding bypasses
+
+3. VOTE RACE CONDITION FIX
+   - Root cause: Application-level check-then-insert has race condition window
+   - Solution: PostgreSQL ON CONFLICT DO UPDATE (upsert) for atomic operation
+   - Migration needed: 004_vote_race_fix.sql adds UNIQUE constraints with partial indexes
+   - Files affected: server/api/ideas/[id]/votes.post.ts and server/api/comments/[commentId]/votes.post.ts
+   - Data cleanup: Query for duplicates, keep latest vote if found
+
+4. COMMENT DELETION EDGE CASES
+   - Current schema already has CASCADE on comments.parent_comment_id and votes.comment_id
+   - Edge cases handled: Delete comment → deletes nested replies → deletes votes on all
+   - Missing: DELETE endpoint for comments
+   - New file: server/api/ideas/[id]/comments/[commentId].delete.ts
+
+5. COMPONENT ARCHITECTURE
+   - MarkdownEditor: Rich editor with toolbar, split/tab preview, character count
+   - MarkdownRenderer: Safe display component with Markdown parsing and DOMPurify sanitization
+   - Props/events clearly defined for integration into existing forms
+   - No API changes required - components send/receive Markdown strings
+
+6. TESTING STRATEGY
+   - Unit tests: MarkdownEditor (toolbar, preview, input), MarkdownRenderer (rendering, sanitization)
+   - Security tests: 20+ XSS payloads covering all OWASP attack vectors
+   - Integration tests: Concurrent vote prevention, comment cascade deletion, workflow regression
+   - All test files specified with content examples
+
+7. NEW DEPENDENCIES
+   - @tiptap/vue-3 ^3.20.5
+   - @tiptap/pm ^3.20.5
+   - @tiptap/starter-kit ^3.20.5
+   - dompurify ^3.0.0
+   - marked ^11.0.0
+   - @types included in dompurify
+
+8. BUILD ORDER (10 STEPS)
+   1. Database migration (vote race fix UNIQUE constraints)
+   2. MarkdownRenderer component + XSS tests
+   3. MarkdownEditor component + unit tests
+   4. Integrate into Create Idea form
+   5. Integrate into Idea display/edit
+   6. Integrate into Comments (thread + items)
+   7. Fix vote race condition (upsert pattern)
+   8. Add comment deletion endpoint
+   9. E2E regression testing
+   10. Performance & security review
+
+CONFIDENCE LEVELS
+=================
+Tiptap Integration: HIGH (official docs, versions match stack)
+DOMPurify Setup: HIGH (official docs, OWASP verified)
+Markdown Rendering: HIGH (marked.js + DOMPurify is industry standard)
+Vote Race Fix: HIGH (PostgreSQL ON CONFLICT documented, atomic)
+Comment Cascade: HIGH (schema already has CASCADE, straightforward)
+XSS Payloads: MEDIUM (real OWASP payloads but new bypasses emerge)
+E2E Testing: MEDIUM (Playwright works but some races hard to reproduce locally)
+
+CONSTRAINTS & ASSUMPTIONS
+==========================
+- Tiptap requires immediatelyRender: false for SSR (Nuxt 4)
+- MarkdownRenderer uses v-html (safe because DOMPurify runs before)
+- Store raw Markdown in DB, not rendered HTML
+- Email is stable user identifier for voting/authorship
+- No bulk comment deletion (one-at-a-time only)
+- DOMPurify config is correct and library stays updated
+
+SOURCES VERIFIED
+================
+✓ Tiptap 3 official documentation
+✓ DOMPurify official GitHub
+✓ PostgreSQL INSERT ON CONFLICT documentation
+✓ OWASP XSS Filter Evasion Cheat Sheet
+✓ PortSwigger Web Security Academy (2026 Edition)
+✓ marked.js official documentation
+✓ Multiple 2026-current security references
+
+NEXT STEPS
+==========
+1. Review research for accuracy/completeness
+2. Validate Markdown feature scope (basic vs. GFM)
+3. Confirm XSS test suite with any domain-specific vectors
+4. Finalize build order based on team capacity
+5. Create detailed component specifications
+6. Plan concurrent work streams
+7. Proceed to Phase 4 planning/roadmap creation

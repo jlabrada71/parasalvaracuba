@@ -1,0 +1,53 @@
+# Use postgres/example user/password credentials
+services:
+  web:
+    image: jlabrada/brainstorm:0.0.0
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # Configuration Service API Key (from docker secrets or host environment)
+      - CONFIG_API_KEY=${CONFIG_API_KEY:-} 
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - app-network
+
+
+  db:
+    image: postgres:18
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    volumes:
+     - /docker/parasalvaracuba.org/data:/var/lib/postgresql 
+    environment:
+      POSTGRES_PASSWORD: CubaLibreYMojito
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    links:
+      - db:db 
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,60 @@
+# Use postgres/example user/password credentials
+services:
+  web:
+    build:
+      context: ./
+      target: development
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      # Configuration Service API Key (from docker secrets or host environment)
+      - CONFIG_API_KEY=${CONFIG_API_KEY:-} 
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules # Exclude node_modules from the volume mount to avoid conflicts
+    # Use the watch attribute to sync files instantly
+    develop:
+      watch:
+        - path: .
+          action: sync
+          target: /app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - app-network
+  db:
+    image: postgres:18
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    volumes:
+     - /mnt/data/dbdata:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: CubaLibreYMojito
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    links:
+      - db:db 
+
+networks:
+  app-network:
+    driver: bridge

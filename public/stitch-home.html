@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Salvar - Your Ideas. Your Country. Your Voice.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-container": "#e3fffe",
+                        "outline": "#6e7979",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#495b70",
+                        "background": "#f6faf9",
+                        "inverse-on-surface": "#edf2f1",
+                        "on-secondary-fixed": "#380c00",
+                        "surface-tint": "#006a6a",
+                        "on-background": "#181c1c",
+                        "outline-variant": "#bdc9c8",
+                        "primary-fixed-dim": "#76d6d5",
+                        "primary-fixed": "#93f2f2",
+                        "secondary": "#a43c12",
+                        "tertiary-container": "#627489",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface-variant": "#dfe3e2",
+                        "primary-container": "#008080",
+                        "on-secondary-container": "#6b1f00",
+                        "on-tertiary-fixed-variant": "#36485c",
+                        "on-secondary-fixed-variant": "#822800",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2c3131",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb59c",
+                        "inverse-primary": "#76d6d5",
+                        "surface-container-high": "#e5e9e8",
+                        "secondary-fixed": "#ffdbcf",
+                        "on-surface-variant": "#3e4949",
+                        "tertiary-fixed-dim": "#b5c8e0",
+                        "on-primary-fixed": "#002020",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f6faf9",
+                        "on-tertiary-container": "#f7f9ff",
+                        "on-surface": "#181c1c",
+                        "primary": "#006565",
+                        "surface-container": "#ebefee",
+                        "surface-dim": "#d7dbda",
+                        "secondary-container": "#fe7e4f",
+                        "on-tertiary-fixed": "#091d2e",
+                        "tertiary-fixed": "#d1e4fc",
+                        "surface-bright": "#f6faf9",
+                        "surface-container-highest": "#dfe3e2",
+                        "surface-container-low": "#f0f4f3"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                },
+            },
+        };
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bg-hero-gradient {
+            background: linear-gradient(135deg, rgba(246,250,249,0.9) 0%, rgba(240,244,243,0.7) 100%);
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: #181c1c;
+            background-color: #f6faf9;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Manrope", sans-serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #006565 0%, #008080 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background: #f6faf9;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #f0f4f3;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(246,250,249,0.9) 0%, rgba(240,244,243,0.7) 100%);
+            padding: 8.5rem 0 5.5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #3e4949;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-ideas {
+            padding: 4rem 0;
+        }
+
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .idea-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #f0f4f3;
+        }
+
+        .idea-card h3 {
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.25rem;
+        }
+
+        .idea-card p {
+            color: #3e4949;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: #dfe3e2;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #f0f4f3;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: #3e4949;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="font-size: 1.5rem; margin: 0; font-weight: 700;">Para Salvar</h1>
+                <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-weight: 500;">Community</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-weight: 500;">About</a></li>
+                </ul>
+                <button class="btn-primary">Start Contributing</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 style="color: #3e4949; font-size: 1rem; font-weight: 400; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.1em;">The Civic Pulse</h2>
+            <h1>Your Ideas.<br>Your Country.<br>Your Voice.</h1>
+            <p>A modern platform for collective action. Design the future of our nation through shared vision and collaborative democratic participation.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#" class="btn-primary">Explore Current Ideas</a>
+                <a href="#" style="border: 2px solid #006565; color: #006565; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section style="padding: 4rem 0; background: white;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <span class="material-symbols-outlined" style="font-size: 3rem; color: #006565; display: inline-block; margin-bottom: 1rem;">lightbulb</span>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Propose Ideas</h3>
+                    <p style="color: #3e4949;">Bring your vision to the table. Every great movement begins with a single spark of innovation from a concerned citizen.</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="material-symbols-outlined" style="font-size: 3rem; color: #006565; display: inline-block; margin-bottom: 1rem;">groups</span>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Build Consensus</h3>
+                    <p style="color: #3e4949;">Collaborate and find common ground. Engage with diverse perspectives to refine concepts into robust community solutions.</p>
+                </div>
+                <div style="text-align: center;">
+                    <span class="material-symbols-outlined" style="font-size: 3rem; color: #006565; display: inline-block; margin-bottom: 1rem;">rocket_launch</span>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Create Change</h3>
+                    <p style="color: #3e4949;">Turn ideas into actionable movement. Mobilize the community to transform popular proposals into tangible reality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Ideas Section -->
+    <section class="featured-ideas">
+        <div class="container">
+            <h2 class="section-title">Featured Ideas</h2>
+            <p class="section-subtitle">The highest-rated initiatives as chosen by the community.</p>
+            <div style="margin-bottom: 2rem;">
+                <a href="#" style="color: #006565; text-decoration: none; font-weight: 600;">View all 124 ideas <span style="margin-left: 0.5rem;">→</span></a>
+            </div>
+            <div class="ideas-grid">
+                <div class="idea-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Modernizing Healthcare Access</h3>
+                        <span class="material-symbols-outlined" style="color: #a43c12; font-size: 1.5rem;">favorite</span>
+                    </div>
+                    <div style="color: #3e4949; font-size: 0.9rem; margin-bottom: 1rem;">2,450</div>
+                    <p>Implement a unified digital record system and mobile clinic network for remote provinces to ensure equity.</p>
+                    <a href="#" class="btn-primary" style="width: 100%; text-align: center; box-sizing: border-box;">Review Proposal</a>
+                </div>
+                <div class="idea-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Community Gardens Initiative</h3>
+                        <span class="material-symbols-outlined" style="color: #a43c12; font-size: 1.5rem;">favorite</span>
+                    </div>
+                    <div style="color: #3e4949; font-size: 0.9rem; margin-bottom: 1rem;">1,892</div>
+                    <p>Transforming vacant urban lots into productive green spaces for food security and social gathering points.</p>
+                    <a href="#" class="btn-primary" style="width: 100%; text-align: center; box-sizing: border-box;">Review Proposal</a>
+                </div>
+                <div class="idea-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Digital Literacy Bootcamp</h3>
+                        <span class="material-symbols-outlined" style="color: #a43c12; font-size: 1.5rem;">favorite</span>
+                    </div>
+                    <div style="color: #3e4949; font-size: 0.9rem; margin-bottom: 1rem;">1,204</div>
+                    <p>Equipping the youth with essential programming and data skills to compete in the global digital economy.</p>
+                    <a href="#" class="btn-primary" style="width: 100%; text-align: center; box-sizing: border-box;">Review Proposal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 4rem 0; background: linear-gradient(135deg, #f0f4f3 0%, #ebefee 100%);">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title">Have an idea that could<br>change everything?</h2>
+                <p class="section-subtitle">Join thousands of citizens who are already shaping the future. Your perspective is the missing piece of the puzzle.</p>
+                <a href="#" class="btn-primary">Share Your Idea</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Para Salvar A Cuba</h3>
+                </div>
+                <ul style="display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;">
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-size: 0.9rem;">Privacy</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-size: 0.9rem;">Terms</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-size: 0.9rem;">Spanish</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #181c1c; font-size: 0.9rem;">English</a></li>
+                </ul>
+            </div>
+            <p style="margin-top: 2rem; border-top: 1px solid #bdc9c8; padding-top: 2rem; text-align: center; color: #3e4949; font-size: 0.9rem;">© 2024 Para Salvar A Cuba. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
