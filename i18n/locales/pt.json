@@ -4,7 +4,8 @@
     "settings": "Configurações",
     "backToFeed": "← Voltar ao início",
     "community": "Comunidade",
-    "about": "Sobre"
+    "about": "Sobre",
+    "allIdeas": "Todas as ideias"
   },
   "home": {
     "title": "Suas Ideias. Seu País. Sua Voz.",
@@ -82,7 +83,30 @@
     "prev": "← Anterior",
     "next": "Próximo →",
     "page": "Página",
-    "of": "de"
+    "of": "de",
+    "allIdeas": "Todas as ideias",
+    "by": "Por {author}"
+  },
+  "community": {
+    "title": "Comunidade",
+    "subtitle": "Conheça os cidadãos impulsionando a mudança. Junte-se a nós na construção do futuro de Cuba, uma ideia por vez.",
+    "ideasSubmitted": "Ideias Enviadas",
+    "participants": "Participantes",
+    "votes": "Total de Votos",
+    "mission": "Nossa Missão",
+    "missionText": "Para Salvar A Cuba é uma plataforma democrática que capacita os cidadãos a propor, discutir e moldar coletivamente o futuro de nossa nação. Acreditamos que a grande mudança começa quando as vozes diversas se unem com uma visão compartilhada de transformação positiva.",
+    "values": "Nossos Valores",
+    "participationTitle": "Participação",
+    "participationText": "Toda voz importa. Acreditamos que todos têm ideias valiosas para contribuir, e juntos podemos criar soluções mais eficazes.",
+    "inclusivityTitle": "Inclusividade",
+    "inclusivityText": "Bem-vindo a perspectivas de todos os antecedentes e experiências. Nossa plataforma foi projetada para ser acessível e acolhedora para todos na nossa comunidade.",
+    "transparencyTitle": "Transparência",
+    "transparencyText": "A comunicação aberta constrói confiança. Mantemos transparência em como as ideias são avaliadas e como a comunidade molda o futuro de nossa nação.",
+    "actionTitle": "Ação",
+    "actionText": "As ideias só têm valor quando levam à mudança. Estamos comprometidos em transformar o consenso comunitário em ação tangível.",
+    "joinTitle": "Pronto para Moldar o Futuro?",
+    "joinSubtitle": "Compartilhe sua visão para Cuba e conecte-se com milhares de cidadãos que já estão fazendo a diferença.",
+    "joinButton": "Compartilhe sua ideia"
   },
   "comments": {
     "title": "Comentários ({count})",
@@ -118,5 +142,34 @@
     "privacy": "Privacidade",
     "terms": "Termos",
     "copyright": "© 2024 Para Salvar A Cuba. Todos os direitos reservados."
+  },
+  "about": {
+    "heroTagline": "Nossa Missão",
+    "heroTitle": "Ideias para salvar Cuba",
+    "heroSubtitle": "Acreditamos no poder das ideias para transformar Cuba. Este é um espaço livre, aberto e democrático para imaginar juntos o futuro que queremos.",
+    "storyTitle": "Nossa História",
+    "storyQuote": "\"Cuba merece um espaço onde cada voz conta.\"",
+    "storyBody": "Para Salvar A Cuba nasceu de uma convicção simples: o povo cubano — na ilha e na diáspora — merece uma plataforma para propor, debater e priorizar ideias para o futuro do seu país. Somos um espaço comunitário para a mudança pacífica e democrática.",
+    "howTitle": "Como Funciona",
+    "step1Title": "Propor",
+    "step1Desc": "Compartilhe sua ideia com a comunidade. Qualquer assunto que afete o futuro de Cuba é bem-vindo.",
+    "step2Title": "Debater",
+    "step2Desc": "Vote e comente as ideias de outras pessoas. As melhores ideias chegam ao topo.",
+    "step3Title": "Agir",
+    "step3Desc": "As ideias com mais apoio ganham visibilidade e se tornam propostas reais de mudança.",
+    "valuesTitle": "Nossos Valores",
+    "value1Title": "Liberdade",
+    "value1Desc": "Todo cubano tem o direito de expressar suas ideias sem medo. Protegemos a liberdade de expressão e o diálogo aberto.",
+    "value2Title": "Transparência",
+    "value2Desc": "Todos os votos e ideias são públicos. Nada está oculto. O processo é aberto e auditável.",
+    "value3Title": "Solidariedade",
+    "value3Desc": "Somos uma comunidade. Apoiamo-nos mutuamente, mesmo quando discordamos, e debatemos com respeito.",
+    "value4Title": "Ação",
+    "value4Desc": "Ideias sem ação são apenas sonhos. Estamos comprometidos em transformar as melhores ideias em mudança real.",
+    "ctaTitle": "Você tem uma ideia para Cuba?",
+    "ctaSubtitle": "Junte-se a milhares de cubanos moldando o futuro do seu país.",
+    "ctaButton": "Compartilhe sua ideia",
+    "heroTitleLine1": "Ideias para",
+    "heroTitleLine2": "salvar Cuba."
   }
 }

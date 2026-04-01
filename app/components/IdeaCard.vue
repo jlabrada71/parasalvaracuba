@@ -7,7 +7,7 @@
         </div>
         <div class="idea-body">
           <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="idea-title">{{ idea.title }}</NuxtLink>
-          <Text size="body-sm" secondary>{{ $t('idea.by') }} {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</Text>
+          <Text size="body-sm" secondary>{{ $t('idea.by') }} {{ maskEmail(idea.email) }} &middot; {{ formatDate(idea.created_at) }}</Text>
         </div>
       </div>
     </template>
@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import VoteButton from './VoteButton.vue'
 import { Card, Text } from '@/components/design-system'
+import { maskEmail } from '~/utils/emailValidation'
 const localePath = useLocalePath()
 
 interface Idea {

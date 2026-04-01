@@ -1,4 +1,8 @@
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+export function maskEmail(email: string): string {
+  return email.split('@')[0] ?? email
+}
 const MIN_LENGTH = 5
 const MAX_LENGTH = 254
 

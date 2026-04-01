@@ -13,7 +13,7 @@
           <VoteButton :idea-id="idea.id" :net-votes="idea.net_votes" @voted="onVoted" />
           <div class="idea-title-block">
             <h1>{{ idea.title }}</h1>
-            <p class="idea-meta">{{ $t('idea.by') }} {{ idea.email }} &middot; {{ formatDate(idea.created_at) }}</p>
+            <p class="idea-meta">{{ $t('idea.by') }} {{ maskEmail(idea.email) }} &middot; {{ formatDate(idea.created_at) }}</p>
           </div>
         </div>
 
@@ -65,6 +65,7 @@ import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
+import { maskEmail } from '~/utils/emailValidation'
 
 const localePath = useLocalePath()
 

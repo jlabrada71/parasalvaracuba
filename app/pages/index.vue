@@ -1,21 +1,7 @@
 <template>
   <div class="home-page">
-    <!-- Header Navigation -->
-    <header class="header">
-      <div class="header-content">
-        <div class="header-brand">
-          <span class="brand-name">Para Salvar</span>
-        </div>
-        <nav class="header-nav">
-          <a href="#" class="nav-link">{{ $t('home.exploreIdeas') }}</a>
-          <a href="#" class="nav-link">{{ $t('nav.community') }}</a>
-          <a href="#" class="nav-link">{{ $t('nav.about') }}</a>
-        </nav>
-        <NuxtLink :to="localePath('/ideas/create')" class="nav-cta-wrapper">
-          <Button variant="primary" size="md">{{ $t('nav.newIdea') }}</Button>
-        </NuxtLink>
-      </div>
-    </header>
+    <!-- Navigation with Logo -->
+    <Navigation />
 
     <!-- Hero Section -->
     <section class="hero">
@@ -27,13 +13,13 @@
           <NuxtLink :to="localePath('/ideas/create')" class="action-link">
             <Button variant="primary">{{ $t('home.exploreIdeas') }}</Button>
           </NuxtLink>
-          <button class="btn-secondary">{{ $t('home.howItWorks') }}</button>
+          <button class="btn-secondary" @click="scrollToHowItWorks">{{ $t('home.howItWorks') }}</button>
         </div>
       </div>
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works">
+    <section id="how-it-works" class="how-it-works">
       <div class="section-container">
         <div class="how-it-works-grid">
           <div class="how-it-works-card">
@@ -80,7 +66,7 @@
               <span class="material-symbols-outlined favorite-icon">favorite</span>
             </div>
             <div class="vote-count">{{ idea.net_votes }}</div>
-            <p class="idea-excerpt">{{ idea.email }} · {{ formatDate(idea.created_at) }}</p>
+            <p class="idea-excerpt">{{ maskEmail(idea.email) }} · {{ formatDate(idea.created_at) }}</p>
             <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="review-btn">
               <Button variant="primary" size="md">{{ $t('home.reviewProposal') }}</Button>
             </NuxtLink>
@@ -110,6 +96,7 @@
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-brand">
+          <OuroborosLogo :size="32" />
           <h3>Para Salvar A Cuba</h3>
         </div>
         <div class="footer-links">
@@ -133,6 +120,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import Navigation from '~/components/Navigation.vue'
+import { maskEmail } from '~/utils/emailValidation'
+import OuroborosLogo from '~/components/OuroborosLogo.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 import { Button } from '@/components/design-system'
@@ -183,6 +173,10 @@ function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('es-CU', { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
+function scrollToHowItWorks() {
+  document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
+}
+
 // Initial load
 fetchIdeas(1)
 </script>
@@ -194,56 +188,6 @@ fetchIdeas(1)
   min-height: 100vh;
 }
 
-/* Header */
-.header {
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-outline-variant);
-  padding: var(--spacing-4) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-4);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--spacing-6);
-}
-
-.brand-name {
-  font-family: var(--font-headline);
-  font-size: var(--font-size-title-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-on-surface);
-}
-
-.header-nav {
-  display: flex;
-  gap: var(--spacing-6);
-  flex: 1;
-  justify-content: center;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--color-on-surface);
-  font-size: var(--font-size-body-md);
-  font-weight: 500;
-  transition: color var(--transition-fast);
-}
-
-.nav-link:hover {
-  color: var(--color-primary);
-}
-
-.nav-cta-wrapper {
-  text-decoration: none;
-  display: inline-block;
-}
 
 /* Hero Section */
 .hero {
@@ -515,6 +459,12 @@ fetchIdeas(1)
   align-items: center;
   flex-wrap: wrap;
   gap: var(--spacing-6);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
 }
 
 .footer-brand h3 {

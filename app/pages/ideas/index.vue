@@ -1,21 +1,6 @@
 <template>
   <div class="ideas-page">
-    <!-- Header Navigation -->
-    <header class="header">
-      <div class="header-content">
-        <div class="header-brand">
-          <span class="brand-name">Para Salvar</span>
-        </div>
-        <nav class="header-nav">
-          <NuxtLink :to="localePath('/')" class="nav-link">{{ $t('home.exploreIdeas') }}</NuxtLink>
-          <a href="#" class="nav-link">{{ $t('nav.community') }}</a>
-          <a href="#" class="nav-link">{{ $t('nav.about') }}</a>
-        </nav>
-        <NuxtLink :to="localePath('/ideas/create')" class="nav-cta-wrapper">
-          <Button variant="primary" size="md">{{ $t('nav.newIdea') }}</Button>
-        </NuxtLink>
-      </div>
-    </header>
+    <Navigation />
 
     <!-- Hero Section -->
     <section class="hero">
@@ -68,7 +53,7 @@
             <p class="idea-excerpt">{{ truncateDescription(idea.description, 100) }}</p>
 
             <div class="idea-meta">
-              <p class="meta-text">{{ $t('ideas.by', { author: idea.email }) }} · {{ formatDate(idea.created_at) }}</p>
+              <p class="meta-text">{{ $t('ideas.by', { author: maskEmail(idea.email) }) }} · {{ formatDate(idea.created_at) }}</p>
               <div class="vote-count">{{ idea.net_votes }}</div>
             </div>
 
@@ -124,6 +109,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import Navigation from '~/components/Navigation.vue'
+import { maskEmail } from '~/utils/emailValidation'
 import { Button } from '@/components/design-system'
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
@@ -211,56 +198,6 @@ fetchIdeas(1)
   min-height: 100vh;
 }
 
-/* Header */
-.header {
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-outline-variant);
-  padding: var(--spacing-4) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-4);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--spacing-6);
-}
-
-.brand-name {
-  font-family: var(--font-headline);
-  font-size: var(--font-size-title-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-on-surface);
-}
-
-.header-nav {
-  display: flex;
-  gap: var(--spacing-6);
-  flex: 1;
-  justify-content: center;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--color-on-surface);
-  font-size: var(--font-size-body-md);
-  font-weight: 500;
-  transition: color var(--transition-fast);
-}
-
-.nav-link:hover {
-  color: var(--color-primary);
-}
-
-.nav-cta-wrapper {
-  text-decoration: none;
-  display: inline-block;
-}
 
 /* Hero Section */
 .hero {
@@ -540,16 +477,6 @@ fetchIdeas(1)
 }
 
 @media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: var(--spacing-4);
-  }
-
-  .header-nav {
-    flex: none;
-    gap: var(--spacing-4);
-  }
-
   .hero-title {
     font-size: 1.75rem;
   }

@@ -14,13 +14,16 @@
     "dependencies": {
         "@nuxt/devtools": "4.0.0-alpha.3",
         "@nuxtjs/i18n": "10.2.4",
+        "@nuxtjs/seo": "5.1.0",
         "@pinia/nuxt": "^0.11.3",
+        "@resvg/resvg-js": "^2.6.2",
         "@vee-validate/rules": "^4.15.1",
         "dompurify": "^3.0.0",
         "marked": "^11.0.0",
         "nuxt": "^4.4.2",
         "pg": "^8.20.0",
         "pinia": "^3.0.4",
+        "satori": "^0.26.0",
         "vee-validate": "^4.15.1",
         "yup": "^1.7.1"
     },

@@ -4,7 +4,8 @@
     "settings": "Settings",
     "backToFeed": "← Back to feed",
     "community": "Community",
-    "about": "About"
+    "about": "About",
+    "allIdeas": "All Ideas"
   },
   "home": {
     "title": "Your Ideas. Your Country. Your Voice.",
@@ -82,7 +83,30 @@
     "prev": "← Previous",
     "next": "Next →",
     "page": "Page",
-    "of": "of"
+    "of": "of",
+    "allIdeas": "All Ideas",
+    "by": "By {author}"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Meet the citizens driving change. Join us in building the future of Cuba, one idea at a time.",
+    "ideasSubmitted": "Ideas Submitted",
+    "participants": "Participants",
+    "votes": "Total Votes",
+    "mission": "Our Mission",
+    "missionText": "Para Salvar A Cuba is a democratic platform that empowers citizens to propose, discuss, and collectively shape the future of our nation. We believe that great change begins when diverse voices come together with a shared vision for positive transformation.",
+    "values": "Our Values",
+    "participationTitle": "Participation",
+    "participationText": "Every voice matters. We believe that everyone has valuable ideas to contribute, and together we can create more effective solutions.",
+    "inclusivityTitle": "Inclusivity",
+    "inclusivityText": "We welcome perspectives from all backgrounds and experiences. Our platform is designed to be accessible and welcoming to everyone in our community.",
+    "transparencyTitle": "Transparency",
+    "transparencyText": "Open communication builds trust. We maintain transparency in how ideas are evaluated and how the community shapes our nation's future.",
+    "actionTitle": "Action",
+    "actionText": "Ideas are only valuable when they lead to change. We are committed to turning community consensus into tangible action.",
+    "joinTitle": "Ready to Shape the Future?",
+    "joinSubtitle": "Share your vision for Cuba and connect with thousands of citizens who are already making a difference.",
+    "joinButton": "Share Your Idea"
   },
   "comments": {
     "title": "Comments ({count})",
@@ -105,7 +129,7 @@
   "modal": {
     "title": "Enter your email to continue",
     "description": "No account needed. We use your email to attribute your contributions.",
-    "emailLabel": "Email address",    
+    "emailLabel": "Email address",
     "continue": "Continue",
     "browse": "Browse without saving",
     "invalidEmail": "Invalid email."
@@ -118,5 +142,34 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "copyright": "© 2024 Para Salvar A Cuba. All rights reserved."
+  },
+  "about": {
+    "heroTagline": "Our Mission",
+    "heroTitle": "Ideas to save Cuba",
+    "heroSubtitle": "We believe in the power of ideas to transform Cuba. This is a free, open, and democratic space to imagine the future we want together.",
+    "storyTitle": "Our Story",
+    "storyQuote": "\"Cuba deserves a space where every voice counts.\"",
+    "storyBody": "Para Salvar A Cuba was born from a simple conviction: the Cuban people — on the island and in the diaspora — deserve a platform to propose, debate, and prioritize ideas for their country's future. We are a community-driven space for peaceful, democratic change.",
+    "howTitle": "How It Works",
+    "step1Title": "Propose",
+    "step1Desc": "Share your idea with the community. Any topic that affects Cuba's future is welcome.",
+    "step2Title": "Discuss",
+    "step2Desc": "Vote and comment on other people's ideas. The best ideas rise to the top.",
+    "step3Title": "Act",
+    "step3Desc": "The most supported ideas gain visibility and become real proposals for change.",
+    "valuesTitle": "Our Values",
+    "value1Title": "Freedom",
+    "value1Desc": "Every Cuban has the right to express their ideas without fear. We protect free speech and open dialogue.",
+    "value2Title": "Transparency",
+    "value2Desc": "All votes and ideas are public. Nothing is hidden. The process is open and auditable.",
+    "value3Title": "Solidarity",
+    "value3Desc": "We are a community. We support each other's ideas even when we disagree, and we debate with respect.",
+    "value4Title": "Action",
+    "value4Desc": "Ideas without action are just dreams. We are committed to turning the best ideas into real change.",
+    "ctaTitle": "Do you have an idea for Cuba?",
+    "ctaSubtitle": "Join thousands of Cubans shaping the future of their country.",
+    "ctaButton": "Share your idea",
+    "heroTitleLine1": "Ideas to",
+    "heroTitleLine2": "save Cuba."
   }
 }

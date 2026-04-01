@@ -47,15 +47,25 @@ const sanitizedHtml = computed(() => {
 
 <style scoped>
 .markdown-output {
-  line-height: 1.6;
+  line-height: 1.75;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  color: #374151;
+  color: var(--color-on-surface-variant);
+  font-size: var(--font-size-body-md);
+}
+
+.markdown-output > * + * {
+  margin-top: 1em;
+}
+
+.markdown-output p {
+  margin: 0;
 }
 
 .markdown-output strong,
 .markdown-output b {
   font-weight: 700;
+  color: var(--color-on-surface);
 }
 
 .markdown-output em,
@@ -64,12 +74,13 @@ const sanitizedHtml = computed(() => {
 }
 
 .markdown-output a {
-  color: #2563eb;
-  text-decoration: none;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .markdown-output a:hover {
-  text-decoration: underline;
+  color: var(--color-primary-container);
 }
 
 .markdown-output h1,
@@ -78,79 +89,114 @@ const sanitizedHtml = computed(() => {
 .markdown-output h4,
 .markdown-output h5,
 .markdown-output h6 {
-  margin: 0.5em 0 0.25em;
+  font-family: var(--font-headline);
   font-weight: 700;
-  color: #1f2937;
+  color: var(--color-on-surface);
+  line-height: 1.3;
+  margin-top: 1.75em;
+  margin-bottom: 0.4em;
 }
 
-.markdown-output h1 { font-size: 1.875em; }
-.markdown-output h2 { font-size: 1.5em; }
-.markdown-output h3 { font-size: 1.25em; }
-.markdown-output h4 { font-size: 1.1em; }
-.markdown-output h5 { font-size: 1em; }
-.markdown-output h6 { font-size: 0.9em; }
+.markdown-output > :first-child {
+  margin-top: 0;
+}
+
+.markdown-output h1 { font-size: 1.75em; }
+.markdown-output h2 { font-size: 1.375em; }
+.markdown-output h3 { font-size: 1.15em; }
+.markdown-output h4 { font-size: 1em; }
+.markdown-output h5 { font-size: 0.95em; }
+.markdown-output h6 { font-size: 0.875em; color: var(--color-on-surface-variant); }
 
 .markdown-output ul,
 .markdown-output ol {
-  margin: 0.5em 0;
-  padding-left: 2em;
+  margin: 0;
+  padding-left: 1.5em;
 }
 
 .markdown-output li {
-  margin: 0.25em 0;
+  margin-top: 0.4em;
+}
+
+.markdown-output li:first-child {
+  margin-top: 0;
 }
 
 .markdown-output blockquote {
-  margin: 0.5em 0;
-  padding-left: 1em;
-  border-left: 4px solid #d1d5db;
-  color: #6b7280;
+  margin: 0;
+  padding: 0.75em 1.25em;
+  border-left: 3px solid var(--color-primary);
+  background-color: var(--color-surface-container-low);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--color-on-surface-variant);
   font-style: italic;
 }
 
 .markdown-output code {
-  background: #f3f4f6;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
+  background: var(--color-surface-container);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
   font-family: 'Courier New', monospace;
-  font-size: 0.9em;
+  font-size: 0.875em;
+  color: var(--color-secondary);
 }
 
 .markdown-output pre {
-  background: #f3f4f6;
-  padding: 1em;
-  border-radius: 4px;
+  background: var(--color-surface-container);
+  padding: 1.25em;
+  border-radius: var(--radius-lg);
   overflow-x: auto;
-  margin: 0.5em 0;
+  margin: 0;
 }
 
 .markdown-output pre code {
   background: none;
   padding: 0;
   border-radius: 0;
+  color: var(--color-on-surface);
+  font-size: 0.875em;
 }
 
 .markdown-output table {
   border-collapse: collapse;
   width: 100%;
-  margin: 0.5em 0;
+  margin: 0;
+  font-size: 0.9em;
 }
 
 .markdown-output th,
 .markdown-output td {
-  border: 1px solid #d1d5db;
-  padding: 0.5em;
+  padding: 0.6em 0.875em;
   text-align: left;
 }
 
+.markdown-output thead tr {
+  background-color: var(--color-surface-container-low);
+  border-bottom: 2px solid var(--color-outline-variant);
+}
+
 .markdown-output th {
-  background-color: #f5f5f5;
   font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.markdown-output tbody tr + tr {
+  border-top: 1px solid var(--color-surface-container);
+}
+
+.markdown-output tbody tr:hover {
+  background-color: var(--color-surface-container-low);
 }
 
 .markdown-output img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
+}
+
+.markdown-output hr {
+  border: none;
+  border-top: 1px solid var(--color-outline-variant);
+  margin: 0;
 }
 </style>

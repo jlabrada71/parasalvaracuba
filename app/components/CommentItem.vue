@@ -2,7 +2,7 @@
   <div class="comment-item">
     <!-- Comment header -->
     <div class="comment-header">
-      <span class="author">{{ comment.email }}</span>
+      <span class="author">{{ maskEmail(comment.email) }}</span>
       <span class="date">{{ formatDate(comment.created_at) }}</span>
     </div>
 
@@ -55,6 +55,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
+import { maskEmail } from '~/utils/emailValidation'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { Button } from '@/components/design-system'
 import VoteButton from './VoteButton.vue'

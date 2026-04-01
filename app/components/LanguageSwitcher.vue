@@ -5,9 +5,10 @@
       :key="loc.code"
       :to="switchLocalePath(loc.code)"
       :class="['lang-btn', { active: loc.code === locale }]"
+      :aria-label="loc.name"
       :aria-current="loc.code === locale ? 'true' : undefined"
     >
-      {{ loc.name }}
+      <span class="flag">{{ loc.flag }}</span>
     </NuxtLink>
   </div>
 </template>
@@ -17,9 +18,9 @@ const { locale, setLocale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 
 const localeOptions = [
-  { code: 'es', name: 'Español' },
-  { code: 'en', name: 'English' },
-  { code: 'pt', name: 'Português' },
+  { code: 'es', name: 'Español', flag: '🇨🇺' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'pt', name: 'Português', flag: '🇧🇷' },
 ]
 </script>
 
@@ -34,35 +35,33 @@ const localeOptions = [
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
-  min-width: 44px;
-  padding: var(--spacing-1) var(--spacing-3);
+  width: 32px;
+  height: 32px;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: var(--color-on-primary);
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
-  font-family: var(--font-label);
-  font-size: var(--font-size-label-md);
-  font-weight: var(--font-weight-medium);
   text-decoration: none;
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.55;
   transition: opacity var(--transition-fast), border-color var(--transition-fast),
               background-color var(--transition-fast);
 }
 .lang-btn:hover {
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.85;
+  background: var(--color-surface-container);
 }
 .lang-btn:focus-visible {
-  outline: 2px solid var(--color-on-primary);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   opacity: 1;
 }
 .lang-btn.active {
   opacity: 1;
-  border-color: rgba(255, 255, 255, 0.8);
-  font-weight: var(--font-weight-semi-bold);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-outline-variant);
+  background: var(--color-surface-container-low);
+}
+.flag {
+  font-size: 1.25rem;
+  line-height: 1;
 }
 </style>
