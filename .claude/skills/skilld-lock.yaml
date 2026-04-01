@@ -1,0 +1,92 @@
+skills:
+  nuxtjs-seo-skilld:
+    packageName: "@nuxtjs/seo"
+    version: 5.1.0
+    repo: harlan-zw/nuxt-seo
+    source: "https://github.com/harlan-zw/nuxt-seo/tree/v5.1.0/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  nuxtjs-i18n-skilld:
+    packageName: "@nuxtjs/i18n"
+    version: 10.2.4
+    repo: nuxt-modules/i18n
+    source: "https://github.com/nuxt-modules/i18n/tree/v10.2.4/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  typescript-skilld:
+    packageName: typescript
+    version: 6.0.2
+    repo: microsoft/TypeScript
+    source: "https://www.typescriptlang.org/**"
+    syncedAt: 2026-04-01
+    generator: skilld
+  pinia-nuxt-skilld:
+    packageName: "@pinia/nuxt"
+    version: 0.11.3
+    repo: vuejs/pinia
+    source: "https://github.com/vuejs/pinia/tree/@pinia/nuxt@0.11.3/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  vitest-skilld:
+    packageName: vitest
+    version: 4.1.2
+    repo: vitest-dev/vitest
+    source: "https://github.com/vitest-dev/vitest/tree/v4.1.2/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  nuxt-skilld:
+    packageName: nuxt
+    version: 4.4.2
+    repo: nuxt/nuxt
+    source: "https://github.com/nuxt/nuxt/tree/v4.4.2/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  vee-validate-rules-skilld:
+    packageName: "@vee-validate/rules"
+    version: 4.15.1
+    repo: logaretm/vee-validate
+    source: "https://github.com/logaretm/vee-validate/tree/v4.15.1/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  pinia-skilld:
+    packageName: pinia
+    version: 3.0.4
+    repo: vuejs/pinia
+    source: "https://github.com/vuejs/pinia/tree/v3.0.4/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  pg-skilld:
+    packageName: pg
+    version: 8.20.0
+    repo: brianc/node-postgres
+    source: "https://github.com/brianc/node-postgres/tree/pg@8.20.0/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  vee-validate-skilld:
+    packageName: vee-validate
+    version: 4.15.1
+    repo: logaretm/vee-validate
+    source: "https://github.com/logaretm/vee-validate/tree/v4.15.1/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  yup-skilld:
+    packageName: yup
+    version: 1.7.1
+    repo: jquense/yup
+    source: "https://github.com/jquense/yup/tree/master/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  nuxtjs-tailwindcss-skilld:
+    packageName: "@nuxtjs/tailwindcss"
+    version: 6.14.0
+    repo: nuxt-modules/tailwindcss
+    source: "https://github.com/nuxt-modules/tailwindcss/tree/v6.14.0/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
+  vue-test-utils-skilld:
+    packageName: "@vue/test-utils"
+    version: 2.4.6
+    repo: vuejs/test-utils
+    source: "https://github.com/vuejs/test-utils/tree/v2.4.6/docs"
+    syncedAt: 2026-04-01
+    generator: skilld
