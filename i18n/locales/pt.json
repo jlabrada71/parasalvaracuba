@@ -171,5 +171,43 @@
     "ctaButton": "Compartilhe sua ideia",
     "heroTitleLine1": "Ideias para",
     "heroTitleLine2": "salvar Cuba."
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "lastUpdated": "Última atualização: abril de 2025",
+    "intro": "Para Salvar A Cuba é uma plataforma cívica que coleta o mínimo de dados necessários para funcionar. Esta política explica o que coletamos, por que e como os protegemos.",
+    "s1Title": "O que coletamos",
+    "s1Body": "Coletamos apenas seu endereço de e-mail quando você envia uma ideia, vota ou deixa um comentário. Não coletamos nomes, telefones, localização nem qualquer outra informação pessoal.",
+    "s2Title": "Como usamos",
+    "s2Body": "Seu e-mail é usado exclusivamente para associar suas contribuições à sua conta e prevenir abusos. Não enviamos e-mails de marketing e não compartilhamos nem vendemos seu endereço a terceiros em nenhuma circunstância.",
+    "s3Title": "Visibilidade do seu e-mail",
+    "s3Body": "Apenas a parte do seu e-mail antes do símbolo {'@'} é exibida publicamente junto às suas ideias e comentários. O endereço completo nunca é visível para outros usuários.",
+    "s4Title": "Retenção de dados",
+    "s4Body": "Mantemos seus dados enquanto suas contribuições permanecerem na plataforma. Você pode solicitar a exclusão da sua conta e todos os dados associados a qualquer momento entrando em contato conosco.",
+    "s5Title": "Cookies",
+    "s5Body": "Usamos um único cookie de sessão para mantê-lo conectado. Não usamos cookies de rastreamento nem análises de terceiros.",
+    "s6Title": "Contato",
+    "s6Body": "Para solicitar exclusão de dados ou fazer perguntas sobre esta política, escreva para: privacy at parasalvaracuba.org"
+  },
+  "terms": {
+    "title": "Termos de Uso",
+    "lastUpdated": "Última atualização: abril de 2025",
+    "intro": "Ao usar Para Salvar A Cuba você concorda com estes termos. Se não concordar, por favor não use a plataforma.",
+    "s1Title": "Propósito da plataforma",
+    "s1Body": "Para Salvar A Cuba é um espaço de participação cívica pacífica e democrática. Seu propósito é coletar, debater e dar visibilidade a ideias para o futuro de Cuba. Não é afiliada a nenhum partido político ou governo.",
+    "s2Title": "Uso aceitável",
+    "s2Body": "Você pode enviar ideias, votar e comentar. Todas as contribuições devem ser respeitosas e construtivas. Você é responsável por tudo que publicar com sua conta.",
+    "s3Title": "Conteúdo proibido",
+    "s3Body": "São estritamente proibidos: discurso de ódio ou discriminação por raça, gênero, religião ou orientação sexual; incitação à violência; spam ou conteúdo comercial; conteúdo que infrinja direitos de terceiros.",
+    "s4Title": "Propriedade do conteúdo",
+    "s4Body": "Você mantém a propriedade das ideias que enviar. Ao publicar nesta plataforma, você concede a Para Salvar A Cuba uma licença não exclusiva e sem royalties para exibir e distribuir seu conteúdo para os fins cívicos da plataforma.",
+    "s5Title": "Moderação",
+    "s5Body": "Reservamo-nos o direito de remover conteúdo que viole estes termos sem aviso prévio. Violações repetidas podem resultar na suspensão da conta.",
+    "s6Title": "Limitação de responsabilidade",
+    "s6Body": "A plataforma é fornecida 'como está'. Não garantimos disponibilidade ininterrupta e não somos responsáveis por danos decorrentes do uso da plataforma.",
+    "s7Title": "Alterações nos termos",
+    "s7Body": "Podemos atualizar estes termos a qualquer momento. O uso continuado da plataforma após as alterações implica aceitação dos novos termos.",
+    "s8Title": "Contato",
+    "s8Body": "Dúvidas sobre estes termos: legal at parasalvaracuba.org"
   }
 }

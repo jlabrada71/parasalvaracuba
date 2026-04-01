@@ -86,6 +86,13 @@ const { modalVisible, onModalSaved, onModalClose } = useEmailGate()
 
 const idea = ref<Idea | null>(null)
 const pending = ref(true)
+
+useSeoMeta({
+  title: () => idea.value?.title ?? i18n.t('idea.loading'),
+  description: () => idea.value?.description?.slice(0, 160) ?? '',
+  ogTitle: () => idea.value?.title ?? i18n.t('idea.loading'),
+  ogDescription: () => idea.value?.description?.slice(0, 160) ?? '',
+})
 const error = ref(false)
 
 const editing = ref(false)

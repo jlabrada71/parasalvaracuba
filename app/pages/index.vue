@@ -100,8 +100,8 @@
           <h3>Para Salvar A Cuba</h3>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">{{ $t('footer.privacy') }}</a>
-          <a href="#" class="footer-link">{{ $t('footer.terms') }}</a>
+          <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
           <LanguageSwitcher />
         </div>
       </div>
@@ -129,6 +129,14 @@ import { Button } from '@/components/design-system'
 import { useEmailGate } from '~/composables/useEmailGate'
 
 const localePath = useLocalePath()
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('home.title'),
+  description: () => t('home.subtitle'),
+  ogTitle: () => t('home.title'),
+  ogDescription: () => t('home.subtitle'),
+})
 
 interface Idea {
   id: string

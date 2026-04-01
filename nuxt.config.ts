@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxtjs/seo'],
   compatibilityDate: '2025-07-15',
+
+  site: {
+    url: 'https://parasalvaracuba.org',
+    name: 'Para Salvar A Cuba',
+    description: 'Una plataforma moderna para la acción colectiva. Diseña el futuro de nuestra nación a través de visión compartida y participación democrática colaborativa.',
+  },
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],

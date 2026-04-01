@@ -95,8 +95,8 @@
           <h3>Para Salvar A Cuba</h3>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">{{ $t('footer.privacy') }}</a>
-          <a href="#" class="footer-link">{{ $t('footer.terms') }}</a>
+          <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
           <LanguageSwitcher />
         </div>
       </div>
@@ -115,6 +115,14 @@ import { Button } from '@/components/design-system'
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('ideas.title'),
+  description: () => t('ideas.subtitle'),
+  ogTitle: () => t('ideas.title'),
+  ogDescription: () => t('ideas.subtitle'),
+})
 
 interface Idea {
   id: string

@@ -171,5 +171,43 @@
     "ctaButton": "Share your idea",
     "heroTitleLine1": "Ideas to",
     "heroTitleLine2": "save Cuba."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: April 2025",
+    "intro": "Para Salvar A Cuba is a civic platform that collects the minimum data necessary to operate. This policy explains what we collect, why, and how we protect it.",
+    "s1Title": "What we collect",
+    "s1Body": "We collect only your email address when you submit an idea, vote, or leave a comment. We do not collect names, phone numbers, location data, or any other personal information.",
+    "s2Title": "How we use it",
+    "s2Body": "Your email is used solely to associate your contributions with your account and to prevent abuse. We do not send marketing emails, and we do not share or sell your email to third parties under any circumstances.",
+    "s3Title": "Visibility of your email",
+    "s3Body": "Only the portion of your email before the {'@'} symbol is displayed publicly next to your ideas and comments. The full address is never shown to other users.",
+    "s4Title": "Data retention",
+    "s4Body": "We retain your data for as long as your contributions remain on the platform. You may request deletion of your account and all associated data at any time by contacting us.",
+    "s5Title": "Cookies",
+    "s5Body": "We use a single session cookie to keep you signed in. We do not use tracking cookies or any third-party analytics.",
+    "s6Title": "Contact",
+    "s6Body": "To request data deletion or ask questions about this policy, write to: privacy at parasalvaracuba.org"
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "lastUpdated": "Last updated: April 2025",
+    "intro": "By using Para Salvar A Cuba you agree to these terms. If you do not agree, please do not use the platform.",
+    "s1Title": "Purpose of the platform",
+    "s1Body": "Para Salvar A Cuba is a space for peaceful, democratic civic participation. Its purpose is to collect, discuss, and elevate ideas for Cuba's future. It is not affiliated with any political party or government.",
+    "s2Title": "Acceptable use",
+    "s2Body": "You may submit ideas, vote, and comment. All contributions must be respectful and constructive. You are responsible for everything you publish under your account.",
+    "s3Title": "Prohibited content",
+    "s3Body": "The following are strictly prohibited: hate speech or discrimination based on race, gender, religion, or sexual orientation; calls for violence; spam or commercial content; content that infringes third-party rights.",
+    "s4Title": "Content ownership",
+    "s4Body": "You retain ownership of the ideas you submit. By publishing on this platform you grant Para Salvar A Cuba a non-exclusive, royalty-free licence to display and distribute your content for the civic purposes of the platform.",
+    "s5Title": "Moderation",
+    "s5Body": "We reserve the right to remove content that violates these terms without prior notice. Repeat violations may result in account suspension.",
+    "s6Title": "Limitation of liability",
+    "s6Body": "The platform is provided 'as is'. We do not guarantee uninterrupted availability and are not liable for any damages arising from use of the platform.",
+    "s7Title": "Changes to these terms",
+    "s7Body": "We may update these terms at any time. Continued use of the platform after changes constitutes acceptance of the new terms.",
+    "s8Title": "Contact",
+    "s8Body": "Questions about these terms: legal at parasalvaracuba.org"
   }
 }

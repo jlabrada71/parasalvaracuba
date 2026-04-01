@@ -138,8 +138,8 @@
           <span>Para Salvar A Cuba</span>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">{{ $t('footer.privacy') }}</a>
-          <a href="#" class="footer-link">{{ $t('footer.terms') }}</a>
+          <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
           <LanguageSwitcher />
         </div>
         <p class="footer-copy">{{ $t('footer.copyright') }}</p>
@@ -154,6 +154,14 @@ import OuroborosLogo from '~/components/OuroborosLogo.vue'
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('about.heroTitle'),
+  description: () => t('about.heroSubtitle'),
+  ogTitle: () => t('about.heroTitle'),
+  ogDescription: () => t('about.heroSubtitle'),
+})
 </script>
 
 <style scoped>

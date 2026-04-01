@@ -89,8 +89,8 @@
           <h3>Para Salvar A Cuba</h3>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">{{ $t('footer.privacy') }}</a>
-          <a href="#" class="footer-link">{{ $t('footer.terms') }}</a>
+          <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
           <LanguageSwitcher />
         </div>
       </div>
@@ -109,6 +109,14 @@ import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 import CommunityLogo from '~/components/CommunityLogo.vue'
 
 const localePath = useLocalePath()
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('community.title'),
+  description: () => t('community.subtitle'),
+  ogTitle: () => t('community.title'),
+  ogDescription: () => t('community.subtitle'),
+})
 
 const ideaCount = ref(0)
 const participantCount = ref(0)
