@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS migration_runs (
+  id         SERIAL PRIMARY KEY,
+  filename   TEXT NOT NULL UNIQUE,
+  ran_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

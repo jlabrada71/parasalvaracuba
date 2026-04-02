@@ -2,6 +2,7 @@
     "name": "parasalvaracuba.org",
     "version": "0.0.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",
@@ -10,7 +11,8 @@
         "postinstall": "nuxt prepare",
         "test": "vitest run",
         "test:watch": "vitest",
-        "prepare": "npx skilld prepare || true"
+        "prepare": "npx skilld prepare || true",
+        "migrate": "node db/migrate.js"
     },
     "dependencies": {
         "@nuxt/devtools": "4.0.0-alpha.3",
@@ -22,6 +24,7 @@
         "@takumi-rs/core": "^0.73.1",
         "@vee-validate/rules": "^4.15.1",
         "dompurify": "^3.0.0",
+        "dotenv": "^17.4.0",
         "marked": "^11.0.0",
         "nuxt": "^4.4.2",
         "nuxt-gtag": "4.1.0",
