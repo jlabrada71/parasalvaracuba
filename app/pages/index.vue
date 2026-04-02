@@ -136,7 +136,10 @@ useSeoMeta({
   description: () => t('home.subtitle'),
   ogTitle: () => t('home.title'),
   ogDescription: () => t('home.subtitle'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
+defineOgImage({ component: 'Default' })
 
 interface Idea {
   id: string

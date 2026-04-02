@@ -122,7 +122,10 @@ useSeoMeta({
   description: () => t('ideas.subtitle'),
   ogTitle: () => t('ideas.title'),
   ogDescription: () => t('ideas.subtitle'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
+defineOgImage({ component: 'Default', props: { title: t('ideas.title'), description: t('ideas.subtitle') } })
 
 interface Idea {
   id: string

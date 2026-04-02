@@ -68,6 +68,8 @@ import { useEmailGate } from '~/composables/useEmailGate'
 import { apiRequest } from '~/utils/apiClient'
 const localePath = useLocalePath()
 
+useSeoMeta({ robots: 'noindex, nofollow' })
+
 const router = useRouter()
 const i18n = useI18n()
 const { modalVisible, requireEmail, onModalSaved, onModalClose } = useEmailGate()

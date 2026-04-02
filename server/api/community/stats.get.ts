@@ -1,13 +1,9 @@
-export default defineEventHandler(async (event) => {
-  const db = useDatabase()
+import { query } from '../../utils/db'
 
+export default defineEventHandler(async () => {
   try {
-    // Get total ideas
-    const ideasResult = await db.query('SELECT COUNT(*) as count FROM ideas')
-    const ideas = ideasResult.rows[0]?.count || 0
-
-    // Get unique participants (people who submitted ideas or voted)
-    const participantsResult = await db.query(`
+    const [ideasRow] = await query<{ count: string }>('SELECT COUNT(*) as count FROM ideas')
+    const [participantsRow] = await query<{ count: string }>(`
       SELECT COUNT(DISTINCT email) as count
       FROM (
         SELECT email FROM ideas
@@ -15,23 +11,15 @@ export default defineEventHandler(async (event) => {
         SELECT email FROM votes WHERE email IS NOT NULL
       ) as contributors
     `)
-    const participants = participantsResult.rows[0]?.count || 0
-
-    // Get total votes (sum of net_votes)
-    const votesResult = await db.query('SELECT COALESCE(SUM(net_votes), 0) as total FROM ideas')
-    const votes = votesResult.rows[0]?.total || 0
+    const [votesRow] = await query<{ total: string }>('SELECT COALESCE(SUM(vote_value), 0) as total FROM votes')
 
     return {
-      ideas,
-      participants,
-      votes,
+      ideas: parseInt(ideasRow?.count ?? '0', 10),
+      participants: parseInt(participantsRow?.count ?? '0', 10),
+      votes: parseInt(votesRow?.total ?? '0', 10),
     }
   } catch (error) {
     console.error('Error fetching community stats:', error)
-    return {
-      ideas: 0,
-      participants: 0,
-      votes: 0,
-    }
+    return { ideas: 0, participants: 0, votes: 0 }
   }
 })

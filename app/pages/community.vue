@@ -116,7 +116,10 @@ useSeoMeta({
   description: () => t('community.subtitle'),
   ogTitle: () => t('community.title'),
   ogDescription: () => t('community.subtitle'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
+defineOgImage({ component: 'Default', props: { title: t('community.title'), description: t('community.subtitle') } })
 
 const ideaCount = ref(0)
 const participantCount = ref(0)

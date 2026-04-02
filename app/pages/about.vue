@@ -161,7 +161,10 @@ useSeoMeta({
   description: () => t('about.heroSubtitle'),
   ogTitle: () => t('about.heroTitle'),
   ogDescription: () => t('about.heroSubtitle'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
+defineOgImage('Default', { title: t('about.heroTitle'), description: t('about.heroSubtitle') })
 </script>
 
 <style scoped>

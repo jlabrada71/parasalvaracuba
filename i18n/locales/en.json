@@ -1,11 +1,13 @@
 {
   "nav": {
     "newIdea": "+ New Idea",
+    "newProblem": "+ New Problem",
     "settings": "Settings",
     "backToFeed": "← Back to feed",
     "community": "Community",
     "about": "About",
-    "allIdeas": "All Ideas"
+    "allIdeas": "All Ideas",
+    "problems": "Problems"
   },
   "home": {
     "title": "Your Ideas. Your Country. Your Voice.",
@@ -133,6 +135,51 @@
     "continue": "Continue",
     "browse": "Browse without saving",
     "invalidEmail": "Invalid email."
+  },
+  "createProblem": {
+    "title": "Report a problem",
+    "subtitle": "Describe a problem you think Cuba needs to solve.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Short, clear title (max 200 characters)",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Describe the problem in detail…",
+    "submit": "Submit problem",
+    "submitting": "Submitting…",
+    "cancel": "Cancel",
+    "errors": {
+      "titleRequired": "Title is required.",
+      "descriptionRequired": "Description is required.",
+      "failed": "Failed to submit. Please try again."
+    }
+  },
+  "problem": {
+    "loading": "Loading…",
+    "notFound": "Problem not found.",
+    "by": "by",
+    "editProblem": "Edit problem",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "saveChanges": "Save changes",
+    "cancel": "Cancel",
+    "errors": {
+      "saveFailed": "Failed to save."
+    }
+  },
+  "problems": {
+    "title": "Problems to Solve",
+    "subtitle": "Vote on the most urgent problems Cuba needs to address. The most voted rise to the top.",
+    "searchPlaceholder": "Search problems...",
+    "filterTop": "Most Voted",
+    "filterRecent": "Recent",
+    "viewProblem": "View Problem",
+    "noResults": "No problems found. Try adjusting your search.",
+    "loading": "Loading problems…",
+    "error": "Failed to load problems.",
+    "prev": "← Previous",
+    "next": "Next →",
+    "page": "Page",
+    "of": "of",
+    "by": "By {author}"
   },
   "vote": {
     "up": "Vote up",

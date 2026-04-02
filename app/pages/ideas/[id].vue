@@ -87,11 +87,26 @@ const { modalVisible, onModalSaved, onModalClose } = useEmailGate()
 const idea = ref<Idea | null>(null)
 const pending = ref(true)
 
+function truncateAtWord(text: string, max: number): string {
+  if (text.length <= max) return text
+  return text.slice(0, text.lastIndexOf(' ', max)) + '…'
+}
+
 useSeoMeta({
   title: () => idea.value?.title ?? i18n.t('idea.loading'),
-  description: () => idea.value?.description?.slice(0, 160) ?? '',
+  description: () => idea.value?.description ? truncateAtWord(idea.value.description, 160) : '',
   ogTitle: () => idea.value?.title ?? i18n.t('idea.loading'),
-  ogDescription: () => idea.value?.description?.slice(0, 160) ?? '',
+  ogDescription: () => idea.value?.description ? truncateAtWord(idea.value.description, 160) : '',
+  ogType: 'article',
+  ogUrl: () => `https://parasalvaracuba.org/ideas/${route.params.id}`,
+  twitterCard: 'summary_large_image',
+})
+defineOgImage({
+  component: 'Default',
+  props: {
+    title: computed(() => idea.value?.title),
+    description: computed(() => idea.value?.description ? truncateAtWord(idea.value.description, 120) : undefined),
+  },
 })
 const error = ref(false)
 

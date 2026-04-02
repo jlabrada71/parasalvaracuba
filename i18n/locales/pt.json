@@ -1,11 +1,13 @@
 {
   "nav": {
     "newIdea": "+ Nova ideia",
+    "newProblem": "+ Novo problema",
     "settings": "Configurações",
     "backToFeed": "← Voltar ao início",
     "community": "Comunidade",
     "about": "Sobre",
-    "allIdeas": "Todas as ideias"
+    "allIdeas": "Todas as ideias",
+    "problems": "Problemas"
   },
   "home": {
     "title": "Suas Ideias. Seu País. Sua Voz.",
@@ -133,6 +135,51 @@
     "continue": "Continuar",
     "browse": "Navegar sem salvar",
     "invalidEmail": "E-mail inválido."
+  },
+  "createProblem": {
+    "title": "Reportar um problema",
+    "subtitle": "Descreva um problema que você acha que Cuba precisa resolver.",
+    "titleLabel": "Título",
+    "titlePlaceholder": "Título curto e claro (máx. 200 caracteres)",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "Descreva o problema em detalhes…",
+    "submit": "Enviar problema",
+    "submitting": "Enviando…",
+    "cancel": "Cancelar",
+    "errors": {
+      "titleRequired": "O título é obrigatório.",
+      "descriptionRequired": "A descrição é obrigatória.",
+      "failed": "Falha ao enviar. Por favor, tente novamente."
+    }
+  },
+  "problem": {
+    "loading": "Carregando…",
+    "notFound": "Problema não encontrado.",
+    "by": "por",
+    "editProblem": "Editar problema",
+    "titleLabel": "Título",
+    "descriptionLabel": "Descrição",
+    "saveChanges": "Salvar alterações",
+    "cancel": "Cancelar",
+    "errors": {
+      "saveFailed": "Falha ao salvar."
+    }
+  },
+  "problems": {
+    "title": "Problemas a resolver",
+    "subtitle": "Vote nos problemas mais urgentes que Cuba precisa enfrentar. Os mais votados sobem ao topo.",
+    "searchPlaceholder": "Pesquisar problemas...",
+    "filterTop": "Mais votados",
+    "filterRecent": "Recentes",
+    "viewProblem": "Ver problema",
+    "noResults": "Nenhum problema encontrado. Tente ajustar sua pesquisa.",
+    "loading": "Carregando problemas…",
+    "error": "Falha ao carregar problemas.",
+    "prev": "← Anterior",
+    "next": "Próximo →",
+    "page": "Página",
+    "of": "de",
+    "by": "Por {author}"
   },
   "vote": {
     "up": "Votar a favor",

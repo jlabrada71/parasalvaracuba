@@ -8,13 +8,19 @@
 
       <nav class="nav-links">
         <NuxtLink :to="localePath('/ideas')" class="nav-link">{{ $t('home.exploreIdeas') }}</NuxtLink>
+        <NuxtLink :to="localePath('/problems')" class="nav-link">{{ $t('nav.problems') }}</NuxtLink>
         <NuxtLink :to="localePath('/community')" class="nav-link">{{ $t('nav.community') }}</NuxtLink>
         <NuxtLink :to="localePath('/about')" class="nav-link">{{ $t('nav.about') }}</NuxtLink>
       </nav>
 
-      <NuxtLink :to="localePath('/ideas/create')" class="nav-cta">
-        <Button variant="primary" size="md">{{ $t('nav.newIdea') }}</Button>
-      </NuxtLink>
+      <div class="nav-ctas">
+        <NuxtLink :to="localePath('/ideas/create')" class="nav-cta">
+          <Button variant="tertiary" size="md">{{ $t('nav.newIdea') }}</Button>
+        </NuxtLink>
+        <NuxtLink :to="localePath('/problems/create')" class="nav-cta">
+          <Button variant="primary" size="md">{{ $t('nav.newProblem') }}</Button>
+        </NuxtLink>
+      </div>
     </div>
   </header>
 </template>
@@ -83,6 +89,12 @@ const localePath = useLocalePath()
 
 .nav-link:hover {
   color: var(--color-primary);
+}
+
+.nav-ctas {
+  display: flex;
+  gap: var(--spacing-2);
+  align-items: center;
 }
 
 .nav-cta {

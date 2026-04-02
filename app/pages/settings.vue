@@ -32,6 +32,8 @@ import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 
+useSeoMeta({ robots: 'noindex, nofollow' })
+
 const auth = useAuthStore()
 const modalVisible = ref(false)
 

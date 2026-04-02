@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxtjs/seo'],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/tailwindcss', '@nuxtjs/seo', 'nuxt-og-image', '@nuxt/fonts', 'nuxt-gtag'],
   compatibilityDate: '2025-07-15',
+  gtag: {
+    id: 'G-TDLGYGSW1D' 
+  }
+
 
   site: {
     url: 'https://parasalvaracuba.org',

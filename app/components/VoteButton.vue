@@ -26,12 +26,14 @@ import { apiRequest } from '~/utils/apiClient'
 interface VotePayload {
   ideaId?: string
   commentId?: string
+  problemId?: string
   netVotes: number
 }
 
 const props = defineProps<{
   ideaId?: string
   commentId?: string
+  problemId?: string
   netVotes: number
 }>()
 const emit = defineEmits<{ voted: [payload: VotePayload] }>()
@@ -44,7 +46,8 @@ const loading = ref(false)
 const routeBase = computed(() => {
   if (props.ideaId) return `/api/ideas/${props.ideaId}/votes`
   if (props.commentId) return `/api/comments/${props.commentId}/votes`
-  throw new Error('VoteButton requires either ideaId or commentId')
+  if (props.problemId) return `/api/problems/${props.problemId}/votes`
+  throw new Error('VoteButton requires ideaId, commentId, or problemId')
 })
 
 async function castVote(value: 1 | -1) {
