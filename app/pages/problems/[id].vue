@@ -23,6 +23,9 @@
           <Button variant="tertiary" size="sm" @click="openEdit">{{ $t('problem.editProblem') }}</Button>
         </div>
 
+        <!-- Comments section -->
+        <CommentThread v-if="problem" :problem-id="problem.id" />
+
         <form v-if="editing" class="edit-form" @submit.prevent="submitEdit">
           <div class="form-field">
             <label class="form-label" for="edit-title">{{ $t('problem.titleLabel') }}</label>
@@ -56,6 +59,7 @@ import { useI18n } from 'vue-i18n'
 import VoteButton from '~/components/VoteButton.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
 import MarkdownRenderer from '~/components/MarkdownRenderer.vue'
+import CommentThread from '~/components/CommentThread.vue'
 import { Button } from '@/components/design-system'
 import { useAuthStore } from '~/stores/authStore'
 import { useEmailGate } from '~/composables/useEmailGate'
@@ -96,12 +100,9 @@ useSeoMeta({
   ogUrl: () => `https://parasalvaracuba.org/problems/${route.params.id}`,
   twitterCard: 'summary_large_image',
 })
-defineOgImage({
-  component: 'Default',
-  props: {
-    title: computed(() => problem.value?.title),
-    description: computed(() => problem.value?.description ? truncateAtWord(problem.value.description, 120) : undefined),
-  },
+defineOgImage('Default', {
+  title: computed(() => problem.value?.title),
+  description: computed(() => problem.value?.description ? truncateAtWord(problem.value.description, 120) : undefined),
 })
 
 const error = ref(false)

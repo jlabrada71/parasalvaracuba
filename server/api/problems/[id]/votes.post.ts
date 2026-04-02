@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody, createError, getRouterParam } from 'h3'
-import { query } from '../../../../utils/db'
+import { query } from '../../../utils/db'
 
 export default defineEventHandler(async (event) => {
   try {

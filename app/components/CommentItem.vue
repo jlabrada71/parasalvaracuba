@@ -12,7 +12,14 @@
     <!-- Comment footer with voting and reply button -->
     <div class="comment-footer">
       <VoteButton
+        v-if="!problemId"
         :comment-id="comment.id"
+        :net-votes="comment.net_votes"
+        @voted="(payload) => $emit('voted', payload)"
+      />
+      <VoteButton
+        v-else
+        :problem-comment-id="comment.id"
         :net-votes="comment.net_votes"
         @voted="(payload) => $emit('voted', payload)"
       />
@@ -43,6 +50,7 @@
         :key="reply.id"
         :comment="reply"
         :idea-id="ideaId"
+        :problem-id="problemId"
         :all-comments="allComments"
         @replied="$emit('replied', $event)"
         @voted="$emit('voted', $event)"
@@ -62,7 +70,8 @@ import VoteButton from './VoteButton.vue'
 
 interface Comment {
   id: string
-  idea_id: string
+  idea_id?: string
+  problem_id?: string
   parent_comment_id: string | null
   email: string
   content: string
@@ -75,7 +84,8 @@ interface Comment {
 
 const props = defineProps<{
   comment: Comment
-  ideaId: string
+  ideaId?: string
+  problemId?: string
   allComments: Comment[]
 }>()
 
@@ -105,8 +115,11 @@ async function submitReply() {
     submittingReply.value = true
     replyError.value = ''
     try {
+      const replyUrl = props.problemId
+        ? `/api/problems/${props.problemId}/comments/${props.comment.id}/reply`
+        : `/api/ideas/${props.ideaId}/comments/${props.comment.id}/reply`
       const newReply = await apiRequest<Comment>(
-        `/api/ideas/${props.ideaId}/comments/${props.comment.id}/reply`,
+        replyUrl,
         {
           method: 'POST',
           body: { body: replyBody.value },

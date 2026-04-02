@@ -10,7 +10,7 @@
         <h1 class="hero-title">{{ $t('home.title') }}</h1>
         <p class="hero-subtitle">{{ $t('home.subtitle') }}</p>
         <div class="hero-actions">
-          <NuxtLink :to="localePath('/ideas/create')" class="action-link">
+          <NuxtLink :to="localePath('/ideas')" class="action-link">
             <Button variant="primary">{{ $t('home.exploreIdeas') }}</Button>
           </NuxtLink>
           <button class="btn-secondary" @click="scrollToHowItWorks">{{ $t('home.howItWorks') }}</button>
@@ -63,18 +63,56 @@
           >
             <div class="idea-card-header">
               <h3 class="idea-title">{{ idea.title }}</h3>
-              <span class="material-symbols-outlined favorite-icon">favorite</span>
             </div>
-            <div class="vote-count">{{ idea.net_votes }}</div>
-            <p class="idea-excerpt">{{ maskEmail(idea.email) }} · {{ formatDate(idea.created_at) }}</p>
-            <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="review-btn">
-              <Button variant="primary" size="md">{{ $t('home.reviewProposal') }}</Button>
+            <p class="idea-excerpt">{{ truncateDescription(idea.description, 100) }}</p>
+            <div class="idea-meta">
+              <p class="meta-text">{{ $t('ideas.by', { author: maskEmail(idea.email) }) }} · {{ formatDate(idea.created_at) }}</p>
+              <div class="vote-count">{{ idea.net_votes }}</div>
+            </div>
+            <NuxtLink :to="localePath(`/ideas/${idea.id}`)" class="view-btn">
+              <Button variant="primary" size="md">{{ $t('ideas.viewIdea') }}</Button>
             </NuxtLink>
           </div>
         </div>
 
         <div v-if="hasMore" class="pagination">
           <Button :disabled="pending" @click="loadMore" variant="tertiary">{{ $t('home.loadMore') }}</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Problems Section -->
+    <section class="featured-problems">
+      <div class="section-container">
+        <div class="featured-header">
+          <h2 class="section-title">{{ $t('home.featuredProblems') }}</h2>
+          <NuxtLink :to="localePath('/problems')" class="view-all">
+            {{ $t('home.viewAllProblems') }} <span>→</span>
+          </NuxtLink>
+        </div>
+
+        <div v-if="problemsPending" class="loading">{{ $t('home.loading') }}</div>
+        <div v-else-if="problemsError" class="error">{{ $t('home.error') }}</div>
+        <div v-else-if="problems.length === 0" class="empty">{{ $t('home.emptyProblems') }}</div>
+
+        <div v-else class="problems-grid">
+          <div
+            v-for="problem in problems"
+            :key="problem.id"
+            class="idea-card"
+          >
+            <div class="idea-card-header">
+              <h3 class="idea-title">{{ problem.title }}</h3>
+            </div>
+            <p class="idea-excerpt">{{ truncateDescription(problem.description, 100) }}</p>
+            <div class="idea-meta">
+              <p class="meta-text">{{ $t('ideas.by', { author: maskEmail(problem.email) }) }} · {{ formatDate(problem.created_at) }}</p>
+              <div class="vote-count">{{ problem.net_votes }}</div>
+            </div>
+            <NuxtLink :to="localePath(`/problems/${problem.id}`)" class="view-btn">
+              <Button variant="primary" size="md">{{ $t('problems.viewProblem') }}</Button>
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </section>
@@ -139,11 +177,12 @@ useSeoMeta({
   ogType: 'website',
   twitterCard: 'summary_large_image',
 })
-defineOgImage({ component: 'Default' })
+defineOgImage('Default')
 
-interface Idea {
+interface Item {
   id: string
   title: string
+  description: string
   email: string
   created_at: string
   net_votes: number
@@ -152,10 +191,14 @@ interface Idea {
 const { modalVisible, onModalSaved, onModalClose } = useEmailGate()
 
 const page = ref(1)
-const ideas = ref<Idea[]>([])
+const ideas = ref<Item[]>([])
 const hasMore = ref(false)
 const pending = ref(false)
 const error = ref(false)
+
+const problems = ref<Item[]>([])
+const problemsPending = ref(false)
+const problemsError = ref(false)
 
 async function fetchIdeas(p: number) {
   pending.value = true
@@ -180,6 +223,10 @@ function loadMore() {
   fetchIdeas(page.value)
 }
 
+function truncateDescription(text: string, maxLength: number): string {
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text
+}
+
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('es-CU', { year: 'numeric', month: 'short', day: 'numeric' })
 }
@@ -188,8 +235,22 @@ function scrollToHowItWorks() {
   document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
 }
 
+async function fetchProblems() {
+  problemsPending.value = true
+  problemsError.value = false
+  try {
+    const data = await $fetch<{ problems: Item[] }>('/api/problems?sort=top&page=1')
+    problems.value = data.problems.slice(0, 3)
+  } catch {
+    problemsError.value = true
+  } finally {
+    problemsPending.value = false
+  }
+}
+
 // Initial load
 fetchIdeas(1)
+fetchProblems()
 </script>
 
 <style scoped>
@@ -353,18 +414,30 @@ fetchIdeas(1)
   margin-bottom: var(--spacing-8);
 }
 
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
 .idea-card {
   background: white;
   border: 1px solid var(--color-outline-variant);
   border-radius: var(--radius-xl);
   padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.idea-card:hover {
+  box-shadow: var(--shadow-elevation-2);
+  transform: translateY(-2px);
 }
 
 .idea-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
 }
 
 .idea-title {
@@ -373,35 +446,42 @@ fetchIdeas(1)
   font-weight: var(--font-weight-bold);
   margin: 0;
   color: var(--color-on-surface);
+  line-height: var(--line-height-tight);
+}
+
+.idea-excerpt {
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface);
+  margin: var(--spacing-3) 0;
+  line-height: var(--line-height-normal);
   flex: 1;
 }
 
-.favorite-icon {
-  color: var(--color-secondary);
-  font-size: 1.5rem;
-  margin-left: var(--spacing-2);
+.idea-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--spacing-4) 0;
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.meta-text {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-on-surface-variant);
+  margin: 0;
 }
 
 .vote-count {
   font-family: var(--font-label);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-label-lg);
-  color: var(--color-on-surface);
-  margin-bottom: var(--spacing-2);
+  color: var(--color-primary);
 }
 
-.idea-excerpt {
-  font-size: var(--font-size-body-sm);
-  color: var(--color-on-surface-variant);
-  margin: var(--spacing-3) 0;
-  line-height: var(--line-height-normal);
-}
-
-.review-btn {
+.view-btn {
   text-decoration: none;
   display: block;
-  width: 100%;
-  margin-top: var(--spacing-4);
 }
 
 .loading,
@@ -419,6 +499,12 @@ fetchIdeas(1)
 .pagination {
   text-align: center;
   margin-top: var(--spacing-8);
+}
+
+/* Featured Problems Section */
+.featured-problems {
+  padding: var(--spacing-16) 0;
+  background-color: white;
 }
 
 /* CTA Section */

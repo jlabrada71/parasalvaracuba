@@ -23,6 +23,11 @@
             <div class="stat-label">{{ $t('community.ideasSubmitted') }}</div>
           </div>
           <div class="stat-card">
+            <div class="stat-icon">⚠️</div>
+            <div class="stat-number">{{ problemCount }}</div>
+            <div class="stat-label">{{ $t('community.problemsReported') }}</div>
+          </div>
+          <div class="stat-card">
             <div class="stat-icon">👥</div>
             <div class="stat-number">{{ participantCount }}</div>
             <div class="stat-label">{{ $t('community.participants') }}</div>
@@ -119,28 +124,30 @@ useSeoMeta({
   ogType: 'website',
   twitterCard: 'summary_large_image',
 })
-defineOgImage({ component: 'Default', props: { title: t('community.title'), description: t('community.subtitle') } })
+defineOgImage('Default', { title: t('community.title'), description: t('community.subtitle') })
 
 const ideaCount = ref(0)
+const problemCount = ref(0)
 const participantCount = ref(0)
 const totalVotes = ref(0)
 
 onMounted(async () => {
   try {
-    // Fetch community stats
     const data = await $fetch<{
       ideas: number
+      problems: number
       participants: number
       votes: number
     }>('/api/community/stats')
 
     ideaCount.value = data.ideas
+    problemCount.value = data.problems
     participantCount.value = data.participants
     totalVotes.value = data.votes
   } catch (error) {
     console.error('Failed to load community stats:', error)
-    // Use placeholder values
     ideaCount.value = 0
+    problemCount.value = 0
     participantCount.value = 0
     totalVotes.value = 0
   }

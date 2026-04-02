@@ -16,11 +16,14 @@ export default defineEventHandler(async (event) => {
         i.email,
         i.created_at,
         i.updated_at,
+        i.problem_id,
+        p.title AS problem_title,
         COALESCE(SUM(v.vote_value), 0)::int AS net_votes
       FROM ideas i
       LEFT JOIN votes v ON v.idea_id = i.id
+      LEFT JOIN problems p ON p.id = i.problem_id
       WHERE i.id = $1
-      GROUP BY i.id
+      GROUP BY i.id, p.title
     `, [ideaId])
 
     if (!idea) {

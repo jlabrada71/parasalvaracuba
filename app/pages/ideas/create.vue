@@ -39,6 +39,16 @@
           />
         </div>
 
+        <div class="form-field">
+          <label class="form-label" for="create-problem">
+            {{ $t('create.relatedProblemLabel') }}
+          </label>
+          <select id="create-problem" v-model="selectedProblemId" class="form-select">
+            <option value="">{{ $t('create.relatedProblemNone') }}</option>
+            <option v-for="p in problems" :key="p.id" :value="p.id">{{ p.title }}</option>
+          </select>
+        </div>
+
         <p v-if="formError" class="form-error">{{ formError }}</p>
 
         <div class="form-actions">
@@ -59,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
@@ -74,10 +84,22 @@ const router = useRouter()
 const i18n = useI18n()
 const { modalVisible, requireEmail, onModalSaved, onModalClose } = useEmailGate()
 
+interface Problem { id: string; title: string }
+
 const title = ref('')
 const description = ref('')
+const selectedProblemId = ref('')
+const problems = ref<Problem[]>([])
 const submitting = ref(false)
 const formError = ref('')
+
+onMounted(async () => {
+  try {
+    problems.value = await $fetch<Problem[]>('/api/problems/all')
+  } catch {
+    // non-critical, dropdown just stays empty
+  }
+})
 
 function handleSubmit() {
   requireEmail(submitIdea)
@@ -93,7 +115,11 @@ async function submitIdea() {
   try {
     const idea = await apiRequest<{ id: string }>('/api/ideas', {
       method: 'POST',
-      body: { title: title.value.trim(), description: description.value.trim() },
+      body: {
+        title: title.value.trim(),
+        description: description.value.trim(),
+        problem_id: selectedProblemId.value || null,
+      },
     })
     router.push(localePath(`/ideas/${idea.id}`))
   } catch (e: unknown) {
@@ -196,6 +222,24 @@ h1 {
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: var(--color-on-surface-variant);
+}
+.form-select {
+  background-color: var(--color-surface-container-highest);
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  border-radius: 0;
+  padding: var(--spacing-3) var(--spacing-2);
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  width: 100%;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+.form-select:focus {
+  outline: none;
+  border-bottom-color: var(--color-secondary-container);
+  border-bottom-width: 3px;
 }
 .char-count {
   font-size: var(--font-size-label-sm);

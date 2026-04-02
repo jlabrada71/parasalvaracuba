@@ -4,8 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   gtag: {
     id: 'G-TDLGYGSW1D' 
-  }
-
+  },
 
   site: {
     url: 'https://parasalvaracuba.org',

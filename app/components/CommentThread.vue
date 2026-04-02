@@ -25,6 +25,7 @@
         :key="comment.id"
         :comment="comment"
         :idea-id="ideaId"
+        :problem-id="problemId"
         :all-comments="comments"
         @replied="onCommentReplied"
         @voted="onCommentVoted"
@@ -43,7 +44,8 @@ import CommentItem from './CommentItem.vue'
 
 interface Comment {
   id: string
-  idea_id: string
+  idea_id?: string
+  problem_id?: string
   parent_comment_id: string | null
   email: string
   content: string
@@ -54,7 +56,7 @@ interface Comment {
   net_votes: number
 }
 
-const props = defineProps<{ ideaId: string }>()
+const props = defineProps<{ ideaId?: string; problemId?: string }>()
 const { requireEmail } = useEmailGate()
 const i18n = useI18n()
 const comments = ref<Comment[]>([])
@@ -63,13 +65,19 @@ const submittingTopLevel = ref(false)
 const formError = ref('')
 const loaded = ref(false)
 
+const baseUrl = computed(() =>
+  props.problemId
+    ? `/api/problems/${props.problemId}/comments`
+    : `/api/ideas/${props.ideaId}/comments`
+)
+
 const topLevelComments = computed(() =>
   comments.value.filter((c) => c.parent_comment_id === null)
 )
 
 async function fetchComments() {
   try {
-    comments.value = await $fetch<Comment[]>(`/api/ideas/${props.ideaId}/comments`)
+    comments.value = await $fetch<Comment[]>(baseUrl.value)
     loaded.value = true
   } catch (e) {
     console.error('Failed to fetch comments:', e)
@@ -88,10 +96,10 @@ async function submitTopLevel() {
     formError.value = ''
     try {
       const newComment = await apiRequest<Comment>(
-        `/api/ideas/${props.ideaId}/comments`,
+        baseUrl.value,
         {
           method: 'POST',
-          body: { body: newCommentBody.value }, // API expects 'body' in request, but stores as 'content'
+          body: { body: newCommentBody.value },
         }
       )
       comments.value.push(newComment)

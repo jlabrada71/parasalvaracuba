@@ -15,12 +15,12 @@ services:
     volumes:
       - .:/app
       - /app/node_modules # Exclude node_modules from the volume mount to avoid conflicts
-    # Use the watch attribute to sync files instantly
-    develop:
-      watch:
-        - path: .
-          action: sync
-          target: /app
+    # Use the watch attribute to sync files instantly 
+    # develop:
+    #  watch: # this is unnecessary if we use volumes to mount the code, but can be useful if we want to avoid mounting node_modules
+    #    - path: .
+    #      action: sync
+    #      target: /app
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]

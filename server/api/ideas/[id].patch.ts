@@ -16,6 +16,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const title = (body?.title ?? '').trim()
     const description = (body?.description ?? '').trim()
+    const problemId = body?.problem_id || null
 
     if (!title) throw createError({ statusCode: 400, message: 'title is required' })
     if (!description) throw createError({ statusCode: 400, message: 'description is required' })
@@ -23,10 +24,10 @@ export default defineEventHandler(async (event) => {
 
     const [idea] = await query(`
       UPDATE ideas
-      SET title = $1, description = $2, updated_at = NOW()
-      WHERE id = $3 AND email = $4
-      RETURNING id, title, description, email, created_at, updated_at
-    `, [title, description, ideaId, userEmail])
+      SET title = $1, description = $2, problem_id = $3, updated_at = NOW()
+      WHERE id = $4 AND email = $5
+      RETURNING id, title, description, email, problem_id, created_at, updated_at
+    `, [title, description, problemId, ideaId, userEmail])
 
     if (!idea) {
       throw createError({ statusCode: 403, message: 'Only the author can edit this idea' })

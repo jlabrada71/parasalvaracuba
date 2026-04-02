@@ -30,7 +30,10 @@
     "error": "Failed to load ideas. Please refresh.",
     "empty": "No ideas yet. Be the first!",
     "loadMore": "Load more",
-    "reviewProposal": "Review Proposal"
+    "reviewProposal": "Review Proposal",
+    "featuredProblems": "Featured Problems",
+    "viewAllProblems": "View all problems",
+    "emptyProblems": "No problems reported yet."
   },
   "settings": {
     "title": "Settings",
@@ -53,6 +56,8 @@
     "submit": "Submit idea",
     "submitting": "Submitting…",
     "cancel": "Cancel",
+    "relatedProblemLabel": "Problem it addresses (optional)",
+    "relatedProblemNone": "— None —",
     "errors": {
       "titleRequired": "Title is required.",
       "descriptionRequired": "Description is required.",
@@ -66,6 +71,9 @@
     "editIdea": "Edit idea",
     "titleLabel": "Title",
     "descriptionLabel": "Description",
+    "relatedProblemLabel": "Problem it addresses",
+    "relatedProblemNone": "— None —",
+    "relatedProblemLink": "Addresses problem:",
     "saveChanges": "Save changes",
     "cancel": "Cancel",
     "errors": {
@@ -93,6 +101,7 @@
     "title": "Community",
     "subtitle": "Meet the citizens driving change. Join us in building the future of Cuba, one idea at a time.",
     "ideasSubmitted": "Ideas Submitted",
+    "problemsReported": "Known Problems",
     "participants": "Participants",
     "votes": "Total Votes",
     "mission": "Our Mission",
@@ -166,7 +175,7 @@
     }
   },
   "problems": {
-    "title": "Problems to Solve",
+    "title": "Problems Holding Back Cuba's Economy",
     "subtitle": "Vote on the most urgent problems Cuba needs to address. The most voted rise to the top.",
     "searchPlaceholder": "Search problems...",
     "filterTop": "Most Voted",

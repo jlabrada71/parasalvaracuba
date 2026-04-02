@@ -19,6 +19,13 @@
 
         <MarkdownRenderer :markdown="idea.description" />
 
+        <div v-if="idea.problem_id" class="related-problem">
+          <span class="related-problem-label">{{ $t('idea.relatedProblemLink') }}</span>
+          <NuxtLink :to="localePath(`/problems/${idea.problem_id}`)" class="related-problem-link">
+            {{ idea.problem_title }}
+          </NuxtLink>
+        </div>
+
         <div v-if="isAuthor" class="idea-actions">
           <Button variant="tertiary" size="sm" @click="openEdit">{{ $t('idea.editIdea') }}</Button>
         </div>
@@ -32,6 +39,13 @@
           <div class="form-field">
             <label class="form-label" for="edit-description">{{ $t('idea.descriptionLabel') }}</label>
             <textarea id="edit-description" v-model="editDescription" class="form-textarea" rows="6" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="edit-problem">{{ $t('idea.relatedProblemLabel') }}</label>
+            <select id="edit-problem" v-model="editProblemId" class="form-select">
+              <option value="">{{ $t('idea.relatedProblemNone') }}</option>
+              <option v-for="p in problems" :key="p.id" :value="p.id">{{ p.title }}</option>
+            </select>
           </div>
           <div class="edit-actions">
             <Button type="submit" variant="primary" size="sm" :disabled="saving">{{ $t('idea.saveChanges') }}</Button>
@@ -54,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import VoteButton from '~/components/VoteButton.vue'
@@ -77,7 +91,11 @@ interface Idea {
   created_at: string
   updated_at: string
   net_votes: number
+  problem_id: string | null
+  problem_title: string | null
 }
+
+interface Problem { id: string; title: string }
 
 const route = useRoute()
 const auth = useAuthStore()
@@ -101,18 +119,17 @@ useSeoMeta({
   ogUrl: () => `https://parasalvaracuba.org/ideas/${route.params.id}`,
   twitterCard: 'summary_large_image',
 })
-defineOgImage({
-  component: 'Default',
-  props: {
-    title: computed(() => idea.value?.title),
-    description: computed(() => idea.value?.description ? truncateAtWord(idea.value.description, 120) : undefined),
-  },
+defineOgImage('Default', {
+  title: computed(() => idea.value?.title),
+  description: computed(() => idea.value?.description ? truncateAtWord(idea.value.description, 120) : undefined),
 })
 const error = ref(false)
 
 const editing = ref(false)
 const editTitle = ref('')
 const editDescription = ref('')
+const editProblemId = ref('')
+const problems = ref<Problem[]>([])
 const saving = ref(false)
 const editError = ref('')
 
@@ -134,12 +151,20 @@ function onVoted(payload: { ideaId: string; netVotes: number }) {
   if (idea.value) idea.value.net_votes = payload.netVotes
 }
 
-function openEdit() {
+async function openEdit() {
   if (!idea.value) return
   editTitle.value = idea.value.title
   editDescription.value = idea.value.description
+  editProblemId.value = idea.value.problem_id ?? ''
   editError.value = ''
   editing.value = true
+  if (problems.value.length === 0) {
+    try {
+      problems.value = await $fetch<Problem[]>('/api/problems/all')
+    } catch {
+      // non-critical
+    }
+  }
 }
 
 async function submitEdit() {
@@ -149,7 +174,11 @@ async function submitEdit() {
   try {
     const updated = await apiRequest<Idea>(`/api/ideas/${idea.value.id}`, {
       method: 'PATCH',
-      body: { title: editTitle.value, description: editDescription.value },
+      body: {
+        title: editTitle.value,
+        description: editDescription.value,
+        problem_id: editProblemId.value || null,
+      },
     })
     idea.value = { ...idea.value, ...updated }
     editing.value = false
@@ -217,7 +246,46 @@ main { max-width: 720px; margin: var(--spacing-8) auto; padding: 0 var(--spacing
   color: var(--color-on-surface-variant);
   margin: 0;
 }
+.related-problem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: var(--spacing-4) 0;
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--color-surface-container-low);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-body-sm);
+}
+.related-problem-label {
+  color: var(--color-on-surface-variant);
+  white-space: nowrap;
+}
+.related-problem-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-semi-bold);
+}
+.related-problem-link:hover { text-decoration: underline; }
 .idea-actions { margin-bottom: var(--spacing-4); }
+.form-select {
+  background-color: var(--color-surface-container-highest);
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  border-radius: 0;
+  padding: var(--spacing-3) var(--spacing-2);
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  width: 100%;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+.form-select:focus {
+  outline: none;
+  border-bottom-color: var(--color-secondary-container);
+  border-bottom-width: 3px;
+}
 .edit-form {
   display: flex;
   flex-direction: column;

@@ -27,6 +27,7 @@ interface VotePayload {
   ideaId?: string
   commentId?: string
   problemId?: string
+  problemCommentId?: string
   netVotes: number
 }
 
@@ -34,6 +35,7 @@ const props = defineProps<{
   ideaId?: string
   commentId?: string
   problemId?: string
+  problemCommentId?: string
   netVotes: number
 }>()
 const emit = defineEmits<{ voted: [payload: VotePayload] }>()
@@ -47,7 +49,8 @@ const routeBase = computed(() => {
   if (props.ideaId) return `/api/ideas/${props.ideaId}/votes`
   if (props.commentId) return `/api/comments/${props.commentId}/votes`
   if (props.problemId) return `/api/problems/${props.problemId}/votes`
-  throw new Error('VoteButton requires ideaId, commentId, or problemId')
+  if (props.problemCommentId) return `/api/problem-comments/${props.problemCommentId}/votes`
+  throw new Error('VoteButton requires ideaId, commentId, problemId, or problemCommentId')
 })
 
 async function castVote(value: 1 | -1) {
@@ -65,6 +68,8 @@ async function castVote(value: 1 | -1) {
       const payload: VotePayload = { netVotes: result.net_votes }
       if (props.ideaId) payload.ideaId = props.ideaId
       if (props.commentId) payload.commentId = props.commentId
+      if (props.problemId) payload.problemId = props.problemId
+      if (props.problemCommentId) payload.problemCommentId = props.problemCommentId
       emit('voted', payload)
     } finally {
       loading.value = false

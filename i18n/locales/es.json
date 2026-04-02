@@ -30,7 +30,10 @@
     "error": "Error al cargar las ideas. Por favor recarga la página.",
     "empty": "Aún no hay ideas. ¡Sé el primero!",
     "loadMore": "Cargar más",
-    "reviewProposal": "Revisar propuesta"
+    "reviewProposal": "Revisar propuesta",
+    "featuredProblems": "Problemas destacados",
+    "viewAllProblems": "Ver todos los problemas",
+    "emptyProblems": "Aún no hay problemas reportados."
   },
   "settings": {
     "title": "Configuración",
@@ -53,6 +56,8 @@
     "submit": "Enviar idea",
     "submitting": "Enviando…",
     "cancel": "Cancelar",
+    "relatedProblemLabel": "Problema que aborda (opcional)",
+    "relatedProblemNone": "— Ninguno —",
     "errors": {
       "titleRequired": "El título es obligatorio.",
       "descriptionRequired": "La descripción es obligatoria.",
@@ -66,6 +71,9 @@
     "editIdea": "Editar idea",
     "titleLabel": "Título",
     "descriptionLabel": "Descripción",
+    "relatedProblemLabel": "Problema que aborda",
+    "relatedProblemNone": "— Ninguno —",
+    "relatedProblemLink": "Aborda el problema:",
     "saveChanges": "Guardar cambios",
     "cancel": "Cancelar",
     "errors": {
@@ -93,6 +101,7 @@
     "title": "Comunidad",
     "subtitle": "Conoce a los ciudadanos impulsando el cambio. Únete a nosotros en la construcción del futuro de Cuba, una idea a la vez.",
     "ideasSubmitted": "Ideas Enviadas",
+    "problemsReported": "Problemas Conocidos",
     "participants": "Participantes",
     "votes": "Total de Votos",
     "mission": "Nuestra Misión",
@@ -166,7 +175,7 @@
     }
   },
   "problems": {
-    "title": "Problemas a resolver",
+    "title": "Problemas que frenan la economía en Cuba",
     "subtitle": "Vota por los problemas más urgentes que Cuba necesita afrontar. Los más votados suben al tope.",
     "searchPlaceholder": "Buscar problemas...",
     "filterTop": "Más votados",
