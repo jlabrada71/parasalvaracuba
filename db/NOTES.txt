@@ -1,1 +1,3 @@
 http://srv1525813.hstgr.cloud:8080/
+
+node db/migrate-show.js prod-db

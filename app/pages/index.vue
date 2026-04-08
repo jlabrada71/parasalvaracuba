@@ -140,7 +140,6 @@
         <div class="footer-links">
           <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
           <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
-          <LanguageSwitcher />
         </div>
       </div>
       <div class="footer-bottom">
@@ -162,7 +161,6 @@ import Navigation from '~/components/Navigation.vue'
 import { maskEmail } from '~/utils/emailValidation'
 import OuroborosLogo from '~/components/OuroborosLogo.vue'
 import EmailCaptureModal from '~/components/EmailCaptureModal.vue'
-import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 import { Button } from '@/components/design-system'
 import { useEmailGate } from '~/composables/useEmailGate'
 

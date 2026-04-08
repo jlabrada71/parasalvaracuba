@@ -31,6 +31,12 @@
         @voted="onCommentVoted"
       />
     </div>
+
+    <EmailCaptureModal
+      :visible="modalVisible"
+      @saved="onModalSaved"
+      @close="onModalClose"
+    />
   </section>
 </template>
 
@@ -40,6 +46,7 @@ import { useI18n } from 'vue-i18n'
 import { apiRequest } from '~/utils/apiClient'
 import { useEmailGate } from '~/composables/useEmailGate'
 import { Button } from '@/components/design-system'
+import EmailCaptureModal from './EmailCaptureModal.vue'
 import CommentItem from './CommentItem.vue'
 
 interface Comment {
@@ -57,7 +64,7 @@ interface Comment {
 }
 
 const props = defineProps<{ ideaId?: string; problemId?: string }>()
-const { requireEmail } = useEmailGate()
+const { requireEmail, modalVisible, onModalSaved, onModalClose } = useEmailGate()
 const i18n = useI18n()
 const comments = ref<Comment[]>([])
 const newCommentBody = ref('')

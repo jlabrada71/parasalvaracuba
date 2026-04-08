@@ -97,7 +97,6 @@
         <div class="footer-links">
           <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
           <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
-          <LanguageSwitcher />
         </div>
       </div>
       <div class="footer-bottom">
@@ -112,7 +111,6 @@ import { ref } from 'vue'
 import Navigation from '~/components/Navigation.vue'
 import { maskEmail } from '~/utils/emailValidation'
 import { Button } from '@/components/design-system'
-import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
 const { t } = useI18n()

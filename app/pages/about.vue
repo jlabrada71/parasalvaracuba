@@ -140,7 +140,6 @@
         <div class="footer-links">
           <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
           <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
-          <LanguageSwitcher />
         </div>
         <p class="footer-copy">{{ $t('footer.copyright') }}</p>
       </div>
@@ -151,7 +150,6 @@
 <script setup lang="ts">
 import Navigation from '~/components/Navigation.vue'
 import OuroborosLogo from '~/components/OuroborosLogo.vue'
-import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
 const { t } = useI18n()

@@ -20,6 +20,10 @@
         <NuxtLink :to="localePath('/problems/create')" class="nav-cta">
           <Button variant="primary" size="md">{{ $t('nav.newProblem') }}</Button>
         </NuxtLink>
+        <LanguageSwitcher />
+        <NuxtLink :to="localePath('/settings')" class="nav-cta">
+          <Button variant="tertiary" size="md">…</Button>
+        </NuxtLink>
       </div>
     </div>
   </header>
@@ -28,6 +32,7 @@
 <script setup lang="ts">
 import { Button } from '@/components/design-system'
 import OuroborosLogo from './OuroborosLogo.vue'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
 </script>

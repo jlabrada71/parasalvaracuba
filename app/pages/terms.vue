@@ -58,7 +58,6 @@
         <div class="footer-links">
           <NuxtLink :to="localePath('/privacy')" class="footer-link">{{ $t('footer.privacy') }}</NuxtLink>
           <NuxtLink :to="localePath('/terms')" class="footer-link">{{ $t('footer.terms') }}</NuxtLink>
-          <LanguageSwitcher />
         </div>
       </div>
       <div class="footer-bottom">
@@ -70,7 +69,6 @@
 
 <script setup lang="ts">
 import Navigation from '~/components/Navigation.vue'
-import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 
 const localePath = useLocalePath()
 const { t } = useI18n()
