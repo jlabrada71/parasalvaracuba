@@ -30,7 +30,7 @@ services:
     volumes:
      - /docker/parasalvaracuba.org/data:/var/lib/postgresql 
     environment:
-      POSTGRES_PASSWORD: CubaLibreYMojito
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-}
     ports:
       - "5432:5432"
     networks:
