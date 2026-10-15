@@ -14,7 +14,8 @@
         "prepare": "npx skilld prepare || true",
         "migrate": "node db/migrate.js",
         "dev:test": "nuxt dev --dotenv .env.test",
-        "create-admin": "node db/create-admin.ts"
+        "create-admin": "node db/create-admin.ts",
+        "test:e2e": "playwright test"
     },
     "dependencies": {
         "@nuxt/devtools": "4.0.0-alpha.3",

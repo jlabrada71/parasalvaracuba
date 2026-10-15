@@ -25,3 +25,7 @@ logs
 
 # Skilld references (recreated by `skilld install`)
 .skilld
+
+# Playwright
+test-results/
+playwright-report/
