@@ -20,6 +20,15 @@
         <NuxtLink :to="localePath('/problems/create')" class="nav-cta">
           <Button variant="primary" size="md">{{ $t('nav.newProblem') }}</Button>
         </NuxtLink>
+        <template v-if="user.user">
+          <NuxtLink v-if="user.isAdmin" :to="localePath('/admin')" class="nav-cta">
+            <Button variant="tertiary" size="md">{{ $t('auth.nav.admin') }}</Button>
+          </NuxtLink>
+          <Button variant="tertiary" size="md" @click="onLogout">{{ $t('auth.nav.logout') }}</Button>
+        </template>
+        <NuxtLink v-else :to="localePath('/login')" class="nav-cta">
+          <Button variant="tertiary" size="md">{{ $t('auth.nav.login') }}</Button>
+        </NuxtLink>
         <LanguageSwitcher />
         <NuxtLink :to="localePath('/settings')" class="nav-cta">
           <Button variant="tertiary" size="md">…</Button>
@@ -34,7 +43,15 @@ import { Button } from '@/components/design-system'
 import OuroborosLogo from './OuroborosLogo.vue'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
+import { useUserStore } from '~/stores/userStore'
+
 const localePath = useLocalePath()
+const user = useUserStore()
+
+async function onLogout() {
+  await user.logout()
+  await navigateTo(localePath('/'))
+}
 </script>
 
 <style scoped>
