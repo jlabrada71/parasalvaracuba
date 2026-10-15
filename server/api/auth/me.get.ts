@@ -2,11 +2,12 @@ import { defineEventHandler } from 'h3'
 
 /**
  * GET /api/auth/me
- * Returns the email extracted by the middleware, or null.
- * Used for integration tests and debugging only.
+ * - `email`: legacy email identity from the X-User-Email header (public flow)
+ * - `user`: logged-in account from the session cookie, or null
  */
 export default defineEventHandler((event) => {
   return {
-    email: event.context.userEmail || null
+    email: event.context.userEmail || null,
+    user: event.context.user ?? null,
   }
 })
