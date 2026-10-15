@@ -12,7 +12,9 @@
         "test": "vitest run",
         "test:watch": "vitest",
         "prepare": "npx skilld prepare || true",
-        "migrate": "node db/migrate.js"
+        "migrate": "node db/migrate.js",
+        "dev:test": "nuxt dev --dotenv .env.test",
+        "create-admin": "node db/create-admin.ts"
     },
     "dependencies": {
         "@nuxt/devtools": "4.0.0-alpha.3",
@@ -37,6 +39,9 @@
     },
     "devDependencies": {
         "@nuxtjs/tailwindcss": "^6.14.0",
+        "@playwright/test": "^1.64.1",
+        "@testing-library/user-event": "^14.6.8",
+        "@testing-library/vue": "^8.1.0",
         "@types/express": "^5.0.6",
         "@types/pg": "^8.20.0",
         "@types/supertest": "^7.2.0",

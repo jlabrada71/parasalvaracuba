@@ -48,7 +48,7 @@ Password reset, email sending, user deactivation UI, the articles feature, chang
 | `GET /api/invitations/:token` | public | validates; returns `{email, role}` |
 | `POST /api/invitations/:token/accept` | public | `{password}` → creates user, starts session |
 
-Admin seeding: `pnpm create-admin` (`db/create-admin.js`) reads `ADMIN_EMAIL`/`ADMIN_PASSWORD` from `.env` and creates an admin if none exists; also invoked after migrations in the Docker flow. Both variables are documented in `.env` files.
+Admin seeding: `pnpm create-admin` (`db/create-admin.js`) reads `ADMIN_EMAIL`/`ADMIN_PASSWORD` from `.env` and creates an admin if none exists; run manually after migrations, like `pnpm migrate` (`pnpm create-admin [env]`); the repo has no automated Docker migration flow. Both variables are documented in `.env` files.
 
 ## Frontend
 
