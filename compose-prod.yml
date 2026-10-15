@@ -22,7 +22,7 @@ services:
 
 
   db:
-    image: postgres:18
+    image: postgres:18-alpine
     restart: always
     # set shared memory limit when using docker compose
     shm_size: 128mb
@@ -44,9 +44,6 @@ services:
       - app-network
     links:
       - db:db 
-
-volumes:
-  pgdata:
 
 networks:
   app-network:
