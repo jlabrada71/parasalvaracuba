@@ -265,5 +265,70 @@
     "s7Body": "Podemos atualizar estes termos a qualquer momento. O uso continuado da plataforma após as alterações implica aceitação dos novos termos.",
     "s8Title": "Contato",
     "s8Body": "Dúvidas sobre estes termos: legal at parasalvaracuba.org"
+  },
+  "auth": {
+    "nav": {
+      "login": "Entrar",
+      "logout": "Sair",
+      "admin": "Administração"
+    },
+    "login": {
+      "title": "Entrar",
+      "subtitle": "Para membros da equipe convidados",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Entrar",
+      "failed": "E-mail ou senha inválidos",
+      "tooMany": "Muitas tentativas. Tente novamente mais tarde.",
+      "generic": "Algo deu errado. Tente novamente."
+    },
+    "invite": {
+      "title": "Aceite seu convite",
+      "subtitle": "Escolha uma senha para {email}",
+      "password": "Senha",
+      "confirm": "Confirmar senha",
+      "submit": "Criar conta",
+      "invalid": "Este convite é inválido ou expirou.",
+      "exists": "Já existe uma conta com este e-mail."
+    },
+    "errors": {
+      "emailRequired": "O e-mail é obrigatório",
+      "emailInvalid": "Informe um e-mail válido",
+      "passwordRequired": "A senha é obrigatória",
+      "passwordMin": "Use pelo menos 10 caracteres",
+      "passwordMax": "Use no máximo 200 caracteres",
+      "passwordMismatch": "As senhas não coincidem",
+      "roleInvalid": "Escolha um papel válido"
+    }
+  },
+  "admin": {
+    "title": "Administração",
+    "invite": {
+      "title": "Convidar um usuário",
+      "email": "E-mail",
+      "role": "Papel",
+      "roleAuthor": "Autor",
+      "roleAdmin": "Administrador",
+      "submit": "Criar convite",
+      "linkReady": "Link do convite (exibido uma vez — copie e envie):",
+      "copy": "Copiar link",
+      "copied": "Copiado",
+      "exists": "Já existe um usuário com este e-mail.",
+      "failed": "Não foi possível criar o convite."
+    },
+    "pending": {
+      "title": "Convites pendentes",
+      "empty": "Nenhum convite pendente.",
+      "email": "E-mail",
+      "role": "Papel",
+      "expires": "Expira",
+      "revoke": "Revogar"
+    },
+    "users": {
+      "title": "Usuários",
+      "email": "E-mail",
+      "role": "Papel",
+      "created": "Criado"
+    }
   }
 }

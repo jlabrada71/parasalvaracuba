@@ -265,5 +265,70 @@
     "s7Body": "Podemos actualizar estos términos en cualquier momento. El uso continuado de la plataforma tras los cambios implica la aceptación de los nuevos términos.",
     "s8Title": "Contacto",
     "s8Body": "Preguntas sobre estos términos: legal at parasalvaracuba.org"
+  },
+  "auth": {
+    "nav": {
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "admin": "Administración"
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Para miembros del equipo invitados",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "failed": "Correo o contraseña incorrectos",
+      "tooMany": "Demasiados intentos. Inténtalo más tarde.",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "invite": {
+      "title": "Acepta tu invitación",
+      "subtitle": "Elige una contraseña para {email}",
+      "password": "Contraseña",
+      "confirm": "Confirmar contraseña",
+      "submit": "Crear cuenta",
+      "invalid": "Esta invitación no es válida o ha caducado.",
+      "exists": "Ya existe una cuenta con este correo."
+    },
+    "errors": {
+      "emailRequired": "El correo es obligatorio",
+      "emailInvalid": "Introduce un correo válido",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordMin": "Usa al menos 10 caracteres",
+      "passwordMax": "Usa como máximo 200 caracteres",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "roleInvalid": "Elige un rol válido"
+    }
+  },
+  "admin": {
+    "title": "Administración",
+    "invite": {
+      "title": "Invitar a un usuario",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "roleAuthor": "Autor",
+      "roleAdmin": "Administrador",
+      "submit": "Crear invitación",
+      "linkReady": "Enlace de invitación (se muestra una sola vez — cópialo y envíalo):",
+      "copy": "Copiar enlace",
+      "copied": "Copiado",
+      "exists": "Ya existe un usuario con este correo.",
+      "failed": "No se pudo crear la invitación."
+    },
+    "pending": {
+      "title": "Invitaciones pendientes",
+      "empty": "No hay invitaciones pendientes.",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "expires": "Caduca",
+      "revoke": "Revocar"
+    },
+    "users": {
+      "title": "Usuarios",
+      "email": "Correo electrónico",
+      "role": "Rol",
+      "created": "Creado"
+    }
   }
 }

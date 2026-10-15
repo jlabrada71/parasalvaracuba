@@ -265,5 +265,70 @@
     "s7Body": "We may update these terms at any time. Continued use of the platform after changes constitutes acceptance of the new terms.",
     "s8Title": "Contact",
     "s8Body": "Questions about these terms: legal at parasalvaracuba.org"
+  },
+  "auth": {
+    "nav": {
+      "login": "Log in",
+      "logout": "Log out",
+      "admin": "Admin"
+    },
+    "login": {
+      "title": "Log in",
+      "subtitle": "For invited team members",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "failed": "Invalid email or password",
+      "tooMany": "Too many attempts. Try again later.",
+      "generic": "Something went wrong. Please try again."
+    },
+    "invite": {
+      "title": "Accept your invitation",
+      "subtitle": "Choose a password for {email}",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "submit": "Create account",
+      "invalid": "This invitation is invalid or has expired.",
+      "exists": "An account with this email already exists."
+    },
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Use at least 10 characters",
+      "passwordMax": "Use at most 200 characters",
+      "passwordMismatch": "Passwords do not match",
+      "roleInvalid": "Choose a valid role"
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "invite": {
+      "title": "Invite a user",
+      "email": "Email",
+      "role": "Role",
+      "roleAuthor": "Author",
+      "roleAdmin": "Admin",
+      "submit": "Create invitation",
+      "linkReady": "Invitation link (shown once — copy and send it):",
+      "copy": "Copy link",
+      "copied": "Copied",
+      "exists": "A user with this email already exists.",
+      "failed": "Could not create the invitation."
+    },
+    "pending": {
+      "title": "Pending invitations",
+      "empty": "No pending invitations.",
+      "email": "Email",
+      "role": "Role",
+      "expires": "Expires",
+      "revoke": "Revoke"
+    },
+    "users": {
+      "title": "Users",
+      "email": "Email",
+      "role": "Role",
+      "created": "Created"
+    }
   }
 }
