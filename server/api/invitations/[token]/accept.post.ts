@@ -12,6 +12,14 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: `Password must be ${MIN_PASSWORD_LENGTH}-${MAX_PASSWORD_LENGTH} characters` })
   }
 
+  // Cheap check first: an unauthenticated caller must not be able to trigger scrypt with a bogus token.
+  const valid = await queryOne(
+    `SELECT 1 FROM invitations
+      WHERE token_hash = $1 AND accepted_at IS NULL AND revoked_at IS NULL AND expires_at > NOW()`,
+    [hashToken(token)]
+  )
+  if (!valid) throw createError({ statusCode: 404, message: 'Invitation not found or expired' })
+
   const hash = await hashPassword(password)
 
   // One statement = atomic: the invitation is consumed only if the user row is created.

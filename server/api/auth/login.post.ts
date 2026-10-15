@@ -1,8 +1,9 @@
-import { defineEventHandler, readBody, createError, getRequestIP } from 'h3'
+import { defineEventHandler, readBody, createError } from 'h3'
 import { queryOne } from '../../utils/db'
 import { hashPassword, verifyPassword, MAX_PASSWORD_LENGTH } from '../../utils/password'
 import { createRateLimiter } from '../../utils/rateLimit'
 import { createSession } from '../../utils/session'
+import { clientIp } from '../../utils/clientIp'
 
 const WINDOW_MS = 15 * 60 * 1000
 // Limits are configurable via .env (LOGIN_EMAIL_MAX_FAILURES / LOGIN_IP_MAX_FAILURES).
@@ -22,7 +23,7 @@ export default defineEventHandler(async (event) => {
   if (!email || !password) throw createError({ statusCode: 400, message: 'Email and password are required' })
   if (password.length > MAX_PASSWORD_LENGTH) throw createError({ statusCode: 400, message: 'Password is too long' })
 
-  const ip = getRequestIP(event) ?? 'unknown'
+  const ip = clientIp(event)
   if (emailLimiter.isLimited(`email:${email}`) || ipLimiter.isLimited(`ip:${ip}`)) {
     throw createError({ statusCode: 429, message: 'Too many attempts, try again later' })
   }

@@ -29,6 +29,12 @@ describe('session', () => {
     expect(opts).toMatchObject({ httpOnly: true, sameSite: 'lax', path: '/' })
   })
 
+  it('createSession purges expired sessions so the table does not grow forever', async () => {
+    await createSession(event, 'user-1')
+    const sqls = vi.mocked(query).mock.calls.map(c => String(c[0]))
+    expect(sqls.some(sql => /DELETE FROM sessions\s+WHERE expires_at\s*<\s*NOW\(\)/i.test(sql))).toBe(true)
+  })
+
   it('getSessionUser looks the session up by hash and returns the user', async () => {
     vi.mocked(queryOne).mockResolvedValue({ id: 'u1', email: 'a@b.co', role: 'admin' })
     expect(await getSessionUser('tok')).toEqual({ id: 'u1', email: 'a@b.co', role: 'admin' })

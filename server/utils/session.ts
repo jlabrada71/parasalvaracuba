@@ -29,6 +29,8 @@ export async function createSession(event: H3Event, userId: string): Promise<voi
     [hashToken(token), userId, expiresAt]
   )
   setCookie(event, SESSION_COOKIE, token, { ...cookieOptions(), expires: expiresAt })
+  // Opportunistic cleanup: expired rows are useless and would otherwise accumulate forever.
+  await query(`DELETE FROM sessions WHERE expires_at < NOW()`)
 }
 
 export async function getSessionUser(token: string): Promise<SessionUser | null> {
