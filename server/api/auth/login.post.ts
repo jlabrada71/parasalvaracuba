@@ -5,8 +5,9 @@ import { createRateLimiter } from '../../utils/rateLimit'
 import { createSession } from '../../utils/session'
 
 const WINDOW_MS = 15 * 60 * 1000
-const emailLimiter = createRateLimiter({ max: 5, windowMs: WINDOW_MS })
-const ipLimiter = createRateLimiter({ max: 30, windowMs: WINDOW_MS })
+// Limits are configurable via .env (LOGIN_EMAIL_MAX_FAILURES / LOGIN_IP_MAX_FAILURES).
+const emailLimiter = createRateLimiter({ max: Number(process.env.LOGIN_EMAIL_MAX_FAILURES) || 5, windowMs: WINDOW_MS })
+const ipLimiter = createRateLimiter({ max: Number(process.env.LOGIN_IP_MAX_FAILURES) || 30, windowMs: WINDOW_MS })
 
 // Verified against when the email is unknown, so timing does not reveal account existence.
 const dummyHash = hashPassword('timing-equalizer-password')
